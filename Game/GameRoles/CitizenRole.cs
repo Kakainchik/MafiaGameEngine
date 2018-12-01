@@ -3,14 +3,14 @@ using GameRoles.Interfaces;
 
 namespace GameRoles.Roles
 {
-    public class Citizen : Role
+    public class CitizenRole : Role
     {
-        public Citizen(string name) : base(name)
+        public CitizenRole(string name) : base(name)
         {
 
         }
 
-        public override void ExecuteAction()
+        public override void ExecuteAction(Role whom)
         {
             return;
         }

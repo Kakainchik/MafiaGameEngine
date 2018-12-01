@@ -30,7 +30,7 @@ namespace GameRoles
             this.Name = name;
         }
 
-        public abstract void ExecuteAction();
+        public abstract void ExecuteAction(Role whom);
 
         public void Kill(Role who)
         {
@@ -42,6 +42,11 @@ namespace GameRoles
         {
             this.IsAlive = true;
             OnRevived(new ActionEventArgs($"This person was revived by {who.Name}", who));
+        }
+
+        public override string ToString()
+        {
+            return $"{Name} is {(IsAlive?"Alive":"Died")};";
         }
 
         private void CallEvent(ActionHandler handler, ActionEventArgs e)
