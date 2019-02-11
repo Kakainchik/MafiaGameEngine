@@ -9,21 +9,14 @@ namespace ConsoleRoleBindingTest
     {
         static void Main(string[] args)
         {
-            List<Role> players = new List<Role>(2)
+            List<Player> players = new List<Player>()
             {
-                new CitizenRole("Camel"),
-                new MafiaRole("Job")
+                new Player(new MafiaRole(), "Maf"),
+                new Player(new CitizenRole(), "Pea"),
+                new Player(new DoctorRole(), "Doc")
             };
 
-            foreach(Role r in players)
-            {
-                r.WasDied += new ActionHandler(R_WasDied);
-                r.WasRevived += new ActionHandler(R_WasRevived);
-            }
-
-            players.ForEach((r) => Console.WriteLine(r.ToString()));
-
-            players[1].ExecuteAction(players[0]);
+            
 
             Pause();
         }
@@ -33,7 +26,7 @@ namespace ConsoleRoleBindingTest
             throw new NotImplementedException();
         }
 
-        private static void R_WasDied(object sender, ActionEventArgs e)
+        private static void R_WasKilled(object sender, ActionEventArgs e)
         {
             Console.WriteLine(((Role)sender).Name + " was killed by " + e.Who.Name);
         }

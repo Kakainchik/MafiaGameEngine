@@ -1,13 +1,17 @@
 ﻿using GameRoles.Interfaces;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace GameRoles
 {
     public abstract class Role
     {
         #region Variables
-
+        
         protected bool isAlive = true;
         protected string name;
+        protected Stack<Role> targets;
+        public readonly byte Priority;
 
         #endregion
 
@@ -15,47 +19,62 @@ namespace GameRoles
 
         public bool IsAlive { get => isAlive; protected set => isAlive = value; }
         public string Name { get => name; protected set => name = value; }
+        public Stack<Role> Targets { get => targets; protected set => targets = value; }
 
         #endregion
 
         #region Events
 
-        public event ActionHandler WasDied;
+        public event ActionHandler WasKilled;
         public event ActionHandler WasRevived;
 
         #endregion
 
-        public Role(string name)
+        public Role()
         {
-            this.Name = name;
         }
 
-        public abstract void ExecuteAction(Role whom);
+        #region Abstract methods
 
-        public void Kill(Role who)
+        public abstract void DoAction();
+        public abstract void Undo();
+
+        #endregion
+
+        #region Methods
+
+        public virtual bool AddTarget(Role who)
         {
-            this.IsAlive = false;
-            OnDied(new ActionEventArgs($"This person was killed by {who.Name}", who));
+            if(who.IsAlive)
+            {
+                this.Targets.Push(who);
+                return true;
+            }
+            else return false;
         }
 
-        public void Revive(Role who)
+        public void ClearTargets(Role who)
         {
-            this.IsAlive = true;
-            OnRevived(new ActionEventArgs($"This person was revived by {who.Name}", who));
+            this.Targets.Clear();
         }
 
         public override string ToString()
         {
-            return $"{Name} is {(IsAlive?"Alive":"Died")};";
+            return $"{Name} is {(IsAlive?"Alive":"Dead")};";
         }
+
+        #endregion
+
+        #region Handlers
 
         private void CallEvent(ActionHandler handler, ActionEventArgs e)
         {
             if(handler != null && e != null) handler(this, e);
         }
 
-        protected virtual void OnDied(ActionEventArgs e) => this.CallEvent(WasDied, e);
-
+        protected virtual void OnDied(ActionEventArgs e) => this.CallEvent(WasKilled, e);
         protected virtual void OnRevived(ActionEventArgs e) => this.CallEvent(WasRevived, e);
+
+        #endregion
     }
 }

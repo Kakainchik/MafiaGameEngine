@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameRoles", "GameRoles\Game
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleRoleBindingTest", "ConsoleRoleBindingTest\ConsoleRoleBindingTest.csproj", "{50F503F8-0768-4F47-AD73-7F3C73138DF8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MafiaGame", "MafiaGame\MafiaGame.csproj", "{6D3EA6BB-1474-40C0-852B-805FE3ABE897}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{50F503F8-0768-4F47-AD73-7F3C73138DF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{50F503F8-0768-4F47-AD73-7F3C73138DF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{50F503F8-0768-4F47-AD73-7F3C73138DF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D3EA6BB-1474-40C0-852B-805FE3ABE897}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D3EA6BB-1474-40C0-852B-805FE3ABE897}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D3EA6BB-1474-40C0-852B-805FE3ABE897}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D3EA6BB-1474-40C0-852B-805FE3ABE897}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
