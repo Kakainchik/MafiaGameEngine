@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 namespace GameLogic.Roles
 {
     /// <summary>
-    /// Роль виджиланте. Относится к <see cref="Teams.CITY">Городу</see>.
-    /// Каждую ночью может убить кого-то, пока не кончатся патроны.
+    /// Роль зомби. Относится к <see cref="Teams.UNDEAD">Нежити</see>.
+    /// Каждую ночь решает, кого возродить из мёртвых.
     /// </summary>
-    public class VigilanteRole : Role
+    public class ZombieRole : Role
     {
         public override void OnWasDied()
         {

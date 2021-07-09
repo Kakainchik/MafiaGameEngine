@@ -1,25 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using GameLogic.Interfaces;
 
-namespace GameRoles.Roles
+namespace GameLogic.Roles
 {
-    public class DoctorRole : Role
+    /// <summary>
+    /// Роль доктора. Относится к <see cref="Teams.CITY">Городу</see>.
+    /// Каждую ночь может защитить одного человека от смерти в течение данной ночи.
+    /// </summary>
+    public class DoctorRole : Role, IAction
     {
-        public DoctorRole() : base()
+        public void DoAction(Role who)
         {
+            throw new System.NotImplementedException();
         }
 
-        public override void DoAction()
+        public override void OnWasDied()
         {
-            throw new NotImplementedException();
-        }
-
-        public override void Undo()
-        {
-            throw new NotImplementedException();
+            throw new System.NotImplementedException();
         }
     }
 }

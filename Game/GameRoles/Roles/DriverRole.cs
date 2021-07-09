@@ -4,16 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GameRoles.Roles
+namespace GameLogic.Roles
 {
+    /// <summary>
+    /// Роль водителя. Относится к <see cref="Teams.CITY">Городу</see>.
+    /// Каждую ночь может поменять местами двух людей, вследствие чего действия, направленные ночью на них, поменяются между ними.
+    /// </summary>
     public class DriverRole : Role
     {
-        public override void DoAction()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void Undo()
+        public override void OnWasDied()
         {
             throw new NotImplementedException();
         }

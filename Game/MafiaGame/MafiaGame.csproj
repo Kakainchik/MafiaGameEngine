@@ -134,9 +134,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GameRoles\GameRoles.csproj">
+    <ProjectReference Include="..\GameRoles\GameLogic.csproj">
       <Project>{839edd6b-74c5-4189-a348-2a5c98b394cf}</Project>
-      <Name>GameRoles</Name>
+      <Name>GameLogic</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -169,7 +169,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Resource Include="Images\Logo\anonymous-logo.png" />
   </ItemGroup>
@@ -178,6 +177,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Backgrounds\background-light-gray.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Fody.3.3.2\build\Fody.targets" Condition="Exists('..\packages\Fody.3.3.2\build\Fody.targets')" />

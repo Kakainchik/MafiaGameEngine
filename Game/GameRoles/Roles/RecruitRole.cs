@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 namespace GameLogic.Roles
 {
     /// <summary>
-    /// Роль виджиланте. Относится к <see cref="Teams.CITY">Городу</see>.
-    /// Каждую ночью может убить кого-то, пока не кончатся патроны.
+    /// Роль рекрута. Временно относится к <see cref="Teams.CITY">Городу</see>.
+    /// Нет никаких способностей. Вербуется в <see cref="MafiaRole">мафиози</see>.
     /// </summary>
-    public class VigilanteRole : Role
+    public class RecruitRole : Role
     {
         public override void OnWasDied()
         {

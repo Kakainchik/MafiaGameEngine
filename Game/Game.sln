@@ -1,13 +1,18 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2046
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameRoles", "GameRoles\GameRoles.csproj", "{839EDD6B-74C5-4189-A348-2A5C98B394CF}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleRoleBindingTest", "ConsoleRoleBindingTest\ConsoleRoleBindingTest.csproj", "{50F503F8-0768-4F47-AD73-7F3C73138DF8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameLogic", "GameRoles\GameLogic.csproj", "{839EDD6B-74C5-4189-A348-2A5C98B394CF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MafiaGame", "MafiaGame\MafiaGame.csproj", "{6D3EA6BB-1474-40C0-852B-805FE3ABE897}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoleBindingTest", "RoleBindingTest\RoleBindingTest.csproj", "{2DA88A2F-A5A8-4A0B-A6FC-CFC95D736B41}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EC5295AF-7FBD-4652-AB0E-53A1B4EADAF4}"
+	ProjectSection(SolutionItems) = preProject
+		README.txt = README.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,14 +24,14 @@ Global
 		{839EDD6B-74C5-4189-A348-2A5C98B394CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{839EDD6B-74C5-4189-A348-2A5C98B394CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{839EDD6B-74C5-4189-A348-2A5C98B394CF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{50F503F8-0768-4F47-AD73-7F3C73138DF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{50F503F8-0768-4F47-AD73-7F3C73138DF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{50F503F8-0768-4F47-AD73-7F3C73138DF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{50F503F8-0768-4F47-AD73-7F3C73138DF8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6D3EA6BB-1474-40C0-852B-805FE3ABE897}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6D3EA6BB-1474-40C0-852B-805FE3ABE897}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6D3EA6BB-1474-40C0-852B-805FE3ABE897}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6D3EA6BB-1474-40C0-852B-805FE3ABE897}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DA88A2F-A5A8-4A0B-A6FC-CFC95D736B41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DA88A2F-A5A8-4A0B-A6FC-CFC95D736B41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DA88A2F-A5A8-4A0B-A6FC-CFC95D736B41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DA88A2F-A5A8-4A0B-A6FC-CFC95D736B41}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,18 +1,19 @@
-﻿using System;
+﻿using GameLogic.Interfaces;
+using GameLogic.Roles;
 
-namespace GameRoles
+namespace GameLogic
 {
     public delegate void ActionHandler(object sender, ActionEventArgs e);
 
     public class ActionEventArgs
     {
         public string Log { get; }
-        public Role Who { get; }
+        public IAction Action { get; }
 
-        public ActionEventArgs(string mes, Role role)
+        public ActionEventArgs(string message, IAction action)
         {
-            this.Log = mes;
-            this.Who = role;
+            this.Log = message;
+            this.Action = action;
         }
     }
 }

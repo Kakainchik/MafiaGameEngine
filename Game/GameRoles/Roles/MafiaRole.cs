@@ -1,25 +1,21 @@
-﻿using System;
-using GameRoles.Interfaces;
+﻿using GameLogic.Interfaces;
 
-namespace GameRoles.Roles
+namespace GameLogic.Roles
 {
-    public class MafiaRole : Role
+    /// <summary>
+    /// Роль стандартной мафии. Относится к <see cref="Teams.MAFIA">Мафии</see>.
+    /// Каждую ночь должен решить, кого убить.
+    /// </summary>
+    public class MafiaRole : Role, IAction
     {
-        private IAction Kill;
-
-        public MafiaRole() : base()
+        public void DoAction(Role who)
         {
-
+            throw new System.NotImplementedException();
         }
 
-        public override void DoAction()
+        public override void OnWasDied()
         {
-            Kill.Execute(Targets.Peek());
-        }
-
-        public override void Undo()
-        {
-            throw new NotImplementedException();
+            throw new System.NotImplementedException();
         }
     }
 }

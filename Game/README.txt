@@ -1,0 +1,2 @@
+The idea by 'Dark.Revenant'. I as developer do not have any claims on his work, do not consider earning money with it and make this application only with enthusiasm.
+The code by 'Kakainchik' and is located as an opensource project on GitHub.
