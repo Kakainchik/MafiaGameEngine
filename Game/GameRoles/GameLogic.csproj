@@ -49,6 +49,7 @@
     <Compile Include="Interfaces\IAction.cs" />
     <Compile Include="Interfaces\ITeamChangeable.cs" />
     <Compile Include="KillEventArgs.cs" />
+    <Compile Include="Night.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Roles\CitizenRole.cs" />

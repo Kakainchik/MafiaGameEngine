@@ -8,7 +8,7 @@ namespace GameLogic
 
     public class Player
     {
-        public bool isAlive = true;
+        private bool isAlive = true;
 
         public Role Role { get; }
         public string Nickname { get; }
@@ -24,6 +24,7 @@ namespace GameLogic
 
         public event KillEventHandler WasKilled;
         public event LynchEventHandler WasLynced;
+        public event VoteEventHandler MadeVote;
 
         public void Lynch()
         {
@@ -37,10 +38,15 @@ namespace GameLogic
             this.isAlive = false;
         }
 
-        public void Vote(Player target) => target.AddVote();
+        public void Vote(Player target) => MadeVote?.Invoke(this, target);
 
         public void AddVote() => Votes++;
 
         public void ClearVotes() => Votes = 0;
+
+        public override string ToString()
+        {
+            return $"Name = {Nickname}, IsAlive = {isAlive}";
+        }
     }
 }

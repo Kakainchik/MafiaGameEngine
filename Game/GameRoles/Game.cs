@@ -7,25 +7,33 @@ using System.Threading.Tasks;
 
 namespace GameLogic
 {
-    public delegate void VoteStartEventHandler(object sender, List<Player> players);
-    public delegate void VoteEndEventHandler(object sender, Player votedPlayer);
-
     public class Game
     {
         private const string LACK_PLAYERS_ERROR = "Too few players. Minimum is 5.";
 
         private bool isGameStarted = false;
+        private DailyMeeteng currentDay;
+        private Night currentNight;
+
+        /// <summary>
+        /// Список ролей в данной игре.
+        /// </summary>
+        public List<Player> Players { get; }
+
+        /// <summary>
+        /// Количество живых игроков в данный момент.
+        /// </summary>
+        public int AlivePlayersNumber { get => Players.Count(p => p.IsAlive); }
 
         /// <summary>
         /// Номер хода в данный момент в игре.
         /// </summary>
         public int Day { get; private set; } = 0;
-        public int NonLynchVotes { get; set; } = 0;
 
         /// <summary>
         /// Отображает период игры в данный момент. <c>True</c> - ночь, иначе день.
         /// </summary>
-        public bool IsNightNow { get; private set; } = false;
+        public bool IsNightNow { get; private set; } = true;
 
         /// <summary>
         /// Отображает, начата ли в данный момент игра.
@@ -40,10 +48,9 @@ namespace GameLogic
             }
         }
 
-        /// <summary>
-        /// Список ролей в данной игре.
-        /// </summary>
-        public List<Player> Players { get; }
+        public DailyMeeteng DailyMeeteng { get => currentDay; }
+
+        public Night CurrentNight { get => currentNight; }
 
         public Game(List<Player> players)
         {
@@ -55,7 +62,7 @@ namespace GameLogic
         public event EventHandler DayStarted;
         public event EventHandler NightStarted;
         public event VoteStartEventHandler VotingStarted;
-        public event VoteEndEventHandler VotingEnded;
+        public event VoteEventHandler VotingEnded;
         /// <summary>
         /// Запускает игру с загруженными в ранее конструктор ролями.
         /// </summary>
@@ -80,45 +87,36 @@ namespace GameLogic
             if(IsNightNow)
             {
                 this.IsNightNow = false;
+                //Прибавляем ход, когда заканчивается ночь
+                this.Day++;
+                this.DayStarted?.Invoke(this, EventArgs.Empty);
                 this.StartDay();
             }
             else
             {
                 this.IsNightNow = true;
+                this.NightStarted?.Invoke(this, EventArgs.Empty);
                 this.StartNight();
             }
         }
 
-        public void EndVote(Player selected)
-        {
-            selected.Lynch();
-            this.VotingStarted.
-            this.VotingEnded?.Invoke(this, selected);
-        }
-
-        public void RepeatVote(List<Player> remainedPlayers)
-        {
-            this.Players.ForEach(p => p.ClearVotes());
-            this.VotingStarted?.Invoke(this, remainedPlayers);
-        }
-
         private void StartDay()
         {
-            this.DayStarted?.Invoke(this, EventArgs.Empty);
-
-            //Прибавляем ход, когда заканчивается ночь
-            this.Day++;
-
+            this.currentNight = null;
             //Первый день не голосуем
             if(this.Day == 1) return;
 
             //Исключаем всех мёртвых игроков
             List<Player> alivePlayers = Players.FindAll(p => p.IsAlive);
-            this.VotingStarted?.Invoke(this, alivePlayers);
+            this.currentDay = new DailyMeeteng(alivePlayers, Day, VotingStarted, VotingEnded);
         }
 
         private void StartNight()
         {
+            this.currentDay = null;
+
+            //Исключаем всех мёртвых игроков
+            List<Player> alivePlayers = Players.FindAll(p => p.IsAlive);
 
         }
     }
