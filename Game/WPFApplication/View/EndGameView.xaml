@@ -1,0 +1,70 @@
+﻿<UserControl x:Class="WPFApplication.View.EndGameView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WPFApplication.View"
+             xmlns:r="clr-namespace:WPFApplication.Resources"
+             xmlns:control="clr-namespace:WPFApplication.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="1000"
+             d:Background="{StaticResource PrimaryDarkBrush}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <FlowDocumentScrollViewer Grid.Row="0"
+                                  Document="{Binding StoryLog}"
+                                  Margin="{StaticResource MediumMargin}"
+                                  IsSelectionEnabled="False"
+                                  FontSize="{StaticResource SmallTextSize}"
+                                  VerticalScrollBarVisibility="Hidden"
+                                  HorizontalScrollBarVisibility="Disabled"
+                                  HorizontalContentAlignment="Center"/>
+
+        <ListView Grid.Column="1"
+                  ItemsSource="{Binding PlayersList}"
+                  Style="{StaticResource WinnerList}"
+                  Margin="{StaticResource SmallMargin}"
+                  IsManipulationEnabled="False"
+                  Focusable="False"
+                  IsHitTestVisible="False">
+            <ListView.View>
+                <GridView AllowsColumnReorder="False"
+                          ColumnHeaderContainerStyle="{StaticResource HeaderWinnerList}">
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Username}"
+                                    Header="{x:Static r:ControlResources.EGVUsername}"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Nickname}"
+                                    Header="{x:Static r:ControlResources.EGVNickname}"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Role}"
+                                    Header="{x:Static r:ControlResources.EGVRole}"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=IsAlive}"
+                                    Header="{x:Static r:ControlResources.EGVStatus}">
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <DockPanel Grid.Row="1"
+                   Grid.ColumnSpan="2"
+                   Margin="{StaticResource MediumMargin}"
+                   LastChildFill="True">
+            <control:InputTextBox Margin="0,5,0,0"
+                                  DockPanel.Dock="Bottom"
+                                  Style="{StaticResource BaseInputTextBox}"
+                                  IsBlankAllowed="True"
+                                  Hint="{x:Static r:ControlResources.ChatMsg}"
+                                  MaxLength="200"
+                                  MaxLines="1"
+                                  x:Name="ChatInputBox"
+                                  PressCommand="{Binding PushMessageCommand}"/>
+            <control:ChatListControl Messages="{Binding ChatLog, Mode=TwoWay}"/>
+        </DockPanel>
+    </Grid>
+</UserControl>

@@ -1,0 +1,42 @@
+﻿<UserControl x:Class="WPFApplication.View.HomeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WPFApplication.View"
+             xmlns:control="clr-namespace:WPFApplication.Controls"
+             xmlns:r="clr-namespace:WPFApplication.Resources"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <StackPanel Orientation="Vertical"
+                VerticalAlignment="Center">
+        <StackPanel Orientation="Vertical"
+                        Margin="{StaticResource MediumHorizontalMargin}">
+            <!-- Enter hall -->
+            <Button Content="Public games"
+                        Height="60"
+                        Width="240"
+                        Margin="{StaticResource HugeVerticalMargin}"
+                        Command="{Binding EnterHallCommand}"/>
+            <!-- LAN games -->
+            <Button Content="{x:Static r:ControlResources.HVCreateLobby}"
+                        Height="60"
+                        Width="240"
+                        Command="{Binding CreateLANGameCommand}"/>
+
+            <Button Content="{x:Static r:ControlResources.HVConnectLobby}"
+                        Height="60"
+                        Width="240"
+                        Margin="{StaticResource HugeVerticalMargin}"
+                        Command="{Binding JoinLANGameCommand}"/>
+        </StackPanel>
+
+        <control:InputTextBox Width="260"
+                              Style="{StaticResource BaseInputTextBox}"
+                              Hint="{x:Static r:ControlResources.HVNickname}"
+                              IsBlankAllowed="False"
+                              MaxLines="1"
+                              MaxLength="30"
+                              Text="{Binding Username, Mode=TwoWay}"/>
+    </StackPanel>
+</UserControl>

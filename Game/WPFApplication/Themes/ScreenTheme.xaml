@@ -1,0 +1,34 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style x:Key="FadeStyle"
+           TargetType="{x:Type Border}">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Faded}" Value="True">
+                <DataTrigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ColorAnimation Storyboard.TargetProperty="Background.Color"
+                                            From="{StaticResource PrimaryDark}"
+                                            To="{StaticResource Faded}"
+                                            Duration="0:0:2"
+                                            AutoReverse="False"
+                                            FillBehavior="HoldEnd"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </DataTrigger.EnterActions>
+                <DataTrigger.ExitActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ColorAnimation Storyboard.TargetProperty="Background.Color"
+                                            From="{StaticResource Faded}"
+                                            To="{StaticResource PrimaryDark}"
+                                            Duration="0:0:2"
+                                            AutoReverse="False"
+                                            FillBehavior="HoldEnd"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </DataTrigger.ExitActions>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>

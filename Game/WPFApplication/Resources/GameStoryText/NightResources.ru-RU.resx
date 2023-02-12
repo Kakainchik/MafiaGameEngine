@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ECultusLeaderAct" xml:space="preserve">
+    <value>Вы знали, что этот человек встанет на истинный путь. Он с жаждой готов послужить вашему культу.</value>
+  </data>
+  <data name="ECultusLeaderActF" xml:space="preserve">
+    <value>Ваша цель обладала сильной волей и не удалось убедить её.</value>
+  </data>
+  <data name="EDetectActDANGEROUS" xml:space="preserve">
+    <value>Кажется, этот человек представляет опасноcть.</value>
+  </data>
+  <data name="EDetectActPEACEFUL" xml:space="preserve">
+    <value>Кажется, этот человек не представляет угрозы.</value>
+  </data>
+  <data name="EGodfatherAct" xml:space="preserve">
+    <value>Рекрут прошёл тест на верность и готов оказывать вам бесценную услугу.</value>
+  </data>
+  <data name="EGodfatherActF" xml:space="preserve">
+    <value>Потенциальный рекрут оказался бесполезен для вашего клана, и, возможно, даже представляет  опасность.</value>
+  </data>
+  <data name="EInvestigateAct" xml:space="preserve">
+    <value>Похоже на то, что это {0}</value>
+  </data>
+  <data name="EKillImmune" xml:space="preserve">
+    <value>Вы отправились за своей жертвой, однако её не оказалось дома.</value>
+  </data>
+  <data name="EWitchAct" xml:space="preserve">
+    <value>Сегодня вы попытались взять под контроль чужой разум. Кто знает, к чему это приведёт…</value>
+  </data>
+  <data name="KillActDRIVER_ACCIDENT" xml:space="preserve">
+    <value>На улице что-то прогремело. Случилась авария.</value>
+  </data>
+  <data name="KillActSUICIDE" xml:space="preserve">
+    <value>Из дома были слышны крики о помощи, громилась мебель, кто-то боролся.</value>
+  </data>
+  <data name="MafiaActKILL" xml:space="preserve">
+    <value>Рядом с вашим домом кто-то только что вскрыл двери. Оттуда послышались выстрелы.</value>
+  </data>
+  <data name="NightEnd" xml:space="preserve">
+    <value>Ночь подходит к концу…</value>
+  </data>
+  <data name="NightStart" xml:space="preserve">
+    <value>Солнце постепенно уходит в закат… Город готовится ко сну.</value>
+  </data>
+  <data name="RemainingBullets" xml:space="preserve">
+    <value>Иммется патронов: {0}.</value>
+  </data>
+  <data name="RessurectAct" xml:space="preserve">
+    <value>Над местом произошедшего убийства нависли чёрные тучи…</value>
+  </data>
+  <data name="RoleRemind" xml:space="preserve">
+    <value>НАПОМИНАНИЕ: Ваша роль </value>
+  </data>
+  <data name="SerialKillerActKILL" xml:space="preserve">
+    <value>В одном доме были слышны истошные вопли и крики о помощи.</value>
+  </data>
+  <data name="StartAction" xml:space="preserve">
+    <value>Наступила ночь, никто не знает, что произойдёт в ближайший момент…</value>
+  </data>
+  <data name="TCultusLeaderAct" xml:space="preserve">
+    <value>Вас завербовали в культ. Вы отрешились от всех своих идеалов.</value>
+  </data>
+  <data name="TDriverAct" xml:space="preserve">
+    <value>Сегодня ночью вы решили отправиться в другую часть города на такси.</value>
+  </data>
+  <data name="TerroristAct" xml:space="preserve">
+    <value>По городу послышались взрывы, разбудив всех жителей.</value>
+  </data>
+  <data name="TEscortAct" xml:space="preserve">
+    <value>К вам забрела одна прекрасная незнакомка, вы не смогли устоять перед ней и отложили все свои дела.</value>
+  </data>
+  <data name="TEscortActOTHER" xml:space="preserve">
+    <value>К вам пришла знакомая дама и очень долго жаловалась на свою жизнь.</value>
+  </data>
+  <data name="TEscortActSELF" xml:space="preserve">
+    <value>Эту ночь вы провели наедине с собой, вопреки каким ни было планам.</value>
+  </data>
+  <data name="TGodfatherAct" xml:space="preserve">
+    <value>Вас завербовали в клан мафии, предложив несметную славу и богатство взамен за небольшую услугу.</value>
+  </data>
+  <data name="THealAct" xml:space="preserve">
+    <value>Вы очнулись и, кажется, прошедшее было просто сном, однако вскоре обнаруживаете швы на своём теле.</value>
+  </data>
+  <data name="TKillAct" xml:space="preserve">
+    <value>В вашем доме послышались шорохи…</value>
+  </data>
+  <data name="TKillActSUICIDE" xml:space="preserve">
+    <value>Вы осознавали, что никогда бы так не поступили, однако ваше тело не слушалось вас, вы боролись с желанием покончить с собой, рвали на себе волосы, но всё было тщетно…</value>
+  </data>
+  <data name="TRessurectAct" xml:space="preserve">
+    <value>Несмотря на ранения, вы не ощущаете, чтобы жизненные силы покидали вас. Вы вообще ничего не ощущаете.</value>
+  </data>
+  <data name="TWitchAct" xml:space="preserve">
+    <value>Вас настигло острое желание совершить некое деяние не по своей воле, будто ваш разум был кем-то проконтролирован.</value>
+  </data>
+  <data name="VigilanteActKILL" xml:space="preserve">
+    <value>Где-то недалеко прозвучал ружейный выстрел.</value>
+  </data>
+</root>

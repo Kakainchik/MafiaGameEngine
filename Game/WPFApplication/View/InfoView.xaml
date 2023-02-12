@@ -1,0 +1,77 @@
+﻿<UserControl x:Class="WPFApplication.View.InfoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:WPFApplication.View"
+             xmlns:r="clr-namespace:WPFApplication.Resources"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="800"
+             d:Background="{StaticResource PrimaryDarkBrush}">
+    <UserControl.Resources>
+        <Style TargetType="Rectangle">
+            <Setter Property="Stroke" Value="{StaticResource OnPrimaryLightBrush}"/>
+            <Setter Property="StrokeThickness" Value="2"/>
+        </Style>
+        <Thickness x:Key="1LMa">5,0,0,0</Thickness>
+        <Thickness x:Key="2LUMa">30,20,0,0</Thickness>
+        <Thickness x:Key="2LMa">30,0,0,0</Thickness>
+        <Thickness x:Key="3LUMa">6</Thickness>
+    </UserControl.Resources>
+    <ScrollViewer VerticalScrollBarVisibility="Hidden">
+        <StackPanel>
+            <!-- Teams -->
+            <TextBlock Text="{x:Static r:ControlResources.IVTeams}"
+                       Style="{StaticResource PrimaryHeaderTextBlock}"
+                       Margin="{StaticResource 1LMa}"/>
+            <Rectangle Margin="{StaticResource 1LMa}"/>
+
+            <!-- Town -->
+            <TextBlock Text="{x:Static r:RoleDescriptions.TownT}"
+                       Style="{StaticResource PrimaryHeaderTextBlock}"
+                       Margin="{StaticResource 2LUMa}"
+                       Foreground="LawnGreen"/>
+            <Rectangle Margin="{StaticResource 2LMa}"/>
+            <WrapPanel Orientation="Horizontal"
+                       Margin="{StaticResource 2LMa}">
+                <Canvas Height="100"
+                        Width="100"
+                        Margin="{StaticResource 3LUMa}">
+                    <Rectangle Height="100"
+                               Width="100"
+                           Stroke="LawnGreen"
+                           StrokeDashArray="10"/>
+                    <TextBlock Text="afasfas"/>
+                </Canvas>
+            </WrapPanel>
+
+            <!-- Mafia -->
+            <TextBlock Text="{x:Static r:RoleDescriptions.MafiaT}"
+                       Style="{StaticResource PrimaryHeaderTextBlock}"
+                       Margin="{StaticResource 2LUMa}"
+                       Foreground="Red"/>
+            <Rectangle Margin="{StaticResource 2LMa}"/>
+
+            <!-- Cultus -->
+            <TextBlock Text="{x:Static r:RoleDescriptions.CultusT}"
+                       Style="{StaticResource PrimaryHeaderTextBlock}"
+                       Margin="{StaticResource 2LUMa}"
+                       Foreground="Purple"/>
+            <Rectangle Margin="{StaticResource 2LMa}"/>
+
+            <!-- Undead -->
+            <TextBlock Text="{x:Static r:RoleDescriptions.UndeadT}"
+                       Style="{StaticResource PrimaryHeaderTextBlock}"
+                       Margin="{StaticResource 2LUMa}"
+                       Foreground="Gray"/>
+            <Rectangle Margin="{StaticResource 2LMa}"/>
+
+            <!-- Neutral -->
+            <TextBlock Text="{x:Static r:RoleDescriptions.NeutralT}"
+                       Style="{StaticResource PrimaryHeaderTextBlock}"
+                       Margin="{StaticResource 2LUMa}"
+                       Foreground="HotPink"/>
+            <Rectangle Margin="{StaticResource 2LMa}"/>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

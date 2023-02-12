@@ -1,0 +1,288 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CitizenAbility" xml:space="preserve">
+    <value>Вы не имеете никаких особых способностей ночью.</value>
+  </data>
+  <data name="CitizenRole" xml:space="preserve">
+    <value>Вы обычный человек, который верит в правду и справедливость.</value>
+  </data>
+  <data name="CounselorAbility" xml:space="preserve">
+    <value>Вы можете исследовать одного игрока каждую ночь.</value>
+  </data>
+  <data name="CounselorRole" xml:space="preserve">
+    <value>Вы - советник босса преступной семьи.</value>
+  </data>
+  <data name="CultistAbility" xml:space="preserve">
+    <value>Вы разговариваете вместе по ночам с другими культистами. Однако остаётся только догадываться, кто ваш лидер.</value>
+  </data>
+  <data name="CultistRole" xml:space="preserve">
+    <value>Вы верующий в тёмный культ, тайно пытающийся обратить город во тьму.</value>
+  </data>
+  <data name="CultusLeaderAbility" xml:space="preserve">
+    <value>Вы можете попытаться обратить одного человека в культиста каждую ночь и слышать всё, о чём говорят ваши приспешники. Вы остаётесь для них неизвестным.</value>
+  </data>
+  <data name="CultusLeaderRole" xml:space="preserve">
+    <value>Вы - лидер тёмного культа, тайно пытающегося обратить город во тьму.</value>
+  </data>
+  <data name="CultusT" xml:space="preserve">
+    <value>Культ</value>
+  </data>
+  <data name="CultusTeam" xml:space="preserve">
+    <value>Вы принадлежите к КУЛЬТУ и хотите, чтобы все роли были мертвы или обращены в культистов.</value>
+  </data>
+  <data name="CursedAbility" xml:space="preserve">
+    <value>Вы не имеете никаких особых способностей ночью. Если вас убьют в это время, вы станете Зомби, но не уверены, хотите ли этого.</value>
+  </data>
+  <data name="CursedRole" xml:space="preserve">
+    <value>Вы обычный человек, который верит в справедливость и даже не подозревает о своей проклятой душе.</value>
+  </data>
+  <data name="DetectiveAbility" xml:space="preserve">
+    <value>Вы можете исследовать роль одного человека каждую ночь.</value>
+  </data>
+  <data name="DetectiveRole" xml:space="preserve">
+    <value>Вы опытный следопыт, изучающий важную информацию на благо города.</value>
+  </data>
+  <data name="DoctorAbility" xml:space="preserve">
+    <value>Вы можете навестить кого-нибудь ночью, чтобы спасти его, если кто-то попытается его убить.</value>
+  </data>
+  <data name="DoctorRole" xml:space="preserve">
+    <value>Вы секретный хирург, специалист в области травматологии.</value>
+  </data>
+  <data name="DriverAbility" xml:space="preserve">
+    <value>Вы можете поменять местами двух игроков ночью, путая недоброжелателей, чьими жертвами они могли бы быть.</value>
+  </data>
+  <data name="DriverRole" xml:space="preserve">
+    <value>Вы недовольный лицензированный водитель транспорта.</value>
+  </data>
+  <data name="GodfatherAbility" xml:space="preserve">
+    <value>Вы можете попытаться завербовать одного человека в свой клан каждую ночь.</value>
+  </data>
+  <data name="GodfatherRole" xml:space="preserve">
+    <value>Вы являетесь главой семьи городского организованного мафиозного синдиката.</value>
+  </data>
+  <data name="MafiaAbility" xml:space="preserve">
+    <value>Вы можете убить одного игрока каждую ночь. Если мафиози несколько, то только один отправиться к своей цели.</value>
+  </data>
+  <data name="MafiaRole" xml:space="preserve">
+    <value>Вы простой солдат одного из боргата дона.</value>
+  </data>
+  <data name="MafiaT" xml:space="preserve">
+    <value>Мафия</value>
+  </data>
+  <data name="MafiaTeam" xml:space="preserve">
+    <value>Вы принадлежите к МАФИИ и хотите уничтожить город и всех остальных, кто будет противостоять вам.</value>
+  </data>
+  <data name="MasonAbility" xml:space="preserve">
+    <value>Вы можете сотрудничать с другими масонами ночью через секретные каналы связи.</value>
+  </data>
+  <data name="MasonRole" xml:space="preserve">
+    <value>Вы являетесь членом тайного общества.</value>
+  </data>
+  <data name="NeutralT" xml:space="preserve">
+    <value>Нейтральные</value>
+  </data>
+  <data name="PolicemanAbility" xml:space="preserve">
+    <value>Вы можете проверять одного игрока каждую ночь на предмет преступной деятельности.</value>
+  </data>
+  <data name="PolicemanRole" xml:space="preserve">
+    <value>Вы сотрудник правоохранительных органов, вынужденный скрываться из-за угрозы убийства.</value>
+  </data>
+  <data name="ProstituteAbility" xml:space="preserve">
+    <value>Вы можете заблокировать чью-то роль ночью, отменив их ночные способности. Если вас завербовал Крестный отец, вы становитесь Шлюхой.</value>
+  </data>
+  <data name="ProstituteRole" xml:space="preserve">
+    <value>Вы - легко одетая эскортница, работающая тайно.</value>
+  </data>
+  <data name="PsychicAbility" xml:space="preserve">
+    <value>Вы можете сотрудничать с другой Нежитью ночью, а также разговаривать с умершими.</value>
+  </data>
+  <data name="PsychicRole" xml:space="preserve">
+    <value>Вы - духовный медиум, чья душа связана с умершими.</value>
+  </data>
+  <data name="RecruitAbility" xml:space="preserve">
+    <value>Вы не имеете никаких особых способностей ночью. Если вас завербовали в это время, вы станете мафиози.</value>
+  </data>
+  <data name="RecruitRole" xml:space="preserve">
+    <value>Вы обычный человек, который верит в правду и справедливость, и надещийся на получение хорошего предложения о работе.</value>
+  </data>
+  <data name="SerialKillerAbility" xml:space="preserve">
+    <value>Вы можете убить одну цель ночью, кого захотите.</value>
+  </data>
+  <data name="SerialKillerRole" xml:space="preserve">
+    <value>Вы невменяемый преступник, который ненавидит весь мир.</value>
+  </data>
+  <data name="SerialKillerTeam" xml:space="preserve">
+    <value>Вы никому не принадлежите и хотите быть последним человеком, оставшимся в живых.</value>
+  </data>
+  <data name="SurgeonAbility" xml:space="preserve">
+    <value>Вы можете навестить кого-нибудь ночью, чтобы спасти его, если кто-то попытается его убить.</value>
+  </data>
+  <data name="SurgeonRole" xml:space="preserve">
+    <value>Вы секретный хирург, специалист по травматологической помощи на благо вашего синдиката.</value>
+  </data>
+  <data name="TerroristAbility" xml:space="preserve">
+    <value>Вы можете совершить массовое убийство, заложив бомбу в чьём-то доме ночью, убивая всех, кто посещает этого игрока. Вас не смогут исцелить, если сделаете это.</value>
+  </data>
+  <data name="TerroristRole" xml:space="preserve">
+    <value>Вы сумасшедший убийца, который думает, что мир следует уничтожить.</value>
+  </data>
+  <data name="TerroristTeam" xml:space="preserve">
+    <value>Вы никому не принадлежите и хочете убить всех, включая себя, в этом мире.</value>
+  </data>
+  <data name="TownT" xml:space="preserve">
+    <value>Город</value>
+  </data>
+  <data name="TownTeam" xml:space="preserve">
+    <value>Вы принадлежите ГОРОДУ и хотите линчевать каждого преступника и злодея.</value>
+  </data>
+  <data name="UndeadT" xml:space="preserve">
+    <value>Нежить</value>
+  </data>
+  <data name="UndeadTeam" xml:space="preserve">
+    <value>Вы принадлежите к НЕЖИТИ и хотите, чтобы все игроки были мертвы или превращены в зомби.</value>
+  </data>
+  <data name="VigilanteAbility" xml:space="preserve">
+    <value>Вы можете убить одну цель ночью в зависимости от того, сколько патронов осталось в вашей обойме.</value>
+  </data>
+  <data name="VigilanteRole" xml:space="preserve">
+    <value>Вы грязный полицейский, который будет игнорировать закон и порядок, чтобы вершить правосудие.</value>
+  </data>
+  <data name="WhoreAbility" xml:space="preserve">
+    <value>Вы можете заблокировать чью-то роль ночью, отменив их ночные способности.</value>
+  </data>
+  <data name="WhoreRole" xml:space="preserve">
+    <value>Вы танцовщица, работающая на организованную преступность.</value>
+  </data>
+  <data name="WitchAbility" xml:space="preserve">
+    <value>Вы можете заставить одного человека использовать свою ночную способность на цели по вашему выбору.</value>
+  </data>
+  <data name="WitchRole" xml:space="preserve">
+    <value>Вы злонамеренный мистик, который использует свои манипулятивные способности во зло.</value>
+  </data>
+  <data name="WitchTeam" xml:space="preserve">
+    <value>Вы никому не принадлежите, хотите выжить и увидеть, как город проиграет.</value>
+  </data>
+  <data name="ZombieAbility" xml:space="preserve">
+    <value>Вы можете попытаться воскресить одного человека, который был убит этой ночью, и превратить его в зомби.</value>
+  </data>
+  <data name="ZombieRole" xml:space="preserve">
+    <value>Вы мистически возрождённый человек, у которого все еще есть самосознание.</value>
+  </data>
+</root>

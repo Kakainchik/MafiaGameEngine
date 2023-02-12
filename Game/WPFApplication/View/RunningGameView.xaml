@@ -1,0 +1,68 @@
+﻿<UserControl x:Class="WPFApplication.View.RunningGameView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WPFApplication.View"
+             xmlns:control="clr-namespace:WPFApplication.Controls"
+             xmlns:r="clr-namespace:WPFApplication.Resources"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             d:Background="{StaticResource PrimaryDarkBrush}">
+    <UserControl.Template>
+        <ControlTemplate>
+            <Border CornerRadius="6,0,0,0"
+                    Background="{StaticResource PrimaryDarkBrush}"
+                    Padding="{StaticResource SmallPadding}"
+                    Style="{StaticResource FadeStyle}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2.4*"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <ContentControl Grid.Column="0"
+                        Content="{Binding Path=MainScreen.State}"/>
+
+                    <Border Grid.Column="1"
+                CornerRadius="{StaticResource MediumCornerRadius}"
+                BorderThickness="1"
+                BorderBrush="{StaticResource PrimaryLightBrush}"
+                Background="{StaticResource PrimaryBrush}">
+                        <UniformGrid Columns="1">
+                            <DockPanel LastChildFill="True"
+                           Visibility="{Binding MainChatVisibility}">
+                                <TextBlock DockPanel.Dock="Top"
+                           Margin="0,0,6,0"
+                           Text="{x:Static r:ControlResources.RGVGeneralChat}"
+                           TextAlignment="Right"
+                           Style="{StaticResource PrimaryLightTextBlock}"/>
+                                <control:InputTextBox DockPanel.Dock="Bottom"
+                                          MaxLines="1"
+                                          Hint="{x:Static r:ControlResources.ChatMsg}"
+                                          Style="{StaticResource BaseInputTextBox}"
+                                          PressCommand="{Binding PushMainMessageCommand}"
+                                          IsEnabled="{Binding IsMainChatEnabled}"/>
+                                <control:ColoredChatListControl Messages="{Binding MainChatLog}"/>
+                            </DockPanel>
+                            <DockPanel LastChildFill="True"
+                           Visibility="{Binding DeadChatVisibility}">
+                                <TextBlock DockPanel.Dock="Top"
+                               Margin="0,0,6,0"
+                               Text="{x:Static r:ControlResources.RGVDecedentChat}"
+                               TextAlignment="Right"
+                               Style="{StaticResource PrimaryLightTextBlock}"/>
+                                <control:InputTextBox DockPanel.Dock="Bottom"
+                                          MaxLines="1"
+                                          Hint="{x:Static r:ControlResources.ChatMsg}"
+                                          Style="{StaticResource BaseInputTextBox}"
+                                          PressCommand="{Binding PushDeadMessageCommand}"
+                                          IsEnabled="{Binding IsDeadChatEnabled}"/>
+                                <control:ColoredChatListControl Messages="{Binding DeadChatLog}"/>
+                            </DockPanel>
+                        </UniformGrid>
+                    </Border>
+                </Grid>
+            </Border>
+        </ControlTemplate>
+    </UserControl.Template>
+</UserControl>

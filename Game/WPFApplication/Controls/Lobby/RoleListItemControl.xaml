@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="WPFApplication.Controls.RoleListItemControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WPFApplication.Controls"
+             xmlns:design="clr-namespace:WPFApplication.Controls.Lobby.Design"
+             xmlns:cvr="clr-namespace:WPFApplication.Converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="90" d:DesignWidth="300"
+             d:DataContext="{d:DesignInstance design:RoleListItemDesign, IsDesignTimeCreatable=True}"
+             d:Background="{StaticResource SecondaryLightBrush}">
+    <UserControl.Resources>
+        <cvr:RoleColorConverter x:Key="RoleColorCvr"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="{Binding Role, RelativeSource={RelativeSource AncestorType=local:RoleListItemControl}}"
+                   d:Text="{Binding Role}"
+                   Foreground="{Binding Role, Converter={StaticResource RoleColorCvr}, RelativeSource={RelativeSource AncestorType=local:RoleListItemControl}}"
+                   d:Foreground="{Binding Role, Converter={StaticResource RoleColorCvr}}"
+                   Style="{StaticResource SecondarySubtitleTextBlock}"
+                   TextAlignment="Center"
+                   VerticalAlignment="Center"/>
+        <TextBlock Grid.Column="1"
+                   Text="{Binding Quantity, RelativeSource={RelativeSource AncestorType=local:RoleListItemControl}}"
+                   d:Text="{Binding Quantity}"
+                   Style="{StaticResource SecondarySubtitleTextBlock}"
+                   TextAlignment="Center"
+                   VerticalAlignment="Center"/>
+    </Grid>
+</UserControl>

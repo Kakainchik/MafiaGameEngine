@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="WPFApplication.Controls.ChatListItemControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WPFApplication.Controls"
+             xmlns:design="clr-namespace:WPFApplication.Controls.Chat.Design"
+             mc:Ignorable="d" 
+             d:DesignHeight="40" d:DesignWidth="350"
+             d:DataContext="{d:DesignInstance design:ChatListItemDesignModel, IsDesignTimeCreatable=True}"
+             d:Background="{StaticResource PrimaryDarkBrush}">
+    <UserControl.Resources>
+        <Style TargetType="{x:Type Grid}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{StaticResource PrimaryLightBrush}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <!--Time Text Block-->
+        <TextBlock Grid.Column="0"
+                   VerticalAlignment="Stretch"
+                   Text="{Binding MessageTime, StringFormat={}{0:HH:mm}}"
+                   Style="{StaticResource PrimaryLightTextBlock}"/>
+
+        <!--Username Text Block-->
+        <TextBlock Grid.Column="1"
+                   VerticalAlignment="Stretch"
+                   Margin="5,0,0,0"
+                   Text="{Binding Username, StringFormat={}{0}&gt;}"
+                   Style="{StaticResource PrimaryTextBlock}"
+                   FontFamily="{StaticResource LatoBoldItalic}"
+                   FontStyle="Italic"
+                   FontWeight="Bold"/>
+
+        <!--Message Text Block-->
+        <TextBlock Grid.Column="2"
+                   VerticalAlignment="Stretch"
+                   Margin="5,0,0,0"
+                   Text="{Binding Message}"
+                   Style="{StaticResource PrimaryTextBlock}"
+                   TextWrapping="Wrap"/>
+    </Grid>
+</UserControl>

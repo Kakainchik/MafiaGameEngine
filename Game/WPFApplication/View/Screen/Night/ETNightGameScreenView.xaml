@@ -1,0 +1,90 @@
+﻿<UserControl x:Class="WPFApplication.View.ETNightGameScreenView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WPFApplication.View"
+             xmlns:cvr="clr-namespace:WPFApplication.Converters"
+             xmlns:control="clr-namespace:WPFApplication.Controls"
+             xmlns:design="clr-namespace:WPFApplication.View.Design"
+             mc:Ignorable="d"
+             d:DesignHeight="550" d:DesignWidth="800"
+             d:DataContext="{d:DesignInstance design:ExecutorNightScreenDesignView, IsDesignTimeCreatable=True}"
+             d:Background="{StaticResource PrimaryDarkBrush}">
+    <UserControl.Resources>
+        <cvr:ColorBrushConverter x:Key="ColorConverter"/>
+        <cvr:BoolVisibilityConverter x:Key="BoolVisibilityConverter"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="200"/>
+        </Grid.RowDefinitions>
+
+        <ScrollViewer VerticalScrollBarVisibility="Hidden">
+            <ItemsControl ItemsSource="{Binding PlayersState}"
+                          IsEnabled="{Binding IsNightBegan}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <control:NightPlayerControl Width="140"
+                                                    Height="140"
+                                                    Margin="{StaticResource LargeMargin}"
+                                                    Player="{Binding .}"
+                                                    IsEnabled="{Binding Path=Details.IsAlive}"
+                                                    ClickCommand="{Binding Path=DataContext.PlayerClickCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ItemsControl}}}"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+
+        <DockPanel Grid.Row="1">
+
+            <!-- Primary Target Picker -->
+            <control:TargetPickerControl DockPanel.Dock="Left"
+                                         Width="100"
+                                         Height="100"
+                                         VerticalAlignment="Bottom"
+                                         TargetNumber="1"
+                                         Background="{StaticResource SecondaryBrush}"
+                                         Target="{Binding PickedPrimary, Mode=TwoWay}"
+                                         IsActive="{Binding IsPrimaryActive}"
+                                         IsEnabled="{Binding IsNightBegan}"
+                                         DeleteCommand="{Binding PrimaryResetCommand}"
+                                         ClickCommand="{Binding PrimaryPickCommand}"/>
+
+            <!-- Secondary Target Picker -->
+            <control:TargetPickerControl DockPanel.Dock="Left"
+                                         Width="100"
+                                         Height="100"
+                                         VerticalAlignment="Bottom"
+                                         TargetNumber="2"
+                                         Background="{StaticResource SecondaryBrush}"
+                                         Target="{Binding PickedSecondary, Mode=TwoWay}"
+                                         IsActive="{Binding IsSecondaryActive}"
+                                         IsEnabled="{Binding IsNightBegan}"
+                                         DeleteCommand="{Binding SecondaryResetCommand}"
+                                         ClickCommand="{Binding SecondaryPickCommand}"/>
+
+            <!-- Timer -->
+            <TextBlock DockPanel.Dock="Right"
+                       Text="{Binding RemainedTime, StringFormat={}{0:mm\\:ss}}"
+                       TextWrapping="Wrap"
+                       MinWidth="40"
+                       MaxWidth="200"
+                       Margin="0,0,5,0"
+                       VerticalAlignment="Bottom"
+                       Style="{StaticResource PrimaryHugeTextBlock}"/>
+
+            <FlowDocumentScrollViewer Document="{Binding StoryLog}"
+                                      Margin="{StaticResource MediumHorizontalMargin}"
+                                      IsSelectionEnabled="False"
+                                      VerticalScrollBarVisibility="Hidden"
+                                      HorizontalScrollBarVisibility="Disabled"/>
+        </DockPanel>
+    </Grid>
+</UserControl>

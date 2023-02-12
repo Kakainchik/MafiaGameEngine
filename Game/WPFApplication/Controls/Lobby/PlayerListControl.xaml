@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="WPFApplication.Controls.PlayerListControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:design="clr-namespace:WPFApplication.Controls.Lobby.Design"
+             xmlns:local="clr-namespace:WPFApplication.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="400"
+             d:DataContext="{d:DesignInstance design:PlayerListDesign, IsDesignTimeCreatable=True}"
+             d:Background="{StaticResource SecondaryLightBrush}">
+    <ScrollViewer VerticalScrollBarVisibility="Hidden">
+        <ItemsControl ItemsSource="{Binding Players, RelativeSource={RelativeSource AncestorType=local:PlayerListControl}}"
+                      d:ItemsSource="{Binding Players}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <local:PlayerListItemControl Player="{Binding Path=Username}"
+                                                 IsReady="{Binding Path=IsReady}"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </ScrollViewer>
+</UserControl>

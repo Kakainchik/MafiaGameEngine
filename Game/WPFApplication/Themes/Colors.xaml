@@ -1,0 +1,47 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!--Primary background-->
+    <Color x:Key="Primary">#616161</Color>
+    <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource Primary}"/>
+
+    <Color x:Key="PrimaryLight">#8e8e8e</Color>
+    <SolidColorBrush x:Key="PrimaryLightBrush" Color="{StaticResource PrimaryLight}"/>
+
+    <Color x:Key="PrimaryDark">#373737</Color>
+    <SolidColorBrush x:Key="PrimaryDarkBrush" Color="{StaticResource PrimaryDark}"/>
+
+    <!--Secondary background-->
+    <Color x:Key="Secondary">#212121</Color>
+    <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource Secondary}"/>
+
+    <Color x:Key="SecondaryLight">#484848</Color>
+    <SolidColorBrush x:Key="SecondaryLightBrush" Color="{StaticResource SecondaryLight}"/>
+
+    <Color x:Key="SecondaryDark">#010101</Color>
+    <SolidColorBrush x:Key="SecondaryDarkBrush" Color="{StaticResource SecondaryDark}"/>
+
+    <!--Text color-->
+    <Color x:Key="OnPrimary">#ffffff</Color>
+    <SolidColorBrush x:Key="OnPrimaryBrush" Color="{StaticResource OnPrimary}"/>
+
+    <Color x:Key="OnPrimaryLight">#DFDFDF</Color>
+    <SolidColorBrush x:Key="OnPrimaryLightBrush" Color="{StaticResource OnPrimaryLight}"/>
+
+    <Color x:Key="OnSecondary">#ffffff</Color>
+    <SolidColorBrush x:Key="OnSecondaryBrush" Color="{StaticResource OnSecondary}"/>
+
+    <Color x:Key="OnSecondaryLight">#DFDFDF</Color>
+    <SolidColorBrush x:Key="OnSecondaryLightBrush" Color="{StaticResource OnSecondaryLight}"/>
+
+    <Color x:Key="Error">#FF1100</Color>
+    <SolidColorBrush x:Key="ErrorBrush" Color="{StaticResource Error}"/>
+
+    <Color x:Key="Green">#00BC00</Color>
+    <SolidColorBrush x:Key="GreenBrush" Color="{StaticResource Green}"/>
+
+    <Color x:Key="GreenLight">#00F900</Color>
+    <SolidColorBrush x:Key="GreenLightBrush" Color="{StaticResource GreenLight}"/>
+
+    <Color x:Key="Faded">#121225</Color>
+    <SolidColorBrush x:Key="FadedBrush" Color="{StaticResource Faded}"/>
+</ResourceDictionary>

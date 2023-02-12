@@ -1,0 +1,36 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <!--Corner radius-->
+    <CornerRadius x:Key="SmallCornerRadius">6</CornerRadius>
+    <CornerRadius x:Key="SmallVerticalCornerRadius">0, 6, 0, 6</CornerRadius>
+    <CornerRadius x:Key="MediumCornerRadius">10</CornerRadius>
+    <CornerRadius x:Key="RoundRadius">100</CornerRadius>
+    
+    <!--Padding-->
+    <Thickness x:Key="SmallPadding">6</Thickness>
+    <Thickness x:Key="SmallVerticalPadding">0, 6</Thickness>
+    <Thickness x:Key="SmallHorizontalPadding">6, 0</Thickness>
+
+    <Thickness x:Key="MediumPadding">10</Thickness>
+    <Thickness x:Key="MediumVerticalPadding">0, 10</Thickness>
+    <Thickness x:Key="MediumHorizontalPadding">10, 0</Thickness>
+    
+    <!--Margin-->
+    <Thickness x:Key="SmallMargin">2</Thickness>
+    <Thickness x:Key="SmallVerticalMargin">0, 2</Thickness>
+    <Thickness x:Key="SmallHorizontalMargin">2, 0</Thickness>
+
+    <Thickness x:Key="MediumMargin">10</Thickness>
+    <Thickness x:Key="MediumVerticalMargin">0, 10</Thickness>
+    <Thickness x:Key="MediumHorizontalMargin">10, 0</Thickness>
+    
+    <Thickness x:Key="LargeMargin">25</Thickness>
+
+    <Thickness x:Key="HugeMargin">40</Thickness>
+    <Thickness x:Key="HugeVerticalMargin">0, 40</Thickness>
+    
+    <!--MinSizes-->
+    <sys:Double x:Key="MinHeight">35</sys:Double>
+    <sys:Double x:Key="MinItemHeight">30</sys:Double>
+</ResourceDictionary>

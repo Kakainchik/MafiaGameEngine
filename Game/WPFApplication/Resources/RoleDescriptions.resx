@@ -1,0 +1,288 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CitizenAbility" xml:space="preserve">
+    <value>You have no special traits at night.</value>
+  </data>
+  <data name="CitizenRole" xml:space="preserve">
+    <value>You are a regular person who believes in truth and justice.</value>
+  </data>
+  <data name="CounselorAbility" xml:space="preserve">
+    <value>You can investigate one player each night.</value>
+  </data>
+  <data name="CounselorRole" xml:space="preserve">
+    <value>You are a counselor to the boss of a crime family.</value>
+  </data>
+  <data name="CultistAbility" xml:space="preserve">
+    <value>You speak together at night with other Cultists. However, you can only surmise who is your leader.</value>
+  </data>
+  <data name="CultistRole" xml:space="preserve">
+    <value>You are a believer of a shadowy cult, secretly attempting to convert the town to darkness.</value>
+  </data>
+  <data name="CultusLeaderAbility" xml:space="preserve">
+    <value>You may attempt to convert one person to a Cultist each night and hear everything what your minions talk about. You stay unknown for them.</value>
+  </data>
+  <data name="CultusLeaderRole" xml:space="preserve">
+    <value>You are the leader of a shadowy cult, secretly attempting to convert the town to darkness.</value>
+  </data>
+  <data name="CultusT" xml:space="preserve">
+    <value>Cultus</value>
+  </data>
+  <data name="CultusTeam" xml:space="preserve">
+    <value>You belong to CULTUS and want all roles to be dead or converted to Cultists.</value>
+  </data>
+  <data name="CursedAbility" xml:space="preserve">
+    <value>You have no special traits at night. If you got killed at this time you will become a Zombie but you are not sure whether you want to.</value>
+  </data>
+  <data name="CursedRole" xml:space="preserve">
+    <value>You are a regular person who believes in justice and even do not suspect your soul is cursed.</value>
+  </data>
+  <data name="DetectiveAbility" xml:space="preserve">
+    <value>You can investigate one person's role each night.</value>
+  </data>
+  <data name="DetectiveRole" xml:space="preserve">
+    <value>You are a skilled tracker, learning important information on behalf of the town.</value>
+  </data>
+  <data name="DoctorAbility" xml:space="preserve">
+    <value>You can visit someone at night to save them if someone tries to kill them.</value>
+  </data>
+  <data name="DoctorRole" xml:space="preserve">
+    <value>You are a secret surgeon skilled in trauma care.</value>
+  </data>
+  <data name="DriverAbility" xml:space="preserve">
+    <value>You can swap two players at night, making actions that target the first player instead target the second player and vice versa.</value>
+  </data>
+  <data name="DriverRole" xml:space="preserve">
+    <value>You are a disgruntled licensed transport driver.</value>
+  </data>
+  <data name="GodfatherAbility" xml:space="preserve">
+    <value>You may attempt to recruit one person to your clan each night.</value>
+  </data>
+  <data name="GodfatherRole" xml:space="preserve">
+    <value>You are a the capofamiglia of the town's organized mafia syndicate</value>
+  </data>
+  <data name="MafiaAbility" xml:space="preserve">
+    <value>You can kill one player each night. If there are several mafiosos then only the mafioso will go after his target.</value>
+  </data>
+  <data name="MafiaRole" xml:space="preserve">
+    <value>You are a lowly soldato for one of the Don's borgata.</value>
+  </data>
+  <data name="MafiaT" xml:space="preserve">
+    <value>Mafia</value>
+  </data>
+  <data name="MafiaTeam" xml:space="preserve">
+    <value>You belong to MAFIA and want to kill off the Town and everyone else who would oppose you.</value>
+  </data>
+  <data name="MasonAbility" xml:space="preserve">
+    <value>You may collaborate with other Masons at night through the secret Mason night chat.</value>
+  </data>
+  <data name="MasonRole" xml:space="preserve">
+    <value>You are a member of a secret society.</value>
+  </data>
+  <data name="NeutralT" xml:space="preserve">
+    <value>Neutral</value>
+  </data>
+  <data name="PolicemanAbility" xml:space="preserve">
+    <value>You can check one player each night for criminal activity.</value>
+  </data>
+  <data name="PolicemanRole" xml:space="preserve">
+    <value>You are a member of law enforcement, forced into hiding because of the threat of murder.</value>
+  </data>
+  <data name="ProstituteAbility" xml:space="preserve">
+    <value>You can block someone's role at night, canceling their night abilities. If you got recruited by Godfather you become a Whore.</value>
+  </data>
+  <data name="ProstituteRole" xml:space="preserve">
+    <value>You are a scantily-clad escort, working in secret.</value>
+  </data>
+  <data name="PsychicAbility" xml:space="preserve">
+    <value>You may collaborate with other Undeads at night and also speak with decedents.</value>
+  </data>
+  <data name="PsychicRole" xml:space="preserve">
+    <value>You are a spiritual master whose soul is connected with decedents.</value>
+  </data>
+  <data name="RecruitAbility" xml:space="preserve">
+    <value>You have no special traits at night. If you got recruited at this time you will become a Mafia.</value>
+  </data>
+  <data name="RecruitRole" xml:space="preserve">
+    <value>You are a regular person who believes in truth and justice, and hope you will find a good job ever.</value>
+  </data>
+  <data name="SerialKillerAbility" xml:space="preserve">
+    <value>You can kill one target at night who you want to.</value>
+  </data>
+  <data name="SerialKillerRole" xml:space="preserve">
+    <value>You are a deranged criminal who hates the world.</value>
+  </data>
+  <data name="SerialKillerTeam" xml:space="preserve">
+    <value>You do not belong to anyone and want to be the last person left alive.</value>
+  </data>
+  <data name="SurgeonAbility" xml:space="preserve">
+    <value>You can visit someone at night to save them if someone tries to kill them.</value>
+  </data>
+  <data name="SurgeonRole" xml:space="preserve">
+    <value>You are a secret surgeon skilled in trauma care behalf of the Mafia.</value>
+  </data>
+  <data name="TerroristAbility" xml:space="preserve">
+    <value>You may perform a killing spree, planting a bomb at someone's house one night, killing anyone who visits that player at the same time. You cannot be healed if you do this.</value>
+  </data>
+  <data name="TerroristRole" xml:space="preserve">
+    <value>You are a crazed spree killer who thinks the world should be destroyed.</value>
+  </data>
+  <data name="TerroristTeam" xml:space="preserve">
+    <value>You do not belong to anyone and want to kill everybody including yourself over this world.</value>
+  </data>
+  <data name="TownT" xml:space="preserve">
+    <value>Town</value>
+  </data>
+  <data name="TownTeam" xml:space="preserve">
+    <value>You belong to TOWN and want to lynch every criminal and evildoer.</value>
+  </data>
+  <data name="UndeadT" xml:space="preserve">
+    <value>Undead</value>
+  </data>
+  <data name="UndeadTeam" xml:space="preserve">
+    <value>You belong to UNDEAD and want all players to be dead or converted to Zombie.</value>
+  </data>
+  <data name="VigilanteAbility" xml:space="preserve">
+    <value>You may kill one target at night according how many bullets left in you cartridge.</value>
+  </data>
+  <data name="VigilanteRole" xml:space="preserve">
+    <value>You are a dirty cop who will ignore the law and order to enact justice.</value>
+  </data>
+  <data name="WhoreAbility" xml:space="preserve">
+    <value>You can perform roleblock one player each night.</value>
+  </data>
+  <data name="WhoreRole" xml:space="preserve">
+    <value>You are a dancer working for organized crime.</value>
+  </data>
+  <data name="WitchAbility" xml:space="preserve">
+    <value>You may force one person to use their night ability on a target of your choice.</value>
+  </data>
+  <data name="WitchRole" xml:space="preserve">
+    <value>You are a malicious mystic who uses their manipulative powers for evil.</value>
+  </data>
+  <data name="WitchTeam" xml:space="preserve">
+    <value>You do not belong to anyone and want to survive and see the town lose.</value>
+  </data>
+  <data name="ZombieAbility" xml:space="preserve">
+    <value>You can try to ressurect one person who was killed at this night and turn him into a Zombie.</value>
+  </data>
+  <data name="ZombieRole" xml:space="preserve">
+    <value>You are a mystically survived person who still have consciousness.</value>
+  </data>
+</root>

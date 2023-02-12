@@ -1,0 +1,90 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!--Base Primary Colors-->
+    <Style x:Key="PrimaryTextBlock"
+           TargetType="TextBlock"
+           BasedOn="{StaticResource BaseTextBlockStyle}">
+        <Setter Property="Foreground" Value="{StaticResource OnPrimaryBrush}"/>
+    </Style>
+    <Style x:Key="PrimaryLightTextBlock"
+           TargetType="TextBlock"
+           BasedOn="{StaticResource BaseTextBlockStyle}">
+        <Setter Property="Foreground" Value="{StaticResource OnPrimaryLightBrush}"/>
+    </Style>
+    
+    <!--Base Secondary Colors-->
+    <Style x:Key="SecondaryTextBlock"
+           TargetType="TextBlock"
+           BasedOn="{StaticResource BaseTextBlockStyle}">
+        <Setter Property="Foreground" Value="{StaticResource OnSecondaryBrush}"/>
+    </Style>
+    <Style x:Key="SecondaryLightTextBlock"
+           TargetType="TextBlock"
+           BasedOn="{StaticResource BaseTextBlockStyle}">
+        <Setter Property="Foreground" Value="{StaticResource OnSecondaryLightBrush}"/>
+    </Style>
+
+    <!--Primary Text Styles-->
+    <Style x:Key="PrimaryHugeTextBlock"
+           TargetType="TextBlock"
+           BasedOn="{StaticResource PrimaryTextBlock}">
+        <Setter Property="FontSize" Value="{StaticResource HugeTextSize}"/>
+    </Style>
+    <Style x:Key="PrimaryHeaderTextBlock"
+           TargetType="TextBlock"
+           BasedOn="{StaticResource PrimaryTextBlock}">
+        <Setter Property="FontSize" Value="{StaticResource HeaderTextSize}"/>
+        <Setter Property="FontFamily" Value="{StaticResource LatoBold}"/>
+    </Style>
+    <Style x:Key="PrimarySubtitleTextBlock"
+           TargetType="TextBlock"
+           BasedOn="{StaticResource PrimaryTextBlock}">
+        <Setter Property="FontSize" Value="{StaticResource SubtitleTextSize}"/>
+    </Style>
+    <Style x:Key="PrimarySmallTextBlock"
+           TargetType="TextBlock"
+           BasedOn="{StaticResource PrimaryTextBlock}">
+        <Setter Property="FontSize" Value="{StaticResource SmallTextSize}"/>
+    </Style>
+    <Style x:Key="PrimaryLightSmallTextBlock"
+           TargetType="TextBlock"
+           BasedOn="{StaticResource PrimaryLightTextBlock}">
+        <Setter Property="FontSize" Value="{StaticResource SmallTextSize}"/>
+    </Style>
+
+    <!--Secondary Text Styles-->
+    <Style x:Key="SecondaryHugeTextBlock"
+           TargetType="TextBlock"
+           BasedOn="{StaticResource SecondaryTextBlock}">
+        <Setter Property="FontSize" Value="{StaticResource HugeTextSize}"/>
+    </Style>
+    <Style x:Key="SecondaryHeaderTextBlock"
+           TargetType="TextBlock"
+           BasedOn="{StaticResource SecondaryTextBlock}">
+        <Setter Property="FontSize" Value="{StaticResource HeaderTextSize}"/>
+        <Setter Property="FontFamily" Value="{StaticResource LatoBold}"/>
+    </Style>
+    <Style x:Key="SecondarySubtitleTextBlock"
+           TargetType="TextBlock"
+           BasedOn="{StaticResource SecondaryTextBlock}">
+        <Setter Property="FontSize" Value="{StaticResource SubtitleTextSize}"/>
+    </Style>
+    <Style x:Key="SecondaryLightRegularTextBlock"
+           TargetType="TextBlock"
+           BasedOn="{StaticResource SecondaryTextBlock}">
+        <Setter Property="FontSize" Value="{StaticResource RegularTextSize}"/>
+    </Style>
+
+    <!-- Primary Inline Styles -->
+    <Style TargetType="{x:Type Run}">
+        <Setter Property="FontFamily" Value="{StaticResource LatoBold}"/>
+        <Setter Property="Foreground" Value="{StaticResource OnPrimaryBrush}"/>
+        <Setter Property="FontSize" Value="{StaticResource HeaderTextSize}"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+    </Style>
+    <Style TargetType="{x:Type LineBreak}">
+        <Setter Property="FontFamily" Value="{StaticResource LatoBold}"/>
+        <Setter Property="FontSize" Value="{StaticResource HeaderTextSize}"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+    </Style>
+</ResourceDictionary>

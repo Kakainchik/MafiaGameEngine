@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="WPFApplication.Controls.TargetPickerControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WPFApplication.Controls"
+             xmlns:cvr="clr-namespace:WPFApplication.Converters"
+             xmlns:r="clr-namespace:WPFApplication.Resources"
+             mc:Ignorable="d" 
+             d:DesignHeight="100" d:DesignWidth="100"
+             d:Background="{StaticResource PrimaryDarkBrush}"
+             x:Name="Root">
+    <UserControl.Resources>
+        <cvr:ColorBrushConverter x:Key="ColorConverter"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.Style>
+            <Style TargetType="{x:Type Grid}">
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding IsActive, RelativeSource={RelativeSource AncestorType=local:TargetPickerControl}}" Value="True">
+                        <Setter Property="Background" Value="{StaticResource PrimaryLightBrush}"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Style>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Button Grid.Column="1"
+                Content="X"
+                Style="{StaticResource TargetPickerResetButton}"
+                Command="{Binding DeleteCommand, RelativeSource={RelativeSource AncestorType=local:TargetPickerControl}}"
+                CommandParameter="{Binding Target, RelativeSource={RelativeSource AncestorType=local:TargetPickerControl}}"/>
+
+        <TextBlock Text="{Binding TargetNumber, StringFormat={x:Static r:ControlResources.TPCTarget}, RelativeSource={RelativeSource AncestorType=local:TargetPickerControl}}"
+                   Style="{StaticResource PrimaryLightTextBlock}"
+                   TextAlignment="Center"
+                   VerticalAlignment="Center"/>
+
+        <Button Grid.Row="1"
+                Grid.ColumnSpan="2"
+                x:Name="PickButton"
+                Style="{StaticResource TargetPickerButton}"
+                Content="{Binding Path=Target.Details.Nickname, RelativeSource={RelativeSource AncestorType=local:TargetPickerControl}, FallbackValue={x:Static r:ControlResources.TPCNoneTarget}}"
+                Foreground="{Binding Path=Target.Details.NColor, RelativeSource={RelativeSource AncestorType=local:TargetPickerControl}, Converter={StaticResource ColorConverter}, FallbackValue={StaticResource OnPrimaryBrush}}"
+                Command="{Binding ClickCommand, RelativeSource={RelativeSource AncestorType=local:TargetPickerControl}}"/>
+    </Grid>
+</UserControl>

@@ -1,0 +1,86 @@
+﻿<Window x:Class="WPFApplication.MainWindow"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:local="clr-namespace:WPFApplication"
+        xmlns:cvr="clr-namespace:WPFApplication.Converters"
+        xmlns:r="clr-namespace:WPFApplication.Resources"
+		mc:Ignorable="d"
+		Title="MainWindow"
+        d:DesignHeight="550"
+        d:DesignWidth="900"
+		WindowStyle="None"
+		WindowState="Maximized"
+        ResizeMode="NoResize"
+		AllowsTransparency="False">
+    <Window.Resources>
+        <cvr:GridLengthConverter x:Key="GridLengthConverter"/>
+        <cvr:BoolVisibilityConverter x:Key="BoolVisibilityConverter"/>
+    </Window.Resources>
+    <Border Background="{StaticResource PrimaryLightBrush}"
+			BorderThickness="2">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="110"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="Mafia Game" 
+						   VerticalAlignment="Center"
+						   HorizontalAlignment="Center"
+                           Style="{StaticResource PrimaryHeaderTextBlock}"/>
+
+                <!--Main bar buttons-->
+                <StackPanel Grid.Column="1"
+							Orientation="Horizontal"
+							HorizontalAlignment="Right">
+                    <Button Content="—"
+							Command="{Binding MinimizeCommand}"
+							Style="{StaticResource WindowControlButton}"/>
+                    <Button Content="[]"
+							Command="{Binding MaximizeCommand}"
+							Style="{StaticResource WindowControlButton}"/>
+                    <Button Content="X"
+							Command="{Binding CloseCommand}"
+							Style="{StaticResource WindowCloseButton}"/>
+                </StackPanel>
+            </Grid>
+
+            <DockPanel Grid.Row="1">
+                <StackPanel>
+                    <Button ToolTip="{x:Static r:ControlResources.MWMainMenu}"
+                            Style="{StaticResource MainMenuButtonTheme}"
+                            Command="{Binding HomeViewCommand}">
+                        <Image Source="/Resources/Icons/home-64.ico"/>
+                    </Button>
+
+                    <Button ToolTip="{x:Static r:ControlResources.MWSettings}"
+                            Visibility="{Binding IsMenuEnabled, Converter={StaticResource BoolVisibilityConverter}}"
+                            Style="{StaticResource MainMenuButtonTheme}"
+                            Command="{Binding SettingsViewCommand}">
+                        <Image Source="/Resources/Icons/settings-64.ico"/>
+                    </Button>
+
+                    <Button ToolTip="{x:Static r:ControlResources.MWInfo}"
+                            Visibility="{Binding IsMenuEnabled, Converter={StaticResource BoolVisibilityConverter}}"
+                            Style="{StaticResource MainMenuButtonTheme}"
+                            Command="{Binding InfoViewCommand}">
+                        <Image Source="/Resources/Icons/info-64.ico"/>
+                    </Button>
+                </StackPanel>
+
+                <Border Background="{StaticResource PrimaryDarkBrush}"
+                        CornerRadius="6,0,0,0">
+                    <ContentControl Content="{Binding CurrentView}"/>
+                </Border>
+            </DockPanel>
+        </Grid>
+    </Border>
+</Window>

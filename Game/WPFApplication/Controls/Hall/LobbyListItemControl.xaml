@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="WPFApplication.Controls.LobbyListItemControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:r="clr-namespace:WPFApplication.Resources"
+             xmlns:local="clr-namespace:WPFApplication.Controls"
+             mc:Ignorable="d"
+             d:DesignHeight="100" d:DesignWidth="400"
+             d:Background="{StaticResource SecondaryLightBrush}">
+    <DockPanel VerticalAlignment="Center">
+        <TextBlock DockPanel.Dock="Left"
+                   Text="{Binding Host, RelativeSource={RelativeSource AncestorType=local:LobbyListItemControl}}"
+                   d:Text="Host"
+                   VerticalAlignment="Center"/>
+        <TextBlock d:Text="7/10"
+                   Margin="{StaticResource MediumHorizontalMargin}"
+                   VerticalAlignment="Center">
+            <TextBlock.Text>
+                <MultiBinding StringFormat="{}{0}/{1}">
+                    <Binding Path="Fullness" RelativeSource="{RelativeSource AncestorType=local:LobbyListItemControl}"/>
+                    <Binding Path="MaxSeats" RelativeSource="{RelativeSource AncestorType=local:LobbyListItemControl}"/>
+                </MultiBinding>
+            </TextBlock.Text>
+        </TextBlock>
+        <Button DockPanel.Dock="Right"
+                Content="{x:Static r:ControlResources.JoinButton}"
+                Margin="{StaticResource SmallHorizontalMargin}"/>
+        <TextBlock Text="{Binding Title, RelativeSource={RelativeSource AncestorType=local:LobbyListItemControl}}"
+                   d:Text="Title"
+                   VerticalAlignment="Center"
+                   ToolTip="{Binding Title, RelativeSource={RelativeSource AncestorType=local:LobbyListItemControl}}"
+                   TextTrimming="WordEllipsis"
+                   TextAlignment="Justify"/>
+    </DockPanel>
+</UserControl>

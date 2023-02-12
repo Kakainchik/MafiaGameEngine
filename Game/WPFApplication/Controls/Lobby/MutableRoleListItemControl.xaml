@@ -1,0 +1,49 @@
+﻿<UserControl x:Class="WPFApplication.Controls.MutableRoleListItemControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WPFApplication.Controls"
+             xmlns:design="clr-namespace:WPFApplication.Controls.Lobby.Design"
+             xmlns:cvr="clr-namespace:WPFApplication.Converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="90" d:DesignWidth="300"
+             d:DataContext="{d:DesignInstance design:RoleListItemDesign, IsDesignTimeCreatable=True}"
+             d:Background="{StaticResource SecondaryLightBrush}">
+    <UserControl.Resources>
+        <cvr:RoleColorConverter x:Key="RoleColorCvr"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="{Binding Role, RelativeSource={RelativeSource AncestorType=local:MutableRoleListItemControl}}"
+                   d:Text="{Binding Role}"
+                   Foreground="{Binding Role, Converter={StaticResource RoleColorCvr}, RelativeSource={RelativeSource AncestorType=local:MutableRoleListItemControl}}"
+                   d:Foreground="{Binding Role, Converter={StaticResource RoleColorCvr}}"
+                   Style="{StaticResource SecondaryHeaderTextBlock}"
+                   TextAlignment="Center"
+                   VerticalAlignment="Center"/>
+        <TextBlock Grid.Column="1"
+                   Text="{Binding Quantity, RelativeSource={RelativeSource AncestorType=local:MutableRoleListItemControl}}"
+                   d:Text="{Binding Quantity}"
+                   Style="{StaticResource SecondarySubtitleTextBlock}"
+                   TextAlignment="Center"
+                   VerticalAlignment="Center"/>
+        <Button Grid.Column="2"
+                Content="—"
+                Margin="{StaticResource SmallHorizontalMargin}"
+                Style="{StaticResource RoleItemButton}"
+                IsEnabled="{Binding IsDownEnabled, RelativeSource={RelativeSource AncestorType=local:MutableRoleListItemControl}}"
+                Command="{Binding DownCommand, RelativeSource={RelativeSource AncestorType=local:MutableRoleListItemControl}}"/>
+        <Button Grid.Column="3"
+                Content="+"
+                Style="{StaticResource RoleItemButton}"
+                IsEnabled="{Binding IsUpEnabled, RelativeSource={RelativeSource AncestorType=local:MutableRoleListItemControl}}"
+                Command="{Binding UpCommand, RelativeSource={RelativeSource AncestorType=local:MutableRoleListItemControl}}"/>
+    </Grid>
+</UserControl>

@@ -1,0 +1,43 @@
+﻿<Window x:Class="WPFApplication.View.AuthenticationDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFApplication.View"
+        mc:Ignorable="d"
+        Title="AuthenticationDialog"
+        Height="200" Width="300"
+        SizeToContent="WidthAndHeight"
+        ResizeMode="NoResize">
+    <StackPanel Orientation="Vertical"
+                HorizontalAlignment="Center"
+                MinWidth="200"
+                Margin="{StaticResource MediumPadding}">
+        <TextBox x:Name="usernameTextBox"
+                 Text="Username"
+                 MaxLines="1"
+                 MaxLength="50"/>
+        <PasswordBox x:Name="passwordBox"
+                     Password="password"
+                     MaxLength="50"/>
+        <Button x:Name="mainButton"
+                Content="Login"
+                IsDefault="True"
+                Click="Login_Click"/>
+
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Center">
+            <RadioButton x:Name="signInRB"
+                         Content="SignIn"
+                         IsChecked="True"
+                         Checked="RadioButton_Checked"/>
+            <RadioButton x:Name="signUpRB"
+                         Content="SignUp"
+                         IsChecked="False"
+                         Checked="RadioButton_Checked"/>
+        </StackPanel>
+
+        <TextBlock x:Name="responseTextBlock"
+                   TextAlignment="Center"/>
+    </StackPanel>
+</Window>
