@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RoleBindingTest", "RoleBindingTest\RoleBindingTest.csproj", "{2DA88A2F-A5A8-4A0B-A6FC-CFC95D736B41}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPFApplication", "WPFApplication\WPFApplication.csproj", "{69E548D3-6D48-492D-9B38-C75DA4BBFEA4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameLogic", "GameLogic\GameLogic.csproj", "{F8212A07-8635-45B6-B327-0EA253242EA6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetTest", "NetTest\NetTest.csproj", "{EDD3ED45-84BC-4D04-B9F9-77B83DA5D187}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Net", "Net\Net.csproj", "{88FCE4B7-CA43-41E5-96A0-0BE2E6253A14}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameRemoteServer", "GameRemoteServer\GameRemoteServer.csproj", "{5FEC3A30-F4A7-40A7-85D5-340EFBAA10E4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2DA88A2F-A5A8-4A0B-A6FC-CFC95D736B41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DA88A2F-A5A8-4A0B-A6FC-CFC95D736B41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DA88A2F-A5A8-4A0B-A6FC-CFC95D736B41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DA88A2F-A5A8-4A0B-A6FC-CFC95D736B41}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69E548D3-6D48-492D-9B38-C75DA4BBFEA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69E548D3-6D48-492D-9B38-C75DA4BBFEA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69E548D3-6D48-492D-9B38-C75DA4BBFEA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69E548D3-6D48-492D-9B38-C75DA4BBFEA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8212A07-8635-45B6-B327-0EA253242EA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8212A07-8635-45B6-B327-0EA253242EA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8212A07-8635-45B6-B327-0EA253242EA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8212A07-8635-45B6-B327-0EA253242EA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDD3ED45-84BC-4D04-B9F9-77B83DA5D187}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDD3ED45-84BC-4D04-B9F9-77B83DA5D187}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDD3ED45-84BC-4D04-B9F9-77B83DA5D187}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDD3ED45-84BC-4D04-B9F9-77B83DA5D187}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88FCE4B7-CA43-41E5-96A0-0BE2E6253A14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88FCE4B7-CA43-41E5-96A0-0BE2E6253A14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88FCE4B7-CA43-41E5-96A0-0BE2E6253A14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88FCE4B7-CA43-41E5-96A0-0BE2E6253A14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FEC3A30-F4A7-40A7-85D5-340EFBAA10E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FEC3A30-F4A7-40A7-85D5-340EFBAA10E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FEC3A30-F4A7-40A7-85D5-340EFBAA10E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FEC3A30-F4A7-40A7-85D5-340EFBAA10E4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D5836A1E-1354-48BB-997B-0EFA5D042380}
+	EndGlobalSection
+EndGlobal

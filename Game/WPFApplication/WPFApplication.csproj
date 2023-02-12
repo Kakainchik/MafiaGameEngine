@@ -1,0 +1,161 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>disable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\Icons\arrow-64.ico" />
+    <None Remove="Resources\Icons\checkmark-64.png" />
+    <None Remove="Resources\Icons\home-64.ico" />
+    <None Remove="Resources\Icons\info-64.ico" />
+    <None Remove="Resources\Icons\settings-64.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="GenFu" Version="1.6.0" />
+    <PackageReference Include="MvvmDialogs" Version="8.0.0" />
+    <PackageReference Include="NLog" Version="4.7.15" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GameLogic\GameLogic.csproj" />
+    <ProjectReference Include="..\Net\Net.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\ControlResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ControlResources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\EnumResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>EnumResources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\ErrorResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ErrorResources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\GameStoryText\DayResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DayResources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\GameStoryText\EndResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>EndResources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\GameStoryText\IntroResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>IntroResources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\GameStoryText\LynchResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>LynchResources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\GameStoryText\MorningResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>MorningResources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\GameStoryText\NightResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>NightResources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\RoleDescriptions.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>RoleDescriptions.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="nlog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Icons\arrow-64.ico">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\checkmark-64.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\home-64.ico">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\info-64.ico">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\settings-64.ico">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\ControlResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ControlResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\EnumResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>EnumResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\ErrorResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ErrorResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\GameStoryText\DayResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DayResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\GameStoryText\EndResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>EndResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\GameStoryText\IntroResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>IntroResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\GameStoryText\LynchResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>LynchResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\GameStoryText\MorningResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>MorningResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\GameStoryText\NightResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>NightResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\RoleDescriptions.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RoleDescriptions.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\RoleDescriptions.ru-RU.resx">
+      <Generator></Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>
