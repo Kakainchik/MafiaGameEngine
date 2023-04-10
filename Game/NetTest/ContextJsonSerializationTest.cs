@@ -1,40 +1,25 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Net.Contexts;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Net.Contexts.Connection;
 using Net.Contexts.Intro;
 using Net.Contexts.Lobby;
+using Net.Contexts.Serializers;
+using Net.Contexts;
 using System;
 using System.IO;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters.Binary;
 
-namespace ApplicationTest
+namespace NetTest
 {
     [TestClass]
-    public class ContextSerializationTest
+    public class ContextJsonSerializationTest
     {
-        [TestMethod]
-        public void CompareSerializing_AppendHeader_DifferentSize()
-        {
-            IntroContext message = new IntroContext(IntroStep.START);
-
-            byte[] data = ContextByteSerializer.Serialize(message);
-
-            IFormatter formatter = new BinaryFormatter();
-            using MemoryStream ms = new MemoryStream();
-            formatter.Serialize(ms, message);
-
-            Assert.AreNotEqual(ms.Length, data.LongLength);
-        }
-
         [TestMethod]
         public void SerializeContext_DesirializeBytes_HasSameData()
         {
             Context expected = new IntroContext(IntroStep.END);
 
-            byte[] data = ContextByteSerializer.Serialize(expected);
+            byte[] data = ContextJsonSerializer.Serialize(expected);
 
-            var message = ContextByteSerializer.Deserialize(data);
+            var message = ContextJsonSerializer.Deserialize(data);
 
             Assert.IsInstanceOfType(message, typeof(IntroContext));
             Assert.AreEqual(IntroStep.END, ((IntroContext)message).Step);
@@ -49,7 +34,7 @@ namespace ApplicationTest
 
             using(MemoryStream ms = new MemoryStream())
             {
-                int bytesWritten = ContextByteSerializer.Serialize(expected, ms);
+                int bytesWritten = ContextJsonSerializer.Serialize(expected, ms);
 
                 ms.Position -= bytesWritten;
 
@@ -80,8 +65,8 @@ namespace ApplicationTest
             ms.Position = 0;
             for(int i = 0; i < contexts.Length; i++)
             {
-                LobbyMaxPlayerContext temp = 
-                    ContextByteSerializer.Deserialize(ms) as LobbyMaxPlayerContext;
+                LobbyMaxPlayerContext temp =
+                    ContextJsonSerializer.Deserialize(ms) as LobbyMaxPlayerContext;
 
                 Assert.IsInstanceOfType(temp, typeof(LobbyMaxPlayerContext));
                 Assert.AreEqual(temp.Quantity, contexts[i].Quantity);
@@ -95,12 +80,12 @@ namespace ApplicationTest
             using MemoryStream ms = new MemoryStream();
             using BinaryWriter bw = new BinaryWriter(ms);
 
-            byte[] data = ContextByteSerializer.Serialize(sent);
+            byte[] data = ContextJsonSerializer.Serialize(sent);
             bw.Write(data);
 
             ms.Position -= data.Length;
 
-            SessionIdContext result = (SessionIdContext)ContextByteSerializer.Deserialize(ms);
+            SessionIdContext result = (SessionIdContext)ContextJsonSerializer.Deserialize(ms);
 
             Assert.AreEqual(sent.Id, result.Id);
         }

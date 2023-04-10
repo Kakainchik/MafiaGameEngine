@@ -1,4 +1,6 @@
-﻿namespace Net.Contexts.Intro
+﻿using System.Text.Json.Serialization;
+
+namespace Net.Contexts.Intro
 {
     [Serializable]
     public class IntroContext : SessionContext

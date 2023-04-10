@@ -1,5 +1,6 @@
 ﻿using Net.Contexts;
 using Net.Contexts.Connection;
+using Net.Contexts.Serializers;
 using Net.Models;
 using System.Net.Sockets;
 

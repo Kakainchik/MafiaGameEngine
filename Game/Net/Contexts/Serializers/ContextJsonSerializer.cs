@@ -1,48 +1,30 @@
-﻿using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters.Binary;
+﻿using System.Text.Json;
 
-namespace Net.Contexts
+namespace Net.Contexts.Serializers
 {
-    public static class ContextByteSerializer
+    public class ContextJsonSerializer
     {
         #region Serialize
 
         public static byte[] Serialize(Context context)
         {
-            IFormatter formatter = new BinaryFormatter();
+            JsonSerializerOptions options = new JsonSerializerOptions(JsonSerializerDefaults.General)
+            {
+                IncludeFields = true,
+                WriteIndented = true
+            };
+            string json = JsonSerializer.Serialize<Context>(context, options);
             using(MemoryStream ms = new MemoryStream())
             {
-                formatter.Serialize(ms, context);
-                byte[] contextBytes = ms.ToArray();
-
-                context.Header = new ContextHeader
-                {
-                    Length = contextBytes.Length
-                };
-
-                using(BufferedStream bs = new BufferedStream(ms, contextBytes.Length + 4))
-                using(BinaryWriter bw = new BinaryWriter(bs))
-                {
-                    //Set position to the begining
-                    bw.Seek(0, SeekOrigin.Begin);
-
-                    //The first Int32 (4 bytes) will be the context length
-                    bw.Write(context.Header.Length);
-
-                    //Rewrite the actual message data after header position
-                    bw.Write(contextBytes);
-
-                    return ms.ToArray();
-                }
+                return new byte[0];
             }
         }
 
         public static int Serialize(Context context, Stream stream)
         {
-            IFormatter formatter = new BinaryFormatter();
             using(MemoryStream ms = new MemoryStream())
             {
-                formatter.Serialize(ms, context);
+                JsonSerializer.Serialize(ms, context);
                 byte[] contextBytes = ms.ToArray();
 
                 context.Header = new ContextHeader
@@ -72,10 +54,9 @@ namespace Net.Contexts
             //Read 4 bytes and get header
             int length = BitConverter.ToInt32(data, 0);
 
-            IFormatter formatter = new BinaryFormatter();
             using(MemoryStream ms = new MemoryStream(data, 4, length))
             {
-                Context context = (Context)formatter.Deserialize(ms);
+                Context context = JsonSerializer.Deserialize<Context>(ms);
                 return context;
             }
         }
@@ -89,10 +70,9 @@ namespace Net.Contexts
 
             byte[] data = br.ReadBytes(length);
 
-            IFormatter formatter = new BinaryFormatter();
             using(MemoryStream ms = new MemoryStream(data, 0, data.Length))
             {
-                Context context = (Context)formatter.Deserialize(ms);
+                Context context = JsonSerializer.Deserialize<Context>(ms);
                 return context;
             }
         }

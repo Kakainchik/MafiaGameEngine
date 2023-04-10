@@ -330,3 +330,4 @@ ASALocalRun/
 .mfractor/
 *.dgml
 *.sarif
+/Game/upgrade-assistant.clef
