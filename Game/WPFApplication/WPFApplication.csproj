@@ -8,6 +8,7 @@
   </PropertyGroup>
 
 	<ItemGroup>
+		<None Remove="Resources\Icons\app-icon-96.ico" />
 		<None Remove="Resources\Icons\arrow-64.ico" />
 		<None Remove="Resources\Icons\checkmark-64.png" />
 		<None Remove="Resources\Icons\home-64.ico" />
@@ -95,6 +96,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Resource Include="Resources\Icons\app-icon-96.ico" />
 		<Resource Include="Resources\Icons\arrow-64.ico">
 			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</Resource>

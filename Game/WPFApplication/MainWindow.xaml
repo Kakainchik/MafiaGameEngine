@@ -7,6 +7,7 @@
         xmlns:cvr="clr-namespace:WPFApplication.Converters"
         xmlns:r="clr-namespace:WPFApplication.Resources"
 		mc:Ignorable="d"
+        Icon="/Resources/Icons/app-icon-96.ico"
 		Title="MainWindow"
         d:DesignHeight="550"
         d:DesignWidth="900"
