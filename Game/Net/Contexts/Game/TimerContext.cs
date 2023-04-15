@@ -1,4 +1,6 @@
-﻿namespace Net.Contexts.Game
+﻿using System.Text.Json.Serialization;
+
+namespace Net.Contexts.Game
 {
     [Serializable]
     public class TimerContext : SessionContext
@@ -6,9 +8,10 @@
         public TimeSpan InitialTime { get; }
         public bool ToStart { get; }
 
-        public TimerContext(TimeSpan initial, bool toStart)
+        [JsonConstructor]
+        public TimerContext(TimeSpan initialTime, bool toStart)
         {
-            InitialTime = initial;
+            InitialTime = initialTime;
             ToStart = toStart;
         }
     }

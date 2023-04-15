@@ -1,5 +1,5 @@
-﻿using GameLogic.Model;
-using Net.Models;
+﻿using Net.Models;
+using System.Text.Json.Serialization;
 
 namespace Net.Contexts.Intro
 {
@@ -10,11 +10,12 @@ namespace Net.Contexts.Intro
         public string Nickname { get; }
         public RGB NColor { get; }
 
-        public IntroPlayerContext(RoleSignature role, string nickname, RGB color)
+        [JsonConstructor]
+        public IntroPlayerContext(RoleSignature role, string nickname, RGB nColor)
         {
             Role = role;
             Nickname = nickname;
-            NColor = color;
+            NColor = nColor;
         }
     }
 }

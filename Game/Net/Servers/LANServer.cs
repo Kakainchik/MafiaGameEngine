@@ -80,7 +80,7 @@ namespace Net.Servers
         {
             lock(_lock)
             {
-                byte[] data = ContextByteSerializer.Serialize(message);
+                byte[] data = ContextJsonSerializer.Serialize(message);
                 foreach(var chunk in connections.Values)
                 {
                     chunk.Session?.SendBytes(data);
@@ -92,7 +92,7 @@ namespace Net.Servers
         {
             lock(_lock)
             {
-                byte[] data = ContextByteSerializer.Serialize(message);
+                byte[] data = ContextJsonSerializer.Serialize(message);
                 foreach(var pair in connections)
                 {
                     if(pair.Key.Equals(instead)) continue;
@@ -139,7 +139,7 @@ namespace Net.Servers
         {
             lock(_lock)
             {
-                byte[] data = ContextByteSerializer.Serialize(message);
+                byte[] data = ContextJsonSerializer.Serialize(message);
                 foreach(var chunk in connections.Values)
                 {
                     chunk.Chat?.SendBytes(data);
@@ -151,7 +151,7 @@ namespace Net.Servers
         {
             lock(_lock)
             {
-                byte[] data = ContextByteSerializer.Serialize(message);
+                byte[] data = ContextJsonSerializer.Serialize(message);
                 foreach(var pair in connections)
                 {
                     if(pair.Key.Equals(instead)) continue;
@@ -207,7 +207,7 @@ namespace Net.Servers
                         var valid = IsGameRan ?
                             ConnectValidation.GAME_RUNNING : ConnectValidation.LOBBY_IS_FULL;
                         AuthorizationContext msg = new AuthorizationContext(valid);
-                        ContextByteSerializer.Serialize(msg, client.GetStream());
+                        ContextJsonSerializer.Serialize(msg, client.GetStream());
                         continue;
                     }
 

@@ -1,4 +1,5 @@
 ﻿using Net.Models;
+using System.Text.Json.Serialization;
 
 namespace Net.Contexts.Game
 {
@@ -7,6 +8,7 @@ namespace Net.Contexts.Game
     {
         public ScreenType Screen { get; }
 
+        [JsonConstructor]
         public ScreenContext(ScreenType screen)
         {
             Screen = screen;

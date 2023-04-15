@@ -1,4 +1,5 @@
 ﻿using GameLogic.Actions.ActionTemplates;
+using System.Text.Json.Serialization;
 
 namespace Net.Contexts.Night.ActionInfo
 {
@@ -8,6 +9,7 @@ namespace Net.Contexts.Night.ActionInfo
         public KillInfo Info { get; }
         public bool ToTarget { get; }
 
+        [JsonConstructor]
         public KillInfoContext(KillInfo info, bool toTarget)
         {
             Info = info;

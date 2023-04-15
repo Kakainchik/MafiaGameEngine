@@ -41,7 +41,7 @@ namespace Net.Providers
                 throw new WebException("Provider is not connected", WebExceptionStatus.ConnectFailure);
 
             message.Presenter.Sender = client.SessionId;
-            await Task.Factory.StartNew(() => ContextByteSerializer.Serialize(message, stream!));
+            await Task.Factory.StartNew(() => ContextJsonSerializer.Serialize(message, stream!));
         }
 
         public async Task SendPrivateMessageAsync(Context message, Guid receiver)
@@ -77,7 +77,7 @@ namespace Net.Providers
 
                     lock(_lock)
                     {
-                        message = ContextByteSerializer.Deserialize(stream!);
+                        message = ContextJsonSerializer.Deserialize(stream!);
                     }
 
                     client.SubmitMessage(message);

@@ -1,4 +1,5 @@
 ﻿using Net.Models;
+using System.Text.Json.Serialization;
 
 namespace Net.Contexts.Night.ActionInfo
 {
@@ -7,6 +8,7 @@ namespace Net.Contexts.Night.ActionInfo
     {
         public RoleSignature Info { get; }
 
+        [JsonConstructor]
         public EInvestigationInfoContext(RoleSignature info)
         {
             Info = info;

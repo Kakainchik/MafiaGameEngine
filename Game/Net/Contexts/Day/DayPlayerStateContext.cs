@@ -1,4 +1,5 @@
 ﻿using Net.Models;
+using System.Text.Json.Serialization;
 
 namespace Net.Contexts.Day
 {
@@ -10,15 +11,16 @@ namespace Net.Contexts.Day
         public RGB NColor { get; }
         public bool IsAlive { get; }
 
+        [JsonConstructor]
         public DayPlayerStateContext(Guid id,
             string nickname,
-            RGB color,
+            RGB nColor,
             bool isAlive)
         {
             Id = id;
             Nickname = nickname;
             IsAlive = isAlive;
-            NColor = color;
+            NColor = nColor;
         }
     }
 }

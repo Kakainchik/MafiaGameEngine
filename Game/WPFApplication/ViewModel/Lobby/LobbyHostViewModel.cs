@@ -5,6 +5,7 @@ using Net.Contexts.Connection;
 using Net.Contexts.Lobby;
 using Net.Servers.Mediators;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
 using WPFApplication.Core;
@@ -52,7 +53,7 @@ namespace WPFApplication.ViewModel
         {
             HostSetup = new HostLobbySetup();
 
-            var pair = mediator.ConnectedPlayers.First();
+            KeyValuePair<Guid, Net.Models.LobbyPlayer> pair = mediator.ConnectedPlayers.First();
             HostSetup.Players.Add(
                 new LobbyPlayer(pair.Key, pair.Value.Username, pair.Value.IsReady));
 

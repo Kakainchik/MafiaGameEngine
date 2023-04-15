@@ -1,10 +1,11 @@
 ﻿using GameLogic.Model;
 using Net.Models;
+using System.Text.Json.Serialization;
 
 namespace Net.Contexts.Game;
 
-//The complex context that provides all info of the entire game
-//with its history
+/*The complex context that provides all info of the entire game 
+ * with its history*/
 
 [Serializable]
 public class EndGameContext : Context
@@ -13,13 +14,14 @@ public class EndGameContext : Context
     public EndGamePlayerState[] Users { get; }
     public EndGameHistory[] Cycles { get; }
 
+    [JsonConstructor]
     public EndGameContext(Team? winner,
         EndGamePlayerState[] users,
-        EndGameHistory[] history)
+        EndGameHistory[] cycles)
     {
         Winner = winner;
         Users = users;
-        Cycles = history;
+        Cycles = cycles;
     }
 }
 
@@ -32,15 +34,16 @@ public class EndGamePlayerState
     public RoleSignature Role { get; }
     public bool IsAlive { get; }
 
+    [JsonConstructor]
     public EndGamePlayerState(Guid id,
         string nickname,
-        RGB color,
+        RGB nColor,
         RoleSignature role,
         bool isAlive)
     {
         Id = id;
         Nickname = nickname;
-        NColor = color;
+        NColor = nColor;
         Role = role;
         IsAlive = isAlive;
     }
@@ -56,6 +59,7 @@ public class EndGameHistory
     public EndGameNightH[] NightActions { get; }
     public string[] MorningDeathsUsername { get; }
 
+    [JsonConstructor]
     public EndGameHistory(int turn,
         string? dayUsernameElected,
         int dayVotesCount,
@@ -81,6 +85,7 @@ public class EndGameNightH
     public bool Success { get; }
     public string? Secondary { get; }
 
+    [JsonConstructor]
     public EndGameNightH(string executor,
         RoleSignature eRole,
         string primary,

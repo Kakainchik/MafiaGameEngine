@@ -1,4 +1,6 @@
-﻿namespace Net.Contexts.Day
+﻿using System.Text.Json.Serialization;
+
+namespace Net.Contexts.Day
 {
     [Serializable]
     public class ReceiveVoteContext : SessionContext
@@ -17,6 +19,7 @@
             PreviousT = previousT;
         }
 
+        [JsonConstructor]
         public ReceiveVoteContext(Guid voterId,
             VoteTarget? currentT,
             VoteTarget? previousT = null)
@@ -33,6 +36,7 @@
         public Guid Id { get; }
         public int Votes { get; }
 
+        [JsonConstructor]
         public VoteTarget(Guid id, int votes)
         {
             Id = id;

@@ -1,19 +1,22 @@
-﻿namespace Net.Contexts.Night
+﻿using System.Text.Json.Serialization;
+
+namespace Net.Contexts.Night
 {
     [Serializable]
     public class SendActionContext : SessionContext
     {
-        public Guid PrimaryTarget { get; }
-        public bool HasNonExFlag { get; }
+        public Guid? PrimaryTarget { get; }
+        public bool HasNonExFlag => PrimaryTarget is null;
 
-        public SendActionContext(Guid primary)
+        [JsonConstructor]
+        public SendActionContext(Guid primaryTarget)
         {
-            PrimaryTarget = primary;
+            PrimaryTarget = primaryTarget;
         }
 
         public SendActionContext()
         {
-            HasNonExFlag = true;
+            PrimaryTarget = null;
         }
     }
 }

@@ -1,13 +1,16 @@
-﻿namespace Net.Contexts.Day
+﻿using System.Text.Json.Serialization;
+
+namespace Net.Contexts.Day
 {
     [Serializable]
     public class ElectionResultContext : SessionContext
     {
         public Guid ElectedId { get; }
 
-        public ElectionResultContext(Guid id)
+        [JsonConstructor]
+        public ElectionResultContext(Guid electedId)
         {
-            ElectedId = id;
+            ElectedId = electedId;
         }
     }
 }

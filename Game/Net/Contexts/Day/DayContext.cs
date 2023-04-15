@@ -1,4 +1,6 @@
-﻿namespace Net.Contexts.Day
+﻿using System.Text.Json.Serialization;
+
+namespace Net.Contexts.Day
 {
     [Serializable]
     public class DayContext : SessionContext
@@ -6,6 +8,7 @@
         public DayStep Step { get; }
         public int Number { get; }
 
+        [JsonConstructor]
         public DayContext(DayStep step, int number)
         {
             Step = step;

@@ -1,10 +1,13 @@
-﻿namespace Net.Contexts.Lynch
+﻿using System.Text.Json.Serialization;
+
+namespace Net.Contexts.Lynch
 {
     [Serializable]
     public class LynchContext : SessionContext
     {
         public LynchStep Step { get; }
 
+        [JsonConstructor]
         public LynchContext(LynchStep step)
         {
             Step = step;

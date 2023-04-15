@@ -42,7 +42,7 @@ namespace Net.Servers.Units
 
                     lock(_lock)
                     {
-                        message = ContextByteSerializer.Deserialize(stream) as ChatContext;
+                        message = ContextJsonSerializer.Deserialize(stream) as ChatContext;
                         if(message == null) continue;
                     }
 
@@ -82,14 +82,14 @@ namespace Net.Servers.Units
 
         public void SendContext(Context message)
         {
-            if(stream != null) ContextByteSerializer.Serialize(message, stream);
+            if(stream != null) ContextJsonSerializer.Serialize(message, stream);
         }
 
         private bool WaitValidation()
         {
             Task waiter = Task.Run(() =>
             {
-                var authorization = ContextByteSerializer.Deserialize(stream!) as AuthorizationContext;
+                var authorization = ContextJsonSerializer.Deserialize(stream!) as AuthorizationContext;
                 if(authorization is SessionIdContext ses)
                 {
                     ClientId = ses.Id;
@@ -102,7 +102,7 @@ namespace Net.Servers.Units
             else
             {
                 AuthorizationContext msg = new AuthorizationContext(ConnectValidation.CANNOT_CONNECT);
-                ContextByteSerializer.Serialize(msg, stream!);
+                ContextJsonSerializer.Serialize(msg, stream!);
                 return false;
             }
         }

@@ -63,9 +63,9 @@ namespace WPFApplication.ViewModel
 
             //Try to connect
             IPAddress address;
-            if(IPAddress.TryParse(ConnectAdress, out address))
+            if(IPAddress.TryParse(ConnectAdress, out address!))
             {
-                client = new LANClient(address, SynchronizationContext.Current);
+                client = new LANClient(address, SynchronizationContext.Current!);
                 client.Disconnected += Client_Disconnected;
                 client.MessageIncomed += Client_MessageIncomed;
 
@@ -95,7 +95,7 @@ namespace WPFApplication.ViewModel
 
             LobbySetup setup = new LobbySetup()
             {
-                MaxPlayers = con.MaxPlayers,
+                MaxPlayers = con.MaxQuantityPlayers,
                 Roles = roles,
                 Players = new ObservableCollection<LobbyPlayer>(players)
             };
@@ -109,13 +109,13 @@ namespace WPFApplication.ViewModel
             HandlePageChange(nextPage);
         }
 
-        private async void Client_Disconnected(object sender, bool e)
+        private async void Client_Disconnected(object? sender, bool e)
         {
             if(e) AbortConnections();
             else await client.RetryConnectAsync();
         }
 
-        private void Client_MessageIncomed(object sender, Context e)
+        private void Client_MessageIncomed(object? sender, Context e)
         {
             switch(e)
             {

@@ -1,4 +1,5 @@
 ﻿using Net.Models;
+using System.Text.Json.Serialization;
 
 namespace Net.Contexts
 {
@@ -7,6 +8,7 @@ namespace Net.Contexts
     {
         public ConnectValidation Validation { get; }
 
+        [JsonConstructor]
         public AuthorizationContext(ConnectValidation validation)
         {
             Validation = validation;

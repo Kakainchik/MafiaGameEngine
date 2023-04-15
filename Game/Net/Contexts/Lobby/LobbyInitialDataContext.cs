@@ -1,20 +1,21 @@
-﻿using GameLogic.Model;
-using Net.Models;
+﻿using Net.Models;
+using System.Text.Json.Serialization;
 
 namespace Net.Contexts.Lobby
 {
     [Serializable]
     public class LobbyInitialDataContext : SessionContext
     {
-        public int MaxPlayers { get; }
+        public int MaxQuantityPlayers { get; }
         public IDictionary<Guid, LobbyPlayer> Players { get; }
         public IDictionary<RoleSignature, int> Roles { get; }
 
-        public LobbyInitialDataContext(int maxQuantity,
+        [JsonConstructor]
+        public LobbyInitialDataContext(int maxQuantityPlayers,
             IDictionary<Guid, LobbyPlayer> players,
             IDictionary<RoleSignature, int> roles)
         {
-            MaxPlayers = maxQuantity;
+            MaxQuantityPlayers = maxQuantityPlayers;
             Players = players;
             Roles = roles;
         }

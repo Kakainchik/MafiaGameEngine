@@ -30,7 +30,7 @@ namespace Net.Servers.Units
                 stream = client.GetStream();
 
                 //Send guid
-                ContextByteSerializer.Serialize(new SessionIdContext(ClientId), stream);
+                ContextJsonSerializer.Serialize(new SessionIdContext(ClientId), stream);
 
                 //Receiving messages from this client
                 while(true)
@@ -39,7 +39,7 @@ namespace Net.Servers.Units
 
                     lock(_lock)
                     {
-                        message = ContextByteSerializer.Deserialize(stream) as SessionContext;
+                        message = ContextJsonSerializer.Deserialize(stream) as SessionContext;
                         if(message == null) continue;
                     }
 
@@ -78,7 +78,7 @@ namespace Net.Servers.Units
 
         public void SendContext(Context message)
         {
-            if(stream != null) ContextByteSerializer.Serialize(message, stream);
+            if(stream != null) ContextJsonSerializer.Serialize(message, stream);
         }
 
         #region IDisposable implementation

@@ -1,4 +1,6 @@
-﻿namespace Net.Contexts.Day
+﻿using System.Text.Json.Serialization;
+
+namespace Net.Contexts.Day
 {
     [Serializable]
     public class WarningVoteContext : SessionContext
@@ -6,9 +8,10 @@
         public Guid WarnedPlayerId { get; }
         public bool IsWarned { get; }
 
-        public WarningVoteContext(Guid id, bool isWarned)
+        [JsonConstructor]
+        public WarningVoteContext(Guid warnedPlayerid, bool isWarned)
         {
-            WarnedPlayerId = id;
+            WarnedPlayerId = warnedPlayerid;
             IsWarned = isWarned;
         }
     }

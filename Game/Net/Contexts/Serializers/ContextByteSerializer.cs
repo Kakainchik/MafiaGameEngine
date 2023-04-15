@@ -1,5 +1,6 @@
 ﻿using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Text;
 
 #pragma warning disable SYSLIB0011
 
@@ -12,7 +13,7 @@ namespace Net.Contexts.Serializers
         public static byte[] Serialize(Context context)
         {
             IFormatter formatter = new BinaryFormatter();
-            using (MemoryStream ms = new MemoryStream())
+            using(MemoryStream ms = new MemoryStream())
             {
                 formatter.Serialize(ms, context);
                 byte[] contextBytes = ms.ToArray();
@@ -22,27 +23,24 @@ namespace Net.Contexts.Serializers
                     Length = contextBytes.Length
                 };
 
-                using (BufferedStream bs = new BufferedStream(ms, contextBytes.Length + 4))
-                using (BinaryWriter bw = new BinaryWriter(bs))
-                {
-                    //Set position to the begining
-                    bw.Seek(0, SeekOrigin.Begin);
+                using BufferedStream bs = new BufferedStream(ms, contextBytes.Length + 4);
+                using BinaryWriter bw = new BinaryWriter(bs);
+                //Set position to the begining
+                bw.Seek(0, SeekOrigin.Begin);
 
-                    //The first Int32 (4 bytes) will be the context length
-                    bw.Write(context.Header.Length);
+                //The first Int32 (4 bytes) will be the context length
+                bw.Write(context.Header.Length);
+                //Rewrite the actual message data after header position
+                bw.Write(contextBytes);
 
-                    //Rewrite the actual message data after header position
-                    bw.Write(contextBytes);
-
-                    return ms.ToArray();
-                }
+                return ms.ToArray();
             }
         }
 
         public static int Serialize(Context context, Stream stream)
         {
             IFormatter formatter = new BinaryFormatter();
-            using (MemoryStream ms = new MemoryStream())
+            using(MemoryStream ms = new MemoryStream())
             {
                 formatter.Serialize(ms, context);
                 byte[] contextBytes = ms.ToArray();
@@ -52,11 +50,10 @@ namespace Net.Contexts.Serializers
                     Length = contextBytes.Length
                 };
 
-                BinaryWriter bw = new BinaryWriter(stream);
+                using BinaryWriter bw = new BinaryWriter(stream, Encoding.Default, true);
 
                 //The first Int32 (4 bytes) will be the context length
                 bw.Write(context.Header.Length);
-
                 //Rewrite the actual message data after header position
                 bw.Write(contextBytes);
 
@@ -75,7 +72,7 @@ namespace Net.Contexts.Serializers
             int length = BitConverter.ToInt32(data, 0);
 
             IFormatter formatter = new BinaryFormatter();
-            using (MemoryStream ms = new MemoryStream(data, 4, length))
+            using(MemoryStream ms = new MemoryStream(data, 4, length))
             {
                 Context context = (Context)formatter.Deserialize(ms);
                 return context;
@@ -84,7 +81,7 @@ namespace Net.Contexts.Serializers
 
         public static Context Deserialize(Stream stream)
         {
-            BinaryReader br = new BinaryReader(stream);
+            using BinaryReader br = new BinaryReader(stream, Encoding.Default, true);
 
             //Read the length (4 bytes)
             int length = br.ReadInt32();
@@ -92,7 +89,7 @@ namespace Net.Contexts.Serializers
             byte[] data = br.ReadBytes(length);
 
             IFormatter formatter = new BinaryFormatter();
-            using (MemoryStream ms = new MemoryStream(data, 0, data.Length))
+            using(MemoryStream ms = new MemoryStream(data, 0, data.Length))
             {
                 Context context = (Context)formatter.Deserialize(ms);
                 return context;

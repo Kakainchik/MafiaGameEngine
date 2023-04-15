@@ -1,48 +1,64 @@
-﻿using System.Text.Json;
+﻿using System.Text;
+using System.Text.Json;
 
 namespace Net.Contexts.Serializers
 {
-    public class ContextJsonSerializer
+    public static class ContextJsonSerializer
     {
+        private readonly static JsonSerializerOptions serializerOptions;
+
+        static ContextJsonSerializer()
+        {
+            serializerOptions = new JsonSerializerOptions(JsonSerializerDefaults.General)
+            {
+                IncludeFields = true,
+                WriteIndented = true,
+                TypeInfoResolver = new PolymorphicContextTypeResolver()
+            };
+        }
+
         #region Serialize
 
         public static byte[] Serialize(Context context)
         {
-            JsonSerializerOptions options = new JsonSerializerOptions(JsonSerializerDefaults.General)
+            string json = JsonSerializer.Serialize<Context>(context, serializerOptions);
+
+            context.Header = new ContextHeader
             {
-                IncludeFields = true,
-                WriteIndented = true
+                Length = Encoding.UTF8.GetByteCount(json)
             };
-            string json = JsonSerializer.Serialize<Context>(context, options);
-            using(MemoryStream ms = new MemoryStream())
-            {
-                return new byte[0];
-            }
+
+            using MemoryStream ms = new MemoryStream(context.Header.Length + 4);
+            using BinaryWriter bw = new BinaryWriter(ms);
+
+            //The first Int32 (4 bytes) will be the context length
+            bw.Write(BitConverter.GetBytes(context.Header.Length));
+            //Rewrite the actual message data after header position
+            bw.Write(Encoding.UTF8.GetBytes(json));
+
+            return ms.ToArray();
         }
 
         public static int Serialize(Context context, Stream stream)
         {
-            using(MemoryStream ms = new MemoryStream())
+            string json = JsonSerializer.Serialize<Context>(context, serializerOptions);
+
+            context.Header = new ContextHeader
             {
-                JsonSerializer.Serialize(ms, context);
-                byte[] contextBytes = ms.ToArray();
+                Length = Encoding.UTF8.GetByteCount(json)
+            };
 
-                context.Header = new ContextHeader
-                {
-                    Length = contextBytes.Length
-                };
+            byte[] contextBytes = Encoding.UTF8.GetBytes(json);
 
-                BinaryWriter bw = new BinaryWriter(stream);
+            using BinaryWriter bw = new BinaryWriter(stream, Encoding.UTF8, true);
 
-                //The first Int32 (4 bytes) will be the context length
-                bw.Write(context.Header.Length);
+            //The first Int32 (4 bytes) will be the context length
+            bw.Write(context.Header.Length);
+            //Rewrite the actual message data after header position
+            bw.Write(contextBytes);
 
-                //Rewrite the actual message data after header position
-                bw.Write(contextBytes);
-
-                //Return position
-                return 4 + context.Header.Length;
-            }
+            //Return position
+            return 4 + context.Header.Length;
         }
 
         #endregion
@@ -51,30 +67,42 @@ namespace Net.Contexts.Serializers
 
         public static Context Deserialize(byte[] data)
         {
-            //Read 4 bytes and get header
+            //Read the length (4 bytes)
             int length = BitConverter.ToInt32(data, 0);
-
             using(MemoryStream ms = new MemoryStream(data, 4, length))
             {
-                Context context = JsonSerializer.Deserialize<Context>(ms);
+                byte[] chunk = new byte[length];
+                ms.Read(chunk);
+                Utf8JsonReader jsonReader = new Utf8JsonReader(chunk);
+
+                Context context = JsonSerializer.Deserialize<Context>(ref jsonReader, serializerOptions)!;
+                context.Header = new ContextHeader
+                {
+                    Length = length
+                };
+
                 return context;
             }
         }
 
         public static Context Deserialize(Stream stream)
         {
-            BinaryReader br = new BinaryReader(stream);
+            using BinaryReader br = new BinaryReader(stream, Encoding.UTF8, true);
 
             //Read the length (4 bytes)
             int length = br.ReadInt32();
 
-            byte[] data = br.ReadBytes(length);
-
-            using(MemoryStream ms = new MemoryStream(data, 0, data.Length))
+            byte[] chunk = new byte[length];
+            br.Read(chunk, 0, length);
+            Utf8JsonReader jsonReader = new Utf8JsonReader(chunk);
+            
+            Context context = JsonSerializer.Deserialize<Context>(ref jsonReader, serializerOptions)!;
+            context.Header = new ContextHeader
             {
-                Context context = JsonSerializer.Deserialize<Context>(ms);
-                return context;
-            }
+                Length = length
+            };
+
+            return context;
         }
 
         #endregion

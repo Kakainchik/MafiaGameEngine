@@ -1,13 +1,16 @@
-﻿namespace Net.Contexts.Lynch
+﻿using System.Text.Json.Serialization;
+
+namespace Net.Contexts.Lynch
 {
     [Serializable]
     public class SendLastMessageContext : SessionContext
     {
         public string LastMessage { get; }
 
-        public SendLastMessageContext(string message)
+        [JsonConstructor]
+        public SendLastMessageContext(string lastMessage)
         {
-            LastMessage = message;
+            LastMessage = lastMessage;
         }
     }
 }

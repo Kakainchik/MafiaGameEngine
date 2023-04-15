@@ -32,7 +32,7 @@ namespace Net.Providers
 
             lock(_lock)
             {
-                message = (AuthorizationContext)ContextByteSerializer.Deserialize(stream!);
+                message = (AuthorizationContext)ContextJsonSerializer.Deserialize(stream!);
             }
 
             return message;

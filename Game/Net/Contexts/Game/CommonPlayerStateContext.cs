@@ -1,4 +1,5 @@
 ﻿using Net.Models;
+using System.Text.Json.Serialization;
 
 namespace Net.Contexts.Game
 {
@@ -8,6 +9,7 @@ namespace Net.Contexts.Game
         public RoleSignature Role { get; }
         public bool IsAlive { get; }
 
+        [JsonConstructor]
         public CommonPlayerStateContext(RoleSignature role, bool isAlive)
         {
             Role = role;

@@ -86,7 +86,7 @@ namespace WPFApplication.ViewModel
             server.StartListenParallel();
 
             client = new LANClient(IPAddress.Loopback,
-                SynchronizationContext.Current);
+                SynchronizationContext.Current!);
             client.Disconnected += Client_Disconnected;
 
             //Open all providers
@@ -124,7 +124,7 @@ namespace WPFApplication.ViewModel
             HandlePageChange(nextPage);
         }
 
-        private async void Client_Disconnected(object sender, bool e)
+        private async void Client_Disconnected(object? sender, bool e)
         {
             if(e) AbortConnections();
             else await client.RetryConnectAsync();

@@ -38,7 +38,7 @@ namespace NetTest
 
                 ms.Position -= bytesWritten;
 
-                var message = ContextByteSerializer.Deserialize(ms);
+                var message = ContextJsonSerializer.Deserialize(ms);
 
                 Assert.IsInstanceOfType(message, typeof(UsernameContext));
                 Assert.AreEqual(expected.Username, ((UsernameContext)message).Username);
@@ -59,7 +59,7 @@ namespace NetTest
             using MemoryStream ms = new MemoryStream();
             for(int i = 0; i < contexts.Length; i++)
             {
-                ContextByteSerializer.Serialize(contexts[i], ms);
+                ContextJsonSerializer.Serialize(contexts[i], ms);
             }
 
             ms.Position = 0;

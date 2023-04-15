@@ -1,4 +1,5 @@
 ﻿using GameLogic.Actions.ActionTemplates;
+using System.Text.Json.Serialization;
 
 namespace Net.Contexts.Night.ActionInfo
 {
@@ -7,6 +8,7 @@ namespace Net.Contexts.Night.ActionInfo
     {
         public DetectInfo Info { get; }
 
+        [JsonConstructor]
         public EDetectInfoContext(DetectInfo info)
         {
             Info = info;

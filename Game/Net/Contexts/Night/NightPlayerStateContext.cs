@@ -1,4 +1,5 @@
 ﻿using Net.Models;
+using System.Text.Json.Serialization;
 
 namespace Net.Contexts.Night
 {
@@ -11,16 +12,17 @@ namespace Net.Contexts.Night
         public RGB NColor { get; }
         public bool IsOwn { get; }
 
+        [JsonConstructor]
         public NightPlayerStateContext(Guid id,
             string nickname,
-            RGB color,
+            RGB nColor,
             bool isAlive,
             bool isOwn = false)
         {
             Id = id;
             Nickname = nickname;
             IsAlive = isAlive;
-            NColor = color;
+            NColor = nColor;
             IsOwn = isOwn;
         }
     }

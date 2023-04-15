@@ -1,9 +1,6 @@
-﻿using System.Text.Json.Serialization;
-
-namespace Net.Contexts
+﻿namespace Net.Contexts
 {
     [Serializable]
-    [JsonDerivedType(typeof(SessionContext))]
     public abstract class Context
     {
         internal ContextHeader Header;

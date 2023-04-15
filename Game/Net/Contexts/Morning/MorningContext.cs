@@ -1,4 +1,6 @@
-﻿namespace Net.Contexts.Morning
+﻿using System.Text.Json.Serialization;
+
+namespace Net.Contexts.Morning
 {
     [Serializable]
     public class MorningContext : SessionContext
@@ -10,6 +12,7 @@
         public byte RUndead { get; }
         public byte RNeutral { get; }
 
+        [JsonConstructor]
         public MorningContext(byte deaths,
             byte rtown = 0,
             byte rmafia = 0,

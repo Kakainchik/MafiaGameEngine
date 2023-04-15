@@ -1,7 +1,7 @@
 ﻿namespace Net.Contexts
 {
     [Serializable]
-    abstract public class ChatContext : Context
+    public abstract class ChatContext : Context
     {
 
     }

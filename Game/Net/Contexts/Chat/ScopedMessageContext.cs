@@ -1,5 +1,6 @@
 ﻿using GameLogic.Attributes;
 using Net.Models;
+using System.Text.Json.Serialization;
 
 namespace Net.Contexts.Chat
 {
@@ -9,14 +10,15 @@ namespace Net.Contexts.Chat
         public ChatScope Scope { get; }
         public RGB NColor { get; }
 
+        [JsonConstructor]
         public ScopedMessageContext(string senderName,
             string message,
             ChatScope scope,
-            RGB color)
+            RGB nColor)
             : base(senderName, message)
         {
             Scope = scope;
-            NColor = color;
+            NColor = nColor;
         }
     }
 }

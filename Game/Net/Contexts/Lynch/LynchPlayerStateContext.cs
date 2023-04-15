@@ -1,5 +1,5 @@
-﻿using GameLogic.Model;
-using Net.Models;
+﻿using Net.Models;
+using System.Text.Json.Serialization;
 
 namespace Net.Contexts.Lynch
 {
@@ -11,14 +11,15 @@ namespace Net.Contexts.Lynch
         public RoleSignature Role { get; }
         public bool IsOwn { get; }
 
+        [JsonConstructor]
         public LynchPlayerStateContext(
             string nickname,
-            RGB color,
+            RGB nColor,
             RoleSignature role,
             bool isOwn = false)
         {
             Nickname = nickname;
-            NColor = color;
+            NColor = nColor;
             Role = role;
             IsOwn = isOwn;
         }

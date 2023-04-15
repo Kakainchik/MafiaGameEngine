@@ -13,9 +13,10 @@ namespace Net.Contexts.Intro
             Step = step;
         }
 
-        public IntroContext(IntroStep step, string city) : this(step)
+        [JsonConstructor]
+        public IntroContext(IntroStep step, string cityName) : this(step)
         {
-            CityName = city;
+            CityName = cityName;
         }
     }
 

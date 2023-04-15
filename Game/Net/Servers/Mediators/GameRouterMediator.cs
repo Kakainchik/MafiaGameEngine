@@ -66,11 +66,11 @@ namespace Net.Servers.Mediators
             //Someone picked a target at night
             else if(con is SendDActionContext dcon)
                 gameHolder.NightManager.ConfirmAction(con.Presenter.Sender,
-                    dcon.PrimaryTarget,
+                    (Guid)dcon.PrimaryTarget!,
                     dcon.SecondaryTarget);
             else
                 gameHolder.NightManager.ConfirmAction(con.Presenter.Sender,
-                    con.PrimaryTarget);
+                    (Guid)con.PrimaryTarget!);
         }
 
         private void HandleSendLastMessage(SendLastMessageContext con)
