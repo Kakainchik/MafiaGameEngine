@@ -2,7 +2,7 @@
 
 namespace Net.Servers.Mediators
 {
-    public interface IMediator
+    public interface IMediator : IDisposable
     {
         void Accept(Context message);
     }

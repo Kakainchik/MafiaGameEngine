@@ -33,13 +33,19 @@ namespace WPFApplication.ViewModel
             Successor?.AssertPage(page);
         }
 
-        private async void Client_Disconnected(object sender, bool e)
+        public override void AbortConnections()
         {
-            if(e) NetHolder?.AbortConnections();
+            base.AbortConnections();
+            mediator?.Dispose();
+        }
+
+        private async void Client_Disconnected(object? sender, bool e)
+        {
+            if(e) AbortConnections();
             else await client.RetryConnectAsync();
         }
 
-        private void Client_MessageIncomed(object sender, Context e)
+        private void Client_MessageIncomed(object? sender, Context e)
         {
             switch(e)
             {

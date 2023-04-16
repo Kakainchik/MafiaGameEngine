@@ -78,7 +78,7 @@ namespace WPFApplication.Controls
             DownCommand = new RelayCommand(OnDown);
         }
 
-        private void OnUp(object obj)
+        private void OnUp(object? obj)
         {
             Quantity++;
             if(Quantity > 0) IsDownEnabled = true;
@@ -86,7 +86,7 @@ namespace WPFApplication.Controls
             QuantityChange?.Execute((Role, Quantity));
         }
 
-        private void OnDown(object obj)
+        private void OnDown(object? obj)
         {
             Quantity--;
             if(Quantity == 0) IsDownEnabled = false;

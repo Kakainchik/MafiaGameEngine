@@ -6,14 +6,14 @@ namespace Net.Contexts.Night
     [Serializable]
     public class NightPlayerStateContext : SessionContext
     {
-        public Guid Id { get; }
+        public ulong Id { get; }
         public bool IsAlive { get; }
         public string Nickname { get; }
         public RGB NColor { get; }
         public bool IsOwn { get; }
 
         [JsonConstructor]
-        public NightPlayerStateContext(Guid id,
+        public NightPlayerStateContext(ulong id,
             string nickname,
             RGB nColor,
             bool isAlive,

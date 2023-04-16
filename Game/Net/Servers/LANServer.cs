@@ -4,6 +4,7 @@ using Net.Contexts.Serializers;
 using Net.Models;
 using Net.Servers.Mediators;
 using Net.Servers.Units;
+using System.IO;
 using System.Net;
 using System.Net.Sockets;
 
@@ -21,7 +22,7 @@ namespace Net.Servers
         private Task? chatTask;
         private CancellationTokenSource sessionToken = new CancellationTokenSource();
         private CancellationTokenSource chatToken = new CancellationTokenSource();
-        private IDictionary<Guid, UnitChunk> connections = new Dictionary<Guid, UnitChunk>();
+        private IDictionary<ulong, UnitChunk> connections = new Dictionary<ulong, UnitChunk>();
         private object _lock = new();
         private bool disposedValue;
 
@@ -34,13 +35,6 @@ namespace Net.Servers
         {
             sessionListener = new TcpListener(IPAddress.Any, COMMAND_PORT);
             chatListener = new TcpListener(IPAddress.Any, CHAT_PORT);
-        }
-
-        public LobbyMediator InitializeFirstMediator()
-        {
-            var med = new LobbyMediator(this);
-            SessionMediator = med;
-            return med;
         }
 
         public void StartListenParallel()
@@ -60,7 +54,7 @@ namespace Net.Servers
 
         #region ISessionCommunicator implementation
 
-        public void SendSessionMessage(Context message, Guid receiver)
+        public void SendSessionMessage(Context message, ulong receiver)
         {
             lock(_lock)
             {
@@ -88,7 +82,7 @@ namespace Net.Servers
             }
         }
 
-        public void BroadcastSessionMessage(Context message, Guid instead)
+        public void BroadcastSessionMessage(Context message, ulong instead)
         {
             lock(_lock)
             {
@@ -101,15 +95,15 @@ namespace Net.Servers
             }
         }
 
-        public void AbortConnection(Guid sessionId)
+        public void AbortConnection(ulong clientId)
         {
             lock(_lock)
             {
-                if(connections.Remove(sessionId, out UnitChunk? chunk))
+                if(connections.Remove(clientId, out UnitChunk? chunk))
                 {
                     chunk.Dispose();
 
-                    var msg = new DisconnectPlayerContext(sessionId);
+                    var msg = new DisconnectPlayerContext(clientId);
                     BroadcastSessionMessage(msg);
                 }
             }
@@ -119,7 +113,7 @@ namespace Net.Servers
 
         #region IChatCommunicator implementation
 
-        public void SendChatMessage(Context message, Guid receiver)
+        public void SendChatMessage(Context message, ulong receiver)
         {
             lock(_lock)
             {
@@ -147,7 +141,7 @@ namespace Net.Servers
             }
         }
 
-        public void BroadcastChatMessage(Context message, Guid instead)
+        public void BroadcastChatMessage(Context message, ulong instead)
         {
             lock(_lock)
             {
@@ -211,12 +205,22 @@ namespace Net.Servers
                         continue;
                     }
 
-                    var guid = Guid.NewGuid();
+                    //Get random client id
+                    byte[] uint64Size = new byte[sizeof(ulong)];
+                    Random.Shared.NextBytes(uint64Size);
+                    ulong randomizedClientId = BitConverter.ToUInt64(uint64Size);
+
                     var chunk = new UnitChunk()
                     {
-                        Session = new SessionUnit(guid, client, this)
+                        Session = new SessionUnit(randomizedClientId, client, this)
                     };
-                    lock(_lock) connections[guid] = chunk;
+                    lock(_lock)
+                    {
+                        connections[randomizedClientId] = chunk;
+
+                        //Send client id because we authorized the connection
+                        chunk.Session.SendContext(new ConnectClientIdContext(randomizedClientId));
+                    }
 
                     _ = Task.Factory.StartNew(chunk.Session.Process,
                         sessionToken.Token,

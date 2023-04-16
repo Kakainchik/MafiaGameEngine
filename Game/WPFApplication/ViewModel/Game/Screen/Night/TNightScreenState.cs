@@ -8,10 +8,10 @@ namespace WPFApplication.ViewModel
 {
     public class TNightScreenState : NightScreenState
     {
-        private NightPlayerState pickedPrimary;
+        private NightPlayerState? pickedPrimary;
         private bool isPrimaryActive;
 
-        public NightPlayerState PickedPrimary
+        public NightPlayerState? PickedPrimary
         {
             get => pickedPrimary;
             set
@@ -58,8 +58,9 @@ namespace WPFApplication.ViewModel
             }
         }
 
-        private void OnPlayerClick(object o)
+        private void OnPlayerClick(object? o)
         {
+            if(o is null) return;
             var state = (NightPlayerState)o;
             //Cannot pick self
             if(state.IsOwn) return;
@@ -73,14 +74,14 @@ namespace WPFApplication.ViewModel
             }
         }
 
-        private void OnPrimaryReset(object o)
+        private void OnPrimaryReset(object? o)
         {
             IsPrimaryActive = false;
             if(PickedPrimary != null) PickedPrimary.IsPicked = false;
             PickedPrimary = null;
         }
 
-        private void OnPrimaryPick(object o)
+        private void OnPrimaryPick(object? o)
         {
             IsPrimaryActive = !isPrimaryActive;
         }

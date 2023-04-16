@@ -15,12 +15,12 @@ using ConnectValidation = Net.Models.ConnectValidation;
 
 namespace WPFApplication.ViewModel
 {
-    public class LANLobbyConnectionViewModel : ChangeablePage, INetHolder, INetUser
+    public class LANLobbyConnectionViewModel : ChangeablePage, INetHolder
     {
         private ConnectValidation error;
-        private IClient client;
+        private IClient? client;
 
-        public string ConnectAdress { get; set; }
+        public string? ConnectAdress { get; set; }
         public bool IsUIEnabled { get; set; } = true;
 
         public ConnectValidation Error
@@ -34,7 +34,6 @@ namespace WPFApplication.ViewModel
         }
 
         public ICommand ConnectByIPCommand { get; set; }
-        public INetHolder NetHolder { get; set; }
 
         public LANLobbyConnectionViewModel()
         {
@@ -46,18 +45,19 @@ namespace WPFApplication.ViewModel
             //Dispose client
             client?.Disconnect();
             client?.Dispose();
-
-            NetHolder?.AbortConnections();
         }
 
         public override void HandlePageChange(ChangeablePage page)
         {
-            client.Disconnected -= Client_Disconnected;
-            client.MessageIncomed -= Client_MessageIncomed;
+            if(client is not null)
+            {
+                client.Disconnected -= Client_Disconnected;
+                client.MessageIncomed -= Client_MessageIncomed;
+            }
             Successor?.AssertPage(page);
         }
 
-        private async void OnConnectByIP(object o)
+        private async void OnConnectByIP(object? o)
         {
             IsUIEnabled = false;
 
@@ -69,12 +69,12 @@ namespace WPFApplication.ViewModel
                 client.Disconnected += Client_Disconnected;
                 client.MessageIncomed += Client_MessageIncomed;
 
-                Error = await client.ConnectAsync();
+                Error = await client.ConnectAndAuthorizeAsync();
 
                 if(Error == ConnectValidation.ACCEPTED)
                 {
                     //Send own username
-                    var msg = new UsernameContext(Settings.Default.LocalUsername);
+                    var msg = new ConnectUsernameContext(Settings.Default.LocalUsername);
                     await client.SessionProvider.InformServerAsync(msg);
                 }
                 else AbortConnections();
@@ -100,9 +100,8 @@ namespace WPFApplication.ViewModel
                 Players = new ObservableCollection<LobbyPlayer>(players)
             };
 
-            var nextPage = new LobbyClientViewModel(client, setup)
+            var nextPage = new LobbyClientViewModel(client!, setup)
             {
-                NetHolder = this,
                 Successor = base.Successor
             };
 
@@ -112,7 +111,7 @@ namespace WPFApplication.ViewModel
         private async void Client_Disconnected(object? sender, bool e)
         {
             if(e) AbortConnections();
-            else await client.RetryConnectAsync();
+            else await client!.RetryConnectAsync();
         }
 
         private void Client_MessageIncomed(object? sender, Context e)

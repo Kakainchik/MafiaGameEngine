@@ -1,6 +1,5 @@
 ﻿using Net.Clients;
 using Net.Contexts.Night;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using WPFApplication.Core;
 using WPFApplication.Model;
@@ -9,12 +8,12 @@ namespace WPFApplication.ViewModel
 {
     public class TTNightScreenState : NightScreenState
     {
-        private NightPlayerState pickedPrimary;
-        private NightPlayerState pickedSecondary;
+        private NightPlayerState? pickedPrimary;
+        private NightPlayerState? pickedSecondary;
         private bool isPrimaryActive;
         private bool isSecondaryActive;
 
-        public NightPlayerState PickedPrimary
+        public NightPlayerState? PickedPrimary
         {
             get => pickedPrimary;
             set
@@ -24,7 +23,7 @@ namespace WPFApplication.ViewModel
             }
         }
 
-        public NightPlayerState PickedSecondary
+        public NightPlayerState? PickedSecondary
         {
             get => pickedSecondary;
             set
@@ -86,9 +85,11 @@ namespace WPFApplication.ViewModel
             }
         }
 
-        private void OnPlayerClick(object o)
+        private void OnPlayerClick(object? o)
         {
+            if(o is null) return;
             var state = (NightPlayerState)o;
+
             //Cannot pick self
             if(state.IsOwn) return;
 
@@ -113,27 +114,27 @@ namespace WPFApplication.ViewModel
             }
         }
 
-        private void OnPrimaryReset(object o)
+        private void OnPrimaryReset(object?  o)
         {
             IsPrimaryActive = false;
             if(PickedPrimary != null) PickedPrimary.IsPicked = false;
             PickedPrimary = null;
         }
 
-        private void OnPrimaryPick(object o)
+        private void OnPrimaryPick(object? o)
         {
             IsPrimaryActive = !isPrimaryActive;
             IsSecondaryActive = false;
         }
 
-        private void OnSecondaryReset(object o)
+        private void OnSecondaryReset(object? o)
         {
             IsSecondaryActive = false;
             if(PickedSecondary != null) PickedSecondary.IsPicked = false;
             PickedSecondary = null;
         }
 
-        private void OnSecondaryPick(object o)
+        private void OnSecondaryPick(object? o)
         {
             IsPrimaryActive = false;
             IsSecondaryActive = !isSecondaryActive;

@@ -3,6 +3,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
+#pragma warning disable CS8618
+
 namespace WPFApplication.Controls
 {
     /// <summary>

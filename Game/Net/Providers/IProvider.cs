@@ -6,7 +6,7 @@ namespace Net.Providers
     {
         Task ConnectAsync();
         Task SendMessageAsync(Context message);
-        Task SendPrivateMessageAsync(Context message, Guid receiver);
+        Task SendPrivateMessageAsync(Context message, ulong receiver);
         Task InformServerAsync(Context message);
         void Close(bool suppressCallback);
     }

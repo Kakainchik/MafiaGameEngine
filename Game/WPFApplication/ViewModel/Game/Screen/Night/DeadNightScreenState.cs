@@ -1,6 +1,5 @@
 ﻿using Net.Clients;
 using Net.Contexts.Night;
-using System.Threading.Tasks;
 using System.Windows.Documents;
 using WPFApplication.Model;
 using WPFApplication.Resources.GameStoryText;

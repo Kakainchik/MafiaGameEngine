@@ -1,4 +1,5 @@
-﻿using Net.Contexts;
+﻿using Net.Clients;
+using Net.Contexts;
 using Net.Contexts.Connection;
 using Net.Contexts.Lobby;
 using Net.Models;
@@ -15,8 +16,9 @@ namespace Net.Servers.Mediators
         private LANServer server;
         private IDictionary<RoleSignature, int> selectedRoles;
         private int maxPlayers;
+        private bool disposedValue;
 
-        private Guid HostId
+        private ulong HostId
         {
             get
             {
@@ -31,7 +33,7 @@ namespace Net.Servers.Mediators
             }
         }
 
-        public IDictionary<Guid, LobbyPlayer> ConnectedPlayers { get; set; }
+        public IDictionary<ulong, LobbyPlayer> ConnectedPlayers { get; set; }
 
         public IDictionary<RoleSignature, int> SelectedRoles
         {
@@ -61,14 +63,36 @@ namespace Net.Servers.Mediators
 
         public bool IsLobbyFull => ConnectedPlayers.Count == MaxPlayers;
 
-        public LobbyMediator(LANServer server)
+        public LobbyMediator()
         {
-            this.server = server;
-            ConnectedPlayers = new Dictionary<Guid, LobbyPlayer>();
+            //Creating a server
+            server = new LANServer()
+            {
+                SessionMediator = this
+            };
+            ConnectedPlayers = new Dictionary<ulong, LobbyPlayer>();
             selectedRoles = new Dictionary<RoleSignature, int>();
+
+            server.StartListenParallel();
         }
 
-        public void KickPlayer(Guid playerId)
+        public async Task<ConnectValidation> AttachHost(IClient hostClient, string username)
+        {
+            ConnectValidation validation = await hostClient.ConnectAndAuthorizeAsync();
+            if(validation == ConnectValidation.ACCEPTED)
+            {
+                //Add the host to the player list
+                ConnectedPlayers[hostClient.ClientId] = new LobbyPlayer(username, true);
+            }
+            else
+            {
+                server.Dispose();
+            }
+
+            return validation;
+        }
+
+        public void KickPlayer(ulong playerId)
         {
             server.AbortConnection(playerId);
         }
@@ -82,7 +106,7 @@ namespace Net.Servers.Mediators
                 && ConnectedPlayers.Count == sum;
         }
 
-        public IntroMediator RunIntro(string cityName)
+        public IntroMediator RunIntro(string? cityName)
         {
             //Check the limit of roles
             if(!CanRunGame())
@@ -110,9 +134,9 @@ namespace Net.Servers.Mediators
         {
             switch(message)
             {
-                case UsernameContext con:
+                case ConnectUsernameContext con:
                 {
-                    HandleUsername(con);
+                    HandleConnectUsername(con);
                     break;
                 }
                 case DisconnectPlayerContext con:
@@ -128,7 +152,7 @@ namespace Net.Servers.Mediators
             }
         }
 
-        private void HandleUsername(UsernameContext con)
+        private void HandleConnectUsername(ConnectUsernameContext con)
         {
             //Inform that new player has been connected
             var newPlayer = new LobbyPlayer(con.Username);
@@ -151,7 +175,7 @@ namespace Net.Servers.Mediators
 
         private void HandleDisconnectPlayer(DisconnectPlayerContext con)
         {
-            bool success = ConnectedPlayers.Remove(con.SessionId);
+            bool success = ConnectedPlayers.Remove(con.ClientId);
 
             if(success)
             {
@@ -170,5 +194,31 @@ namespace Net.Servers.Mediators
             ConnectedPlayers[con.Presenter.Sender].IsReady = con.IsReady;
             Task.Run(() => server.BroadcastSessionMessage(con, con.Presenter.Sender));
         }
+
+        #region IDisposable Implementation
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if(!disposedValue)
+            {
+                if(disposing)
+                {
+                    server?.Dispose();
+                }
+
+                // TODO: free unmanaged resources (unmanaged objects) and override finalizer
+                // TODO: set large fields to null
+                disposedValue = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
+            Dispose(disposing: true);
+            GC.SuppressFinalize(this);
+        }
+
+        #endregion
     }
 }

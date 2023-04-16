@@ -17,8 +17,8 @@ namespace WPFApplication.ViewModel
 {
     public class LobbyHostViewModel : LobbyViewModel
     {
-        private IntroMediator introMediator;
-        private LobbyMediator mediator;
+        private IntroMediator? introMediator;
+        private LobbyMediator lobbyMediator;
         private bool canRun;
         private bool isReducePlayersEnabled = true;
 
@@ -49,20 +49,20 @@ namespace WPFApplication.ViewModel
         public ICommand KickCommand { get; set; }
         public ICommand PlayerNumberCommand { get; set; }
 
-        public LobbyHostViewModel(IClient client, LobbyMediator mediator) : base(client)
+        public LobbyHostViewModel(IClient client, LobbyMediator lobbyMediator) : base(client)
         {
             HostSetup = new HostLobbySetup();
+            this.lobbyMediator = lobbyMediator;
 
-            KeyValuePair<Guid, Net.Models.LobbyPlayer> pair = mediator.ConnectedPlayers.First();
+            this.lobbyMediator.MaxPlayers = HostSetup.MaxPlayers;
+
+            KeyValuePair<ulong, Net.Models.LobbyPlayer> pair = this.lobbyMediator.ConnectedPlayers.First();
             HostSetup.Players.Add(
                 new LobbyPlayer(pair.Key, pair.Value.Username, pair.Value.IsReady));
 
             //Show message in the chat
             ChatLog.Insert(0, new ChatMessage(ControlResources.LVMChatSystem,
                 string.Format(ControlResources.LVMNewPlayer, pair.Value.Username)));
-
-            this.mediator = mediator;
-            this.mediator.MaxPlayers = HostSetup.MaxPlayers;
 
             this.client.Disconnected += Client_Disconnected;
             this.client.MessageIncomed += Client_MessageIncomed;
@@ -81,10 +81,17 @@ namespace WPFApplication.ViewModel
             Successor?.AssertPage(page);
         }
 
+        public override void AbortConnections()
+        {
+            base.AbortConnections();
+            lobbyMediator?.Dispose();
+            introMediator?.Dispose();
+        }
+
         protected override void HandleConnectPlayer(ConnectPlayerContext con)
         {
             //Handle connection access
-            if(mediator.IsLobbyFull)
+            if(lobbyMediator.IsLobbyFull)
             {
                 IsReducePlayersEnabled = false;
             }
@@ -101,7 +108,7 @@ namespace WPFApplication.ViewModel
         protected override void HandleDisconnectPlayer(DisconnectPlayerContext con)
         {
             var disconnected = HostSetup.Players.Single(
-                p => p.PlayerId.Equals(con.SessionId));
+                p => p.PlayerId.Equals(con.ClientId));
             HostSetup.Players.Remove(disconnected);
 
             //Show message in the chat
@@ -109,7 +116,7 @@ namespace WPFApplication.ViewModel
                 string.Format(ControlResources.LVMPlayerLeft, disconnected.Username)));
 
             //Handle connection access
-            if(!mediator.IsLobbyFull)
+            if(!lobbyMediator.IsLobbyFull)
             {
                 IsReducePlayersEnabled = true;
             }
@@ -131,41 +138,44 @@ namespace WPFApplication.ViewModel
 
         protected override void HandleLobbyRunGame(LobbyRunIntroContext con)
         {
+            if(introMediator is null)
+                throw new NullReferenceException(nameof(introMediator));
+
             var nextPage = new IntroGameHostViewModel(client, introMediator)
             {
-                NetHolder = base.NetHolder,
                 Successor = base.Successor
             };
             //Next to intro page
             HandlePageChange(nextPage);
         }
 
-        private void OnDone(object o)
+        private void OnDone(object? o)
         {
             if(!CanRun) return;
 
-            introMediator = mediator.RunIntro(HostSetup.CityName);
+            introMediator = lobbyMediator.RunIntro(HostSetup.CityName);
         }
 
-        private void OnRoleUpdate(object obj)
+        private void OnRoleUpdate(object? obj)
         {
-            mediator.SelectedRoles = HostSetup.Roles.ToDictionary(
+            lobbyMediator.SelectedRoles = HostSetup.Roles.ToDictionary(
                 key => key.Key.MapRole(),
                 element => element.Value);
 
             CheckRunPossibility();
         }
 
-        private void OnKick(object obj)
+        private void OnKick(object? obj)
         {
-            mediator.KickPlayer((Guid)obj);
+            if(obj is null) return;
+            lobbyMediator.KickPlayer((ulong)obj);
         }
 
-        private void OnPlayerNumber(object obj)
+        private void OnPlayerNumber(object? obj)
         {
-            mediator.MaxPlayers = HostSetup.MaxPlayers;
+            lobbyMediator.MaxPlayers = HostSetup.MaxPlayers;
             //Handle connection access
-            if(mediator.IsLobbyFull)
+            if(lobbyMediator.IsLobbyFull)
             {
                 IsReducePlayersEnabled = false;
             }
@@ -177,17 +187,17 @@ namespace WPFApplication.ViewModel
 
         private void CheckRunPossibility()
         {
-            CanRun = mediator.CanRunGame();
+            CanRun = lobbyMediator.CanRunGame();
         }
 
-        private async void Client_Disconnected(object sender, bool e)
+        private async void Client_Disconnected(object? sender, bool e)
         {
             //Own client has been disconnected
-            if(e) NetHolder?.AbortConnections();
+            if(e) AbortConnections();
             else await client.RetryConnectAsync();
         }
 
-        private void Client_MessageIncomed(object sender, Context e)
+        private void Client_MessageIncomed(object? sender, Context e)
         {
             switch(e)
             {

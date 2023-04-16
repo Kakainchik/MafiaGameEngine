@@ -24,12 +24,12 @@ namespace WPFApplication.ViewModel
         private static string Username => Settings.Default.LocalUsername;
 
         private IClient client;
-        private EndGamePlayerState[] playersList;
-        private EndGameHistory[] history;
+        private EndGamePlayerState[]? playersList;
+        private EndGameHistory[]? history;
 
         private Paragraph StoryParagraph => (Paragraph)StoryLog.Blocks.FirstBlock;
 
-        public EndGamePlayerState[] PlayersList
+        public EndGamePlayerState[]? PlayersList
         {
             get => playersList;
             set
@@ -39,7 +39,7 @@ namespace WPFApplication.ViewModel
             }
         }
 
-        public EndGameHistory[] History
+        public EndGameHistory[]? History
         {
             get => history;
             set
@@ -51,7 +51,7 @@ namespace WPFApplication.ViewModel
 
         public FlowDocument StoryLog { get; set; }
         public ObservableCollection<ChatMessage> ChatLog { get; set; }
-        public INetHolder NetHolder { get; set; }
+        public INetHolder? NetHolder { get; set; }
 
         public ICommand PushMessageCommand { get; set; }
 
@@ -89,9 +89,9 @@ namespace WPFApplication.ViewModel
             Successor?.AssertPage(page);
         }
 
-        private void OnPushMessage(object o)
+        private void OnPushMessage(object? o)
         {
-            if(string.IsNullOrWhiteSpace((string)o)) return;
+            if(string.IsNullOrWhiteSpace((string?)o)) return;
 
             var msg = new ChatMessage(Username, (string)o);
             var con = new MessageContext(msg.Username, msg.Message);
@@ -261,7 +261,7 @@ namespace WPFApplication.ViewModel
             });
         }
 
-        private void Client_MessageIncomed(object sender, Context e)
+        private void Client_MessageIncomed(object? sender, Context e)
         {
             switch(e)
             {
@@ -282,7 +282,7 @@ namespace WPFApplication.ViewModel
             }
         }
 
-        private void Client_Disconnected(object sender, bool e)
+        private void Client_Disconnected(object? sender, bool e)
         {
             if(e) NetHolder?.AbortConnections();
         }

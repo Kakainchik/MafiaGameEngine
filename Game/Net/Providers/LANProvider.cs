@@ -40,11 +40,11 @@ namespace Net.Providers
             if(!IsConnected)
                 throw new WebException("Provider is not connected", WebExceptionStatus.ConnectFailure);
 
-            message.Presenter.Sender = client.SessionId;
+            message.Presenter.Sender = client.ClientId;
             await Task.Factory.StartNew(() => ContextJsonSerializer.Serialize(message, stream!));
         }
 
-        public async Task SendPrivateMessageAsync(Context message, Guid receiver)
+        public async Task SendPrivateMessageAsync(Context message, ulong receiver)
         {
             message.Presenter.IsPrivate = true;
             message.Presenter.Receiver = receiver;

@@ -17,7 +17,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="GenFu" Version="1.6.0" />
 		<PackageReference Include="MvvmDialogs" Version="8.0.0" />
 		<PackageReference Include="NLog" Version="4.7.15" />
 	</ItemGroup>

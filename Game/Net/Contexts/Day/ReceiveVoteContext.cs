@@ -5,12 +5,12 @@ namespace Net.Contexts.Day
     [Serializable]
     public class ReceiveVoteContext : SessionContext
     {
-        public Guid VoterId { get; }
+        public ulong VoterId { get; }
         public VoteTarget? CurrentT { get; }
         public VoteTarget? PreviousT { get; }
 
-        public ReceiveVoteContext(Guid voterId,
-            Guid targetId,
+        public ReceiveVoteContext(ulong voterId,
+            ulong targetId,
             int votes,
             VoteTarget? previousT = null)
         {
@@ -20,7 +20,7 @@ namespace Net.Contexts.Day
         }
 
         [JsonConstructor]
-        public ReceiveVoteContext(Guid voterId,
+        public ReceiveVoteContext(ulong voterId,
             VoteTarget? currentT,
             VoteTarget? previousT = null)
         {
@@ -33,11 +33,11 @@ namespace Net.Contexts.Day
     [Serializable]
     public class VoteTarget
     {
-        public Guid Id { get; }
+        public ulong? Id { get; }
         public int Votes { get; }
 
         [JsonConstructor]
-        public VoteTarget(Guid id, int votes)
+        public VoteTarget(ulong? id, int votes)
         {
             Id = id;
             Votes = votes;

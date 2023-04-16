@@ -12,9 +12,9 @@ using WPFApplication.Resources.GameStoryText;
 
 namespace WPFApplication.ViewModel
 {
-    public abstract class IntroGameViewModel : ChangeablePage, IFlowStory, INetUser
+    public abstract class IntroGameViewModel : ChangeablePage, IFlowStory, INetHolder
     {
-        private string city;
+        private string? city;
         private string nickname;
         private bool faded;
         private bool isNicknameBoxVisible;
@@ -45,7 +45,6 @@ namespace WPFApplication.ViewModel
         }
 
         public FlowDocument StoryLog { get; set; }
-        public INetHolder NetHolder { get; set; }
 
         public ICommand EnterNicknameCommand { get; set; }
 
@@ -76,11 +75,17 @@ namespace WPFApplication.ViewModel
             StoryParagraph.Inlines.Clear();
         }
 
-        protected void OnEnterNickname(object o)
+        public virtual void AbortConnections()
+        {
+            client?.Disconnect();
+            client?.Dispose();
+        }
+
+        protected void OnEnterNickname(object? o)
         {
             IsNicknameBoxVisible = false;
 
-            if(string.IsNullOrWhiteSpace((string)o)) return;
+            if(string.IsNullOrWhiteSpace((string?)o)) return;
             nickname = (string)o;
         }
 

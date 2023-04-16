@@ -7,6 +7,6 @@
 
     public interface INetUser
     {
-        INetHolder NetHolder { get; set; }
+        INetHolder? NetHolder { get; }
     }
 }

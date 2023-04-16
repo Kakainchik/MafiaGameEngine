@@ -2,7 +2,6 @@
 using GameLogic.Cycles;
 using GameLogic.Roles;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using System.Collections.Generic;
 
 namespace RoleBindingTest
@@ -16,9 +15,9 @@ namespace RoleBindingTest
             //Arrange
             List<Player> p = new List<Player>
             {
-                new Player(new MafiaRole(), Guid.NewGuid()),
-                new Player(new CitizenRole(), Guid.NewGuid()),
-                new Player(new VigilanteRole(), Guid.NewGuid())
+                new Player(new MafiaRole(), 1UL),
+                new Player(new CitizenRole(), 2UL),
+                new Player(new VigilanteRole(), 3UL)
             };
             NightCycle night = new NightCycle(p);
 
@@ -41,9 +40,9 @@ namespace RoleBindingTest
             //Arrange
             List<Player> p = new List<Player>
             {
-                new Player(new ProstituteRole(), Guid.NewGuid()),
-                new Player(new CitizenRole(), Guid.NewGuid()),
-                new Player(new VigilanteRole(), Guid.NewGuid())
+                new Player(new ProstituteRole(), 1UL),
+                new Player(new CitizenRole(), 2UL),
+                new Player(new VigilanteRole(), 3UL)
             };
             NightCycle night = new NightCycle(p);
 

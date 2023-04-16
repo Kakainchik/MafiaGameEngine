@@ -11,6 +11,7 @@ namespace Net.Servers.Mediators
     {
         private LANServer server;
         private GameHolder gameHolder;
+        private bool disposedValue;
 
         public GameRouterMediator(LANServer server,
             IDictionary<Player, SessionPLayer> playerDataPair)
@@ -48,15 +49,15 @@ namespace Net.Servers.Mediators
 
         private void HandleSendVote(SendVoteContext con)
         {
-            if(con.TargetId.Equals(Guid.Empty))
+            if(con.TargetId == null)
                 //Someone clicked on non-lynch object
                 gameHolder.DayManager.SendVoteForNonLynch(con.Presenter.Sender);
             else if(con.TargetId.Equals(con.Presenter.Sender))
                 //Someone clicked on himself - unvote
-                gameHolder.DayManager.Unvote(con.TargetId);
+                gameHolder.DayManager.Unvote((ulong)con.TargetId!);
             else
                 //Someone clicked on player
-                gameHolder.DayManager.SendVoteFromTo(con.Presenter.Sender, con.TargetId);
+                gameHolder.DayManager.SendVoteFromTo(con.Presenter.Sender, (ulong)con.TargetId!);
         }
 
         private void HandleSendAction(SendActionContext con)
@@ -66,11 +67,11 @@ namespace Net.Servers.Mediators
             //Someone picked a target at night
             else if(con is SendDActionContext dcon)
                 gameHolder.NightManager.ConfirmAction(con.Presenter.Sender,
-                    (Guid)dcon.PrimaryTarget!,
+                    (ulong)dcon.PrimaryTarget!,
                     dcon.SecondaryTarget);
             else
                 gameHolder.NightManager.ConfirmAction(con.Presenter.Sender,
-                    (Guid)con.PrimaryTarget!);
+                    (ulong)con.PrimaryTarget!);
         }
 
         private void HandleSendLastMessage(SendLastMessageContext con)
@@ -78,5 +79,32 @@ namespace Net.Servers.Mediators
             //Lynch player sent last message
             gameHolder.LynchManager.ConfirmLastMessage(con.LastMessage);
         }
+
+        #region IDisposable Implementation
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if(!disposedValue)
+            {
+                if(disposing)
+                {
+                    server?.Dispose();
+                    gameHolder?.Dispose();
+                }
+
+                // TODO: free unmanaged resources (unmanaged objects) and override finalizer
+                // TODO: set large fields to null
+                disposedValue = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
+            Dispose(disposing: true);
+            GC.SuppressFinalize(this);
+        }
+
+        #endregion
     }
 }

@@ -43,7 +43,7 @@ namespace WPFApplication.Model
         public LobbySetup()
         {
             roles = new Dictionary<RoleVisual, int>();
-            Players = new ObservableCollection<LobbyPlayer>();
+            players = new ObservableCollection<LobbyPlayer>();
         }
     }
 }

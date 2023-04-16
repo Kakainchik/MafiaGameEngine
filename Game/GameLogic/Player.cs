@@ -18,7 +18,7 @@ namespace GameLogic
         /// <summary>
         /// Unique id of player.
         /// </summary>
-        public Guid Id { get; }
+        public ulong Id { get; }
         public string LastMessage { get; set; }
         public string LastWill { get; set; }
         public IExecutor DeathReason { get; private set; }
@@ -39,7 +39,7 @@ namespace GameLogic
 
         #endregion
 
-        public Player(Role role, Guid id)
+        public Player(Role role, ulong id)
         {
             this.role = role;
             this.role.Owner = this;

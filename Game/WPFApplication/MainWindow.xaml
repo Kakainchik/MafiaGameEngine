@@ -8,17 +8,20 @@
         xmlns:r="clr-namespace:WPFApplication.Resources"
 		mc:Ignorable="d"
         Icon="/Resources/Icons/app-icon-96.ico"
-		Title="MainWindow"
         d:DesignHeight="550"
         d:DesignWidth="900"
 		WindowStyle="None"
 		WindowState="Maximized"
-        ResizeMode="NoResize"
-		AllowsTransparency="False">
+        ResizeMode="CanResize"
+		AllowsTransparency="True">
     <Window.Resources>
         <cvr:GridLengthConverter x:Key="GridLengthConverter"/>
         <cvr:BoolVisibilityConverter x:Key="BoolVisibilityConverter"/>
     </Window.Resources>
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="0"
+                      ResizeBorderThickness="5"/>
+    </WindowChrome.WindowChrome>
     <Border Background="{StaticResource PrimaryLightBrush}"
 			BorderThickness="2">
         <Grid>

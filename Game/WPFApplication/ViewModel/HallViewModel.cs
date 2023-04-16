@@ -40,8 +40,6 @@ namespace WPFApplication.ViewModel
                 OnPropertyChanged(nameof(Authenticated));
             }
         }
-
-        public INetHolder NetHolder { get; set; }
         public ICommand LoginCommand { get; set; }
 
         public HallViewModel()
@@ -64,7 +62,7 @@ namespace WPFApplication.ViewModel
                 new MediaTypeWithQualityHeaderValue("application/json"));
             httpClient.DefaultRequestHeaders.UserAgent.Add(
                 new ProductInfoHeaderValue("MafiaGameWindows",
-                    Assembly.GetEntryAssembly().GetName().Version.ToString()));
+                    Assembly.GetEntryAssembly()?.GetName().Version?.ToString()));
 
             if(string.IsNullOrEmpty(Settings.Default.JwtToken))
             {
@@ -104,8 +102,6 @@ namespace WPFApplication.ViewModel
         public void AbortConnections()
         {
             httpClient.Dispose();
-
-            NetHolder?.AbortConnections();
         }
 
         public override void HandlePageChange(ChangeablePage page)
@@ -113,7 +109,7 @@ namespace WPFApplication.ViewModel
 
         }
 
-        private void OnLogin(object obj)
+        private void OnLogin(object? obj)
         {
             AuthenticationDialog dialog = new AuthenticationDialog(httpClient, cookies);
             bool dresult = dialog.ShowDialog() == true;

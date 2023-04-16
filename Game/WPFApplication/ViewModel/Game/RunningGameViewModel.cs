@@ -14,7 +14,7 @@ using WPFApplication.Model.PlayerData;
 
 namespace WPFApplication.ViewModel
 {
-    public abstract class RunningGameViewModel : ChangeablePage, INetUser
+    public abstract class RunningGameViewModel : ChangeablePage, INetHolder
     {
         #region Variables
 
@@ -102,7 +102,6 @@ namespace WPFApplication.ViewModel
 
         public ICommand PushMainMessageCommand { get; set; }
         public ICommand PushDeadMessageCommand { get; set; }
-        public INetHolder NetHolder { get; set; }
 
         #endregion
 
@@ -112,7 +111,7 @@ namespace WPFApplication.ViewModel
             this.ownPlayer = ownPlayer;
             MainChatLog = new ObservableCollection<ColoredChatMessage>();
             DeadChatLog = new ObservableCollection<ColoredChatMessage>();
-            MainScreen = new Screen(null);
+            mainScreen = new Screen(null);
             dayFactory = new DayScreenFactory(this.client);
             lynchFactory = new LynchScreenFactory(this.client);
             nightFactory = new NightScreenFactory(this.client);
@@ -122,11 +121,18 @@ namespace WPFApplication.ViewModel
             PushDeadMessageCommand = new RelayCommand(OnPushDeadMessage);
         }
 
+        public virtual void AbortConnections()
+        {
+            client?.Disconnect();
+            client?.Dispose();
+        }
+
         protected void ResolveScreen(ScreenContext con)
         {
             currentScreen = con.Screen;
-            if(mainScreen.State != null)
+            if(mainScreen.State is not null)
                 mainScreen.State.FadeRequested -= State_FadeRequested;
+
             switch(con.Screen)
             {
                 case ScreenType.MORNING:
@@ -164,8 +170,8 @@ namespace WPFApplication.ViewModel
                 {
                     var nextPage = new EndGameViewModel(client)
                     {
-                        NetHolder = this.NetHolder,
-                        Successor = base.Successor
+                        Successor = base.Successor,
+                        NetHolder = this
                     };
 
                     HandlePageChange(nextPage);
@@ -173,7 +179,8 @@ namespace WPFApplication.ViewModel
                 }
             }
 
-            mainScreen.State.FadeRequested += State_FadeRequested;
+            if(mainScreen.State is not null)
+                mainScreen.State.FadeRequested += State_FadeRequested;
         }
 
         protected void ActivateDayChats()
@@ -261,9 +268,9 @@ namespace WPFApplication.ViewModel
             }
         }
 
-        private async void OnPushMainMessage(object o)
+        private async void OnPushMainMessage(object? o)
         {
-            if(string.IsNullOrWhiteSpace((string)o)) return;
+            if(string.IsNullOrWhiteSpace((string?)o)) return;
 
             var msg = new ColoredChatMessage(ownPlayer.NColor, ownPlayer.Nickname, (string)o);
 
@@ -276,9 +283,9 @@ namespace WPFApplication.ViewModel
             MainChatLog.Insert(0, msg);
         }
 
-        private async void OnPushDeadMessage(object o)
+        private async void OnPushDeadMessage(object? o)
         {
-            if(string.IsNullOrWhiteSpace((string)o)) return;
+            if(string.IsNullOrWhiteSpace((string?)o)) return;
 
             var msg = new ColoredChatMessage(ownPlayer.NColor, ownPlayer.Nickname, (string)o);
             var con = new ScopedMessageContext(msg.Username,
@@ -290,7 +297,7 @@ namespace WPFApplication.ViewModel
             DeadChatLog.Insert(0, msg);
         }
 
-        private void State_FadeRequested(object sender, bool e)
+        private void State_FadeRequested(object? sender, bool e)
         {
             Faded = e;
         }

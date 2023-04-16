@@ -21,7 +21,7 @@ namespace WPFApplication.Extensions
         {
             get
             {
-                string description = resourceManager.GetString(resourceKey);
+                string? description = resourceManager.GetString(resourceKey);
                 return string.IsNullOrWhiteSpace(description) ? $"[[{resourceKey}]]" : description;
             }
         }

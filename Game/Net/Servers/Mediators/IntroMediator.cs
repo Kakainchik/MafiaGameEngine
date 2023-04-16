@@ -16,17 +16,18 @@ namespace Net.Servers.Mediators
         private string city;
         private IntroManager introManager;
         private LANServer server;
-        private IDictionary<Guid, SessionPLayer> players;
+        private IDictionary<ulong, SessionPLayer> players;
         private IEnumerable<Player> mixedPlayers;
+        private bool disposedValue;
 
         public IntroMediator(LANServer server,
-            IDictionary<Guid, LobbyPlayer> readyPlayers,
+            IDictionary<ulong, LobbyPlayer> readyPlayers,
             IDictionary<RoleSignature, int> rolesDict,
-            string cityName)
+            string? cityName)
         {
             this.server = server;
             city = string.IsNullOrWhiteSpace(cityName) ? DEFAULT_CITY : cityName;
-            players = new Dictionary<Guid, SessionPLayer>(readyPlayers.Count);
+            players = new Dictionary<ulong, SessionPLayer>(readyPlayers.Count);
 
             //Mix roles
             IList<RoleSignature> roles = new List<RoleSignature>();
@@ -111,5 +112,31 @@ namespace Net.Servers.Mediators
             var msg = new IntroRunGameContext();
             server.BroadcastSessionMessage(msg);
         }
+
+        #region IDisposable Implementation
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if(!disposedValue)
+            {
+                if(disposing)
+                {
+                    server?.Dispose();
+                }
+
+                // TODO: free unmanaged resources (unmanaged objects) and override finalizer
+                // TODO: set large fields to null
+                disposedValue = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
+            Dispose(disposing: true);
+            GC.SuppressFinalize(this);
+        }
+
+        #endregion
     }
 }

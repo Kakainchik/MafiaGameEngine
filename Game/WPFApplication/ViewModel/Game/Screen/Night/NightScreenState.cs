@@ -167,7 +167,7 @@ namespace WPFApplication.ViewModel
             StoryRun(new Run(NightResources.NightEnd));
         }
 
-        private void OnTimerTick(object sender, EventArgs e)
+        private void OnTimerTick(object? sender, EventArgs e)
         {
             RemainedTime -= TimeSpan.FromSeconds(1);
             if(RemainedTime <= TimeSpan.Zero) timer.Stop();

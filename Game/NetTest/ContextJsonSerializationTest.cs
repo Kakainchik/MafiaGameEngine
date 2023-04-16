@@ -6,6 +6,9 @@ using Net.Contexts.Serializers;
 using Net.Contexts;
 using System;
 using System.IO;
+using Net.Contexts.Game;
+using Net.Models;
+using GameLogic.Model;
 
 namespace NetTest
 {
@@ -30,7 +33,7 @@ namespace NetTest
         [DataRow("Clark")]
         public void SerializeContext_InStream_HasSameData(string username)
         {
-            UsernameContext expected = new UsernameContext(username);
+            ConnectUsernameContext expected = new ConnectUsernameContext(username);
 
             using(MemoryStream ms = new MemoryStream())
             {
@@ -40,8 +43,8 @@ namespace NetTest
 
                 var message = ContextJsonSerializer.Deserialize(ms);
 
-                Assert.IsInstanceOfType(message, typeof(UsernameContext));
-                Assert.AreEqual(expected.Username, ((UsernameContext)message).Username);
+                Assert.IsInstanceOfType(message, typeof(ConnectUsernameContext));
+                Assert.AreEqual(expected.Username, ((ConnectUsernameContext)message).Username);
             }
         }
 
@@ -76,7 +79,7 @@ namespace NetTest
         [TestMethod]
         public void SerializeByte_DeserializeStream_TheSameData()
         {
-            SessionIdContext sent = new SessionIdContext(Guid.Empty);
+            ConnectClientIdContext sent = new ConnectClientIdContext(1UL);
             using MemoryStream ms = new MemoryStream();
             using BinaryWriter bw = new BinaryWriter(ms);
 
@@ -85,9 +88,37 @@ namespace NetTest
 
             ms.Position -= data.Length;
 
-            SessionIdContext result = (SessionIdContext)ContextJsonSerializer.Deserialize(ms);
+            ConnectClientIdContext result = (ConnectClientIdContext)ContextJsonSerializer.Deserialize(ms);
 
-            Assert.AreEqual(sent.Id, result.Id);
+            Assert.AreEqual(sent.ClientId, result.ClientId);
+        }
+
+        [TestMethod]
+        public void SerializeContext_EndGameContext_HasSameData()
+        {
+            EndGamePlayerState[] playerStates =
+            {
+                new EndGamePlayerState(0UL, "Nickname1", new RGB(10, 10, 10), RoleSignature.CITIZEN, true),
+                new EndGamePlayerState(0UL, "Nickname2", new RGB(20, 30, 40), RoleSignature.MAFIA, false)
+            };
+            EndGameNightH[] nightActions =
+            {
+                new EndGameNightH("Citizen", RoleSignature.CITIZEN, "A Mafia Target", true)
+            };
+            EndGameHistory[] cycles =
+            {
+                new EndGameHistory(1, "Nickname2", 2, "I won", nightActions, new[] { "Zero" })
+            };
+            EndGameContext expected = new EndGameContext(Team.UNDEAD,
+                playerStates,
+                cycles);
+
+            byte[] data = ContextJsonSerializer.Serialize(expected);
+
+            var message = ContextJsonSerializer.Deserialize(data);
+
+            Assert.IsInstanceOfType(expected, typeof(EndGameContext));
+            Assert.AreEqual(expected.Winner, ((EndGameContext)message).Winner);
         }
     }
 }

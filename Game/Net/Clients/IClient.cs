@@ -6,14 +6,14 @@ namespace Net.Clients
 {
     public interface IClient : IDisposable
     {
-        Guid SessionId { get; }
+        ulong ClientId { get; }
         IProvider SessionProvider { get; }
         IProvider ChatProvider { get; }
 
         event EventHandler<bool>? Disconnected;
         event EventHandler<Context>? MessageIncomed;
 
-        Task<ConnectValidation> ConnectAsync();
+        Task<ConnectValidation> ConnectAndAuthorizeAsync();
         Task<bool> RetryConnectAsync();
         void Disconnect();
         void SubmitMessage(Context context);

@@ -1,10 +1,6 @@
 ﻿using GameLogic.Actions;
-using GameLogic.Interfaces;
 using GameLogic.Model;
-using System.Linq;
-using System.Collections.Generic;
 using GameLogic.Roles;
-using System;
 
 namespace GameLogic.Cycles
 {

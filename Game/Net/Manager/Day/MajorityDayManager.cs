@@ -56,7 +56,7 @@ namespace Net.Manager.Day
             }
         }
 
-        public override void SendVoteFromTo(Guid voterId, Guid targetId)
+        public override void SendVoteFromTo(ulong voterId, ulong targetId)
         {
             Player voter = players.First(c => c.Id.Equals(voterId));
             Player target = players.First(c => c.Id.Equals(targetId));
@@ -70,7 +70,7 @@ namespace Net.Manager.Day
                 if(Cycle.IsItPenguin(previousT))
                 {
                     //Do not put the id as non-lynchable object has no one
-                    previous = new VoteTarget(Guid.Empty, previousT.Votes);
+                    previous = new VoteTarget(null, previousT.Votes);
                 }
                 else if(previousT != null)
                 {
@@ -88,7 +88,7 @@ namespace Net.Manager.Day
             }
         }
 
-        public override void SendVoteForNonLynch(Guid voterId)
+        public override void SendVoteForNonLynch(ulong voterId)
         {
             Player voter = players.First(c => c.Id.Equals(voterId));
 
@@ -105,7 +105,7 @@ namespace Net.Manager.Day
 
                 //Context for non-lynch
                 var message = new ReceiveVoteContext(voter.Id,
-                    new VoteTarget(Guid.Empty, Cycle.NonLynchVotes),
+                    new VoteTarget(null, Cycle.NonLynchVotes),
                     previous);
                 server.BroadcastSessionMessage(message);
 
@@ -113,7 +113,7 @@ namespace Net.Manager.Day
             }
         }
 
-        public override void Unvote(Guid voterId)
+        public override void Unvote(ulong voterId)
         {
             Player voter = players.First(c => c.Id.Equals(voterId));
 
@@ -125,7 +125,7 @@ namespace Net.Manager.Day
             if(Cycle.IsItPenguin(previousT))
             {
                 //Do not put the name as non-lynchable object has no one
-                previous = new VoteTarget(Guid.Empty, previousT.Votes);
+                previous = new VoteTarget(null, previousT.Votes);
             }
             else if(previousT != null)
             {
@@ -157,8 +157,8 @@ namespace Net.Manager.Day
                 ResetTimer(LONG_INTERVAL);
 
                 //Send warning about election
-                Guid user = (result as Player)?.Id ?? Guid.Empty;
-                var pmsg = new WarningVoteContext(user, true);
+                ulong? userId = (result as Player)?.Id ?? null;
+                var pmsg = new WarningVoteContext(userId, true);
                 server.BroadcastSessionMessage(pmsg);
             }
             else
@@ -178,7 +178,7 @@ namespace Net.Manager.Day
             gonnaElected = null;
 
             //Send result to all players
-            var emsg = new ElectionResultContext((result as Player)?.Id ?? Guid.Empty);
+            var emsg = new ElectionResultContext((result as Player)?.Id ?? null);
             server.BroadcastSessionMessage(emsg);
 
             //Dispose votes

@@ -167,8 +167,8 @@ namespace RoleBindingTest
         {
             List<Player> p = new List<Player>()
             {
-                new Player(new CitizenRole(), Guid.NewGuid()),
-                new Player(new MafiaRole(), Guid.NewGuid())
+                new Player(new CitizenRole(), 1UL),
+                new Player(new MafiaRole(), 2UL)
             };
             DayCycle day = new DayCycle(p);
 

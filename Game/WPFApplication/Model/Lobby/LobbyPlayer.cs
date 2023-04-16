@@ -7,7 +7,7 @@ namespace WPFApplication.Model
     {
         private bool isReady;
 
-        public Guid PlayerId { get; }
+        public ulong PlayerId { get; }
         public string Username { get; }
 
         public bool IsReady
@@ -20,13 +20,13 @@ namespace WPFApplication.Model
             }
         }
 
-        public LobbyPlayer(Guid id, string username)
+        public LobbyPlayer(ulong id, string username)
         {
             PlayerId = id;
             Username = username;
         }
 
-        public LobbyPlayer(Guid id, string username, bool isReady) : this(id, username)
+        public LobbyPlayer(ulong id, string username, bool isReady) : this(id, username)
         {
             this.isReady = isReady;
         }

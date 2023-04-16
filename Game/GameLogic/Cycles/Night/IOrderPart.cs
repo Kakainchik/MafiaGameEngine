@@ -1,6 +1,4 @@
 ﻿using GameLogic.Actions;
-using GameLogic.Model;
-using System.Collections.Generic;
 
 namespace GameLogic.Cycles
 {

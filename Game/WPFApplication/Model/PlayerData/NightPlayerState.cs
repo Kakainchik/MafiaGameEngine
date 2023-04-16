@@ -1,6 +1,5 @@
 ﻿using WPFApplication.Core;
 using System.Windows.Media;
-using System;
 
 namespace WPFApplication.Model
 {
@@ -21,7 +20,7 @@ namespace WPFApplication.Model
             }
         }
 
-        public NightPlayerState(Guid id,
+        public NightPlayerState(ulong id,
             string nickname,
             bool isAlive,
             Color color,

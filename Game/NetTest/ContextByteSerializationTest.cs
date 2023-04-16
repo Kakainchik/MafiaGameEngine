@@ -48,7 +48,7 @@ namespace NetTest
         [DataRow("Clark")]
         public void SerializeContext_InStream_HasSameData(string username)
         {
-            UsernameContext expected = new UsernameContext(username);
+            ConnectUsernameContext expected = new ConnectUsernameContext(username);
 
             using(MemoryStream ms = new MemoryStream())
             {
@@ -58,8 +58,8 @@ namespace NetTest
 
                 var message = ContextByteSerializer.Deserialize(ms);
 
-                Assert.IsInstanceOfType(message, typeof(UsernameContext));
-                Assert.AreEqual(expected.Username, ((UsernameContext)message).Username);
+                Assert.IsInstanceOfType(message, typeof(ConnectUsernameContext));
+                Assert.AreEqual(expected.Username, ((ConnectUsernameContext)message).Username);
             }
         }
 
@@ -94,7 +94,7 @@ namespace NetTest
         [TestMethod]
         public void SerializeByte_DeserializeStream_TheSameData()
         {
-            SessionIdContext sent = new SessionIdContext(Guid.Empty);
+            ConnectClientIdContext sent = new ConnectClientIdContext(1UL);
             using MemoryStream ms = new MemoryStream();
             using BinaryWriter bw = new BinaryWriter(ms);
 
@@ -103,9 +103,9 @@ namespace NetTest
 
             ms.Position -= data.Length;
 
-            SessionIdContext result = (SessionIdContext)ContextByteSerializer.Deserialize(ms);
+            ConnectClientIdContext result = (ConnectClientIdContext)ContextByteSerializer.Deserialize(ms);
 
-            Assert.AreEqual(sent.Id, result.Id);
+            Assert.AreEqual(sent.ClientId, result.ClientId);
         }
 
 #pragma warning restore SYSLIB0011

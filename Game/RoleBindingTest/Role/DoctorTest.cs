@@ -35,11 +35,11 @@ namespace RoleBindingTest
             //Arrange
             List<Player> p = new List<Player>
             {
-                new Player(new MafiaRole(), Guid.NewGuid()),
-                new Player(new VigilanteRole() { Bullets = 1 }, Guid.NewGuid()),
-                new Player(new DoctorRole(), Guid.NewGuid()),
-                new Player(new DoctorRole(), Guid.NewGuid()),
-                new Player(new CitizenRole(), Guid.NewGuid())
+                new Player(new MafiaRole(), 1UL),
+                new Player(new VigilanteRole() { Bullets = 1 }, 2UL),
+                new Player(new DoctorRole(), 3UL),
+                new Player(new DoctorRole(), 4UL),
+                new Player(new CitizenRole(), 5UL)
             };
             NightCycle night = new NightCycle(p);
 

@@ -107,7 +107,7 @@ namespace Net.Manager.Night
             }
         }
 
-        public void ConfirmAction(Guid exId, Guid tarId)
+        public void ConfirmAction(ulong exId, ulong tarId)
         {
             //Accept actions from players
             Player executor = players.First(p => p.Id.Equals(exId));
@@ -118,7 +118,7 @@ namespace Net.Manager.Night
             ConfirmFlag();
         }
 
-        public void ConfirmAction(Guid exId, Guid primId, Guid secId)
+        public void ConfirmAction(ulong exId, ulong primId, ulong secId)
         {
             //Accept actions from players
             Player executor = players.First(p => p.Id.Equals(exId));

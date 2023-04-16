@@ -12,14 +12,14 @@ namespace WPFApplication.Converters
 
         }
 
-        public override object ConvertTo(ITypeDescriptorContext context,
-            CultureInfo culture,
-            object value,
+        public override object? ConvertTo(ITypeDescriptorContext? context,
+            CultureInfo? culture,
+            object? value,
             Type destinationType)
         {
             if(destinationType == typeof(string) && value != null)
             {
-                FieldInfo fi = value.GetType().GetField(value.ToString());
+                FieldInfo? fi = value.GetType().GetField(value.ToString()!);
                 if(fi != null)
                 {
                     var attributes = (DescriptionAttribute[])fi.GetCustomAttributes(typeof(DescriptionAttribute), false);

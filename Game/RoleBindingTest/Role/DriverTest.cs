@@ -16,12 +16,12 @@ namespace RoleBindingTest
             //Arrange
             List<Player> p = new List<Player>
             {
-                new Player(new MafiaRole(), Guid.NewGuid()),
-                new Player(new CitizenRole(), Guid.NewGuid()),
-                new Player(new DoctorRole(), Guid.NewGuid()),
-                new Player(new PolicemanRole(), Guid.NewGuid()),
-                new Player(new DriverRole(), Guid.NewGuid()),
-                new Player(new DriverRole(), Guid.NewGuid())
+                new Player(new MafiaRole(), 1UL),
+                new Player(new CitizenRole(), 2UL),
+                new Player(new DoctorRole(), 3UL),
+                new Player(new PolicemanRole(), 4UL),
+                new Player(new DriverRole(), 5UL),
+                new Player(new DriverRole(), 6UL)
             };
             NightCycle night = new NightCycle(p);
 
@@ -45,12 +45,12 @@ namespace RoleBindingTest
             //Arrange
             List<Player> p = new List<Player>
             {
-                new Player(new MafiaRole(), Guid.NewGuid()),
-                new Player(new CitizenRole(), Guid.NewGuid()),
-                new Player(new DoctorRole(), Guid.NewGuid()),
-                new Player(new PolicemanRole(), Guid.NewGuid()),
-                new Player(new DriverRole(), Guid.NewGuid()),
-                new Player(new DriverRole(), Guid.NewGuid())
+                new Player(new MafiaRole(), 1UL),
+                new Player(new CitizenRole(), 2UL),
+                new Player(new DoctorRole(), 3UL),
+                new Player(new PolicemanRole(), 4UL),
+                new Player(new DriverRole(), 5UL),
+                new Player(new DriverRole(), 6UL)
             };
             NightCycle night = new NightCycle(p);
 
@@ -74,12 +74,12 @@ namespace RoleBindingTest
             //Arrange
             List<Player> p = new List<Player>
             {
-                new Player(new MafiaRole(), Guid.NewGuid()),
-                new Player(new CitizenRole(), Guid.NewGuid()),
-                new Player(new DoctorRole(), Guid.NewGuid()),
-                new Player(new PolicemanRole(), Guid.NewGuid()),
-                new Player(new DriverRole(), Guid.NewGuid()),
-                new Player(new DriverRole(), Guid.NewGuid())
+                new Player(new MafiaRole(), 1UL),
+                new Player(new CitizenRole(), 2UL),
+                new Player(new DoctorRole(), 3UL),
+                new Player(new PolicemanRole(), 4UL),
+                new Player(new DriverRole(), 6UL),
+                new Player(new DriverRole(), 7UL)
             };
             NightCycle night = new NightCycle(p);
 
@@ -104,9 +104,9 @@ namespace RoleBindingTest
             //Arrange
             List<Player> p = new List<Player>
             {
-                new Player(new MafiaRole(), Guid.NewGuid()),
-                new Player(new CitizenRole(), Guid.NewGuid()),
-                new Player(new DriverRole(), Guid.NewGuid())
+                new Player(new MafiaRole(), 1UL),
+                new Player(new CitizenRole(), 2UL),
+                new Player(new DriverRole(), 3UL)
             };
             NightCycle night = new NightCycle(p);
 
@@ -129,9 +129,9 @@ namespace RoleBindingTest
             //Arrange
             List<Player> p = new List<Player>
             {
-                new Player(new SerialKillerRole(), Guid.NewGuid()),
-                new Player(new CitizenRole(), Guid.NewGuid()),
-                new Player(new DriverRole(), Guid.NewGuid())
+                new Player(new SerialKillerRole(), 1UL),
+                new Player(new CitizenRole(), 2UL),
+                new Player(new DriverRole(), 3UL)
             };
             NightCycle night = new NightCycle(p);
 
@@ -155,11 +155,11 @@ namespace RoleBindingTest
             //Arrange
             List<Player> p = new List<Player>
             {
-                new Player(new MafiaRole(), Guid.NewGuid()),
-                new Player(new DriverRole(), Guid.NewGuid()),
-                new Player(new DoctorRole(), Guid.NewGuid()),
-                new Player(new CitizenRole(), Guid.NewGuid()),
-                new Player(new WitchRole(), Guid.NewGuid())
+                new Player(new MafiaRole(), 1UL),
+                new Player(new DriverRole(), 2UL),
+                new Player(new DoctorRole(), 3UL),
+                new Player(new CitizenRole(), 4UL),
+                new Player(new WitchRole(), 5UL)
             };
             NightCycle night = new NightCycle(p);
 
@@ -183,10 +183,10 @@ namespace RoleBindingTest
             //Arrange
             List<Player> p = new List<Player>
             {
-                new Player(new MafiaRole(), Guid.NewGuid()),
-                new Player(new CitizenRole(), Guid.NewGuid()),
-                new Player(new DriverRole(), Guid.NewGuid()),
-                new Player(new PolicemanRole(), Guid.NewGuid())
+                new Player(new MafiaRole(), 1UL),
+                new Player(new CitizenRole(), 2UL),
+                new Player(new DriverRole(), 3UL),
+                new Player(new PolicemanRole(), 4UL)
             };
             NightCycle night = new NightCycle(p);
 

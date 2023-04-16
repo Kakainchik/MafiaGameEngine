@@ -8,7 +8,7 @@ namespace WPFApplication.Controls.Day.Design
         public DayPlayerDesign()
         {
             base.Player = new DayPlayerState(
-                new System.Guid(1,1,1,1,1,1,1,1,1,1,1),
+                new ulong(),
                 "Kakainchik",
                 false,
                 Colors.Yellow);

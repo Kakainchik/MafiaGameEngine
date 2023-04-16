@@ -1,9 +1,7 @@
 ﻿using Net.Contexts;
 using Net.Models;
-using Net.Models.APIModels;
 using Net.Providers;
 using System.Net.Http.Headers;
-using System.Net.Http.Json;
 
 namespace Net.Clients
 {
@@ -16,10 +14,10 @@ namespace Net.Clients
 
         private string lobbyName;
         private HttpClient httpClient;
-        private Guid sessionId;
+        private ulong clientId;
         private bool disposedValue;
 
-        public Guid SessionId => sessionId;
+        public ulong ClientId => clientId;
         public IProvider SessionProvider => throw new NotImplementedException();
         public IProvider ChatProvider => throw new NotImplementedException();
 
@@ -39,7 +37,7 @@ namespace Net.Clients
         public event EventHandler<bool>? Disconnected;
         public event EventHandler<Context>? MessageIncomed;
 
-        public Task<ConnectValidation> ConnectAsync()
+        public Task<ConnectValidation> ConnectAndAuthorizeAsync()
         {
             return Task.FromResult(ConnectValidation.ACCEPTED);
         }

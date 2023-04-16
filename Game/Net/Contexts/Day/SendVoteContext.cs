@@ -5,10 +5,10 @@ namespace Net.Contexts.Day
     [Serializable]
     public class SendVoteContext : SessionContext
     {
-        public Guid TargetId { get; }
+        public ulong? TargetId { get; }
 
         [JsonConstructor]
-        public SendVoteContext(Guid targetId)
+        public SendVoteContext(ulong? targetId)
         {
             TargetId = targetId;
         }

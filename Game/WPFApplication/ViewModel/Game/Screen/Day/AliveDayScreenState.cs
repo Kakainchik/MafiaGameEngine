@@ -3,7 +3,6 @@ using WPFApplication.Model;
 using System.Windows.Input;
 using Net.Clients;
 using Net.Contexts.Day;
-using System;
 
 namespace WPFApplication.ViewModel
 {
@@ -43,18 +42,19 @@ namespace WPFApplication.ViewModel
             base.HandleEndBallot();
         }
 
-        private void OnVote(object o)
+        private void OnVote(object? o)
         {
+            if(o is null) return;
             var state = (DayPlayerState)o;
 
             var message = new SendVoteContext(state.Details.Id);
             _ = client.SessionProvider.InformServerAsync(message);
         }
 
-        private void OnNonLynch(object o)
+        private void OnNonLynch(object? o)
         {
             //Send null username that determines non-lynch object
-            var message = new SendVoteContext(Guid.Empty);
+            var message = new SendVoteContext(null);
             _ = client.SessionProvider.InformServerAsync(message);
         }
     }

@@ -1,6 +1,5 @@
 ﻿using WPFApplication.Core;
 using System.Windows.Media;
-using System;
 
 namespace WPFApplication.Model
 {
@@ -9,7 +8,7 @@ namespace WPFApplication.Model
         public PlayerInfo Details { get; set; }
         public VoteInfo Vote { get; }
 
-        public DayPlayerState(Guid id, string nickname, bool isAlive, Color color)
+        public DayPlayerState(ulong id, string nickname, bool isAlive, Color color)
         {
             Details = new PlayerInfo()
             {
@@ -25,7 +24,7 @@ namespace WPFApplication.Model
     public class VoteInfo : ObservableObject
     {
         private int ownVotes;
-        private string voteTargetNickname;
+        private string? voteTargetNickname;
         private Color tColor;
         private bool isVotesVisible;
 
@@ -41,7 +40,7 @@ namespace WPFApplication.Model
             }
         }
 
-        public string VoteTargetNickname
+        public string? VoteTargetNickname
         {
             get => voteTargetNickname; 
             set

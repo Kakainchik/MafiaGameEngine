@@ -1,5 +1,4 @@
-﻿using GenFu.Utilities;
-using System.Reflection;
+﻿using System.Reflection;
 
 namespace Net.Models
 {
@@ -62,7 +61,7 @@ namespace Net.Models
 
         internal static RGB GetRandomColor()
         {
-            int i = StaticRandom.Instance.Next(fi.Length);
+            int i = Random.Shared.Next(fi.Length);
             return (RGB)fi[i].GetValue(null)!;
         }
     }

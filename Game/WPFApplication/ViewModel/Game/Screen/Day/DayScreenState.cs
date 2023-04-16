@@ -22,7 +22,7 @@ namespace WPFApplication.ViewModel
         protected object _lock = new object();
 
         public ObservableCollection<DayPlayerState> PlayersState { get; protected internal set; }
-        public DayPlayerState NonLynchInstance { get; }
+        public NonLynchPlayerState NonLynchInstance { get; }
 
         public TimeSpan RemainedTime
         {
@@ -41,10 +41,7 @@ namespace WPFApplication.ViewModel
                 OnTimerTick,
                 App.Current.Dispatcher);
             PlayersState = new ObservableCollection<DayPlayerState>();
-            NonLynchInstance = new DayPlayerState(Guid.Empty,
-                "Non-Lynch",
-                true,
-                Colors.White);
+            NonLynchInstance = new NonLynchPlayerState();
 
             BindingOperations.EnableCollectionSynchronization(PlayersState, _lock);
         }
@@ -78,7 +75,7 @@ namespace WPFApplication.ViewModel
                     HandleUnvote(con);
                     break;
                 }
-                case ReceiveVoteContext con when con.CurrentT.Id.Equals(Guid.Empty):
+                case ReceiveVoteContext con when con.CurrentT!.Id == null:
                 {
                     HandleNonLynchVote(con);
                     break;
@@ -130,7 +127,7 @@ namespace WPFApplication.ViewModel
         protected virtual void HandleElectionResult(ElectionResultContext con)
         {
             StoryClear();
-            if(con.ElectedId.Equals(Guid.Empty))
+            if(con.ElectedId is null)
             {
                 StoryRun(new Run(DayResources.LynchNotDecided));
             }
@@ -167,8 +164,8 @@ namespace WPFApplication.ViewModel
             lock(_lock)
             {
                 //Find target
-                var t = PlayersState.First(s => s.Details.Id.Equals(con.CurrentT.Id));
-                t.Vote.OwnVotes = con.CurrentT.Votes;
+                var t = PlayersState.First(s => s.Details.Id.Equals(con.CurrentT!.Id));
+                t.Vote.OwnVotes = con.CurrentT!.Votes;
 
                 //Find voter
                 var v = PlayersState.First(s => s.Details.Id.Equals(con.VoterId));
@@ -204,7 +201,7 @@ namespace WPFApplication.ViewModel
                 v.Vote.TColor = NonLynchInstance.Details.NColor;
 
                 //Handle non-lynch object
-                NonLynchInstance.Vote.OwnVotes = con.CurrentT.Votes;
+                NonLynchInstance.Vote.OwnVotes = con.CurrentT!.Votes;
 
                 //Find previous voter's target
                 if(con.PreviousT != null)
@@ -287,7 +284,7 @@ namespace WPFApplication.ViewModel
             });
         }
 
-        private void OnTimerTick(object sender, EventArgs e)
+        private void OnTimerTick(object? sender, EventArgs e)
         {
             RemainedTime -= TimeSpan.FromSeconds(1);
             if(RemainedTime <= TimeSpan.Zero) timer.Stop();

@@ -37,8 +37,8 @@ namespace Net.Contexts.Serializers
 
                         new JsonDerivedType(typeof(ConnectPlayerContext), "ConnectPlayer"),
                         new JsonDerivedType(typeof(DisconnectPlayerContext), "DisconnectPlayer"),
-                        new JsonDerivedType(typeof(SessionIdContext), "SessionId"),
-                        new JsonDerivedType(typeof(UsernameContext), "Username"),
+                        new JsonDerivedType(typeof(ConnectClientIdContext), "ConnectClientId"),
+                        new JsonDerivedType(typeof(ConnectUsernameContext), "ConnectUsername"),
 
                         new JsonDerivedType(typeof(DayContext), "Day"),
                         new JsonDerivedType(typeof(DayPlayerStateContext), "DayPlayerState"),

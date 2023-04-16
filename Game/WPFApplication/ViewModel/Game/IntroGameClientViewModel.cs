@@ -25,14 +25,13 @@ namespace WPFApplication.ViewModel
         {
             var nextPage = new RunningGameClientViewModel(client, ownPlayer)
             {
-                NetHolder = base.NetHolder,
                 Successor = base.Successor
             };
             //Next to game page
             HandlePageChange(nextPage);
         }
 
-        private void Client_MessageIncomed(object sender, Context e)
+        private void Client_MessageIncomed(object? sender, Context e)
         {
             switch(e)
             {
@@ -86,9 +85,9 @@ namespace WPFApplication.ViewModel
             }
         }
 
-        private async void Client_Disconnected(object sender, bool e)
+        private async void Client_Disconnected(object? sender, bool e)
         {
-            if(e) NetHolder?.AbortConnections();
+            if(e) AbortConnections();
             else await client.RetryConnectAsync();
         }
     }

@@ -15,10 +15,10 @@ namespace WPFApplication.ViewModel
     {
         private readonly string[] Separator = new[] { Environment.NewLine };
 
-        private NightPlayerState victim;
+        private NightPlayerState? victim;
         private Visibility victimVisibility = Visibility.Hidden;
 
-        public NightPlayerState Victim
+        public NightPlayerState? Victim
         {
             get => victim;
             set
@@ -57,7 +57,7 @@ namespace WPFApplication.ViewModel
                 }
                 case VictimContext con:
                 {
-                    Victim = new NightPlayerState(Guid.Empty,
+                    Victim = new NightPlayerState(0UL,
                         con.Nickname,
                         false,
                         con.NColor.ConvertToColor(),

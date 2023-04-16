@@ -1,4 +1,8 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Threading;
 using WPFApplication.ViewModel;
 
 namespace WPFApplication
@@ -17,7 +21,14 @@ namespace WPFApplication
             this.DataContext = new WindowViewModel(this);
         }
 
-        private void MainWindow_SourceInitialized(object sender, System.EventArgs e)
+        protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
+        {
+            base.OnMouseLeftButtonDown(e);
+
+            this.DragMove();
+        }
+
+        private void MainWindow_SourceInitialized(object? sender, EventArgs e)
         {
             Core.WindowSizing.WindowInitialized(this);
         }

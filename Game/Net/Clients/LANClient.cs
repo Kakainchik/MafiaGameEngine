@@ -9,7 +9,7 @@ namespace Net.Clients
 {
     public class LANClient : IClient
     {
-        private Guid sessionId;
+        private ulong clientId;
         private IPAddress address;
         private SynchronizationContext dispatcher;
         private LANSessionProvider sessionProvider;
@@ -23,7 +23,7 @@ namespace Net.Clients
             set => address = value;
         }
 
-        public Guid SessionId => sessionId;
+        public ulong ClientId => clientId;
         public IProvider SessionProvider => sessionProvider;
         public IProvider ChatProvider => chatProvider;
 
@@ -38,7 +38,7 @@ namespace Net.Clients
         public event EventHandler<bool>? Disconnected;
         public event EventHandler<Context>? MessageIncomed;
 
-        public async Task<ConnectValidation> ConnectAsync()
+        public async Task<ConnectValidation> ConnectAndAuthorizeAsync()
         {
             try
             {
@@ -48,9 +48,9 @@ namespace Net.Clients
                 if(validationContext.Validation != ConnectValidation.ACCEPTED)
                     return validationContext.Validation;
 
-                if(validationContext is SessionIdContext ses)
+                if(validationContext is ConnectClientIdContext cci)
                 {
-                    sessionId = ses.Id;
+                    clientId = cci.ClientId;
                     sessionProvider.RunBackgroundListener();
 
                     await chatProvider.ConnectAsync();
@@ -81,7 +81,7 @@ namespace Net.Clients
 
         public async Task<bool> RetryConnectAsync()
         {
-            if(sessionId.Equals(Guid.Empty) || !sessionProvider.IsConnected)
+            if(!sessionProvider.IsConnected)
                 throw new WebException("No connection to session port",
                     WebExceptionStatus.ConnectionClosed);
 

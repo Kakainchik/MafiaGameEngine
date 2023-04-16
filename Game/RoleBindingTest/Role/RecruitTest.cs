@@ -16,8 +16,8 @@ namespace RoleBindingTest
             //Arrange
             List<Player> p = new List<Player>
             {
-                new Player(new GodfatherRole(), Guid.NewGuid()),
-                new Player(new RecruitRole(), Guid.NewGuid())
+                new Player(new GodfatherRole(), 1UL),
+                new Player(new RecruitRole(), 2UL)
             };
             NightCycle night = new NightCycle(p);
 
@@ -36,8 +36,8 @@ namespace RoleBindingTest
             //Arrange
             List<Player> p = new List<Player>
             {
-                new Player(new GodfatherRole(), Guid.NewGuid()),
-                new Player(new ProstituteRole(), Guid.NewGuid())
+                new Player(new GodfatherRole(), 1UL),
+                new Player(new ProstituteRole(), 2UL)
             };
             NightCycle night = new NightCycle(p);
 
@@ -56,8 +56,8 @@ namespace RoleBindingTest
             //Arrange
             List<Player> p = new List<Player>
             {
-                new Player(new GodfatherRole(), Guid.NewGuid()),
-                new Player(new ProstituteRole(), Guid.NewGuid())
+                new Player(new GodfatherRole(), 1UL),
+                new Player(new ProstituteRole(), 2UL)
             };
             NightCycle night = new NightCycle(p);
 

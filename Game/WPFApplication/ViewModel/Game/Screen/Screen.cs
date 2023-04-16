@@ -5,9 +5,9 @@ namespace WPFApplication.ViewModel
 {
     public class Screen : ObservableObject
     {
-        private ScreenState state;
+        private ScreenState? state;
 
-        public ScreenState State
+        public ScreenState? State
         {
             get => state;
             set
@@ -17,14 +17,14 @@ namespace WPFApplication.ViewModel
             }
         }
 
-        public Screen(ScreenState state)
+        public Screen(ScreenState? state)
         {
-            State = state;
+            this.state = state;
         }
 
         public void HandleMessage(Context context)
         {
-            State.HandleContext(context);
+            State?.HandleContext(context);
         }
     }
 }

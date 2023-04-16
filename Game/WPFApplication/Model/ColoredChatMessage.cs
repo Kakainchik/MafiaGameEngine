@@ -7,12 +7,6 @@ namespace WPFApplication.Model
     {
         public Brush ColourBrush { get; set; }
 
-        public ColoredChatMessage(string username, string message)
-            : base(username, message)
-        {
-
-        }
-
         public ColoredChatMessage(Color color, string username, string message)
             : base(username, message)
         {

@@ -56,8 +56,10 @@ namespace WPFApplication.Controls
             QuantityChangeCommand = new RelayCommand(OnQuantityChange);
         }
 
-        private void OnQuantityChange(object obj)
+        private void OnQuantityChange(object? obj)
         {
+            if(obj is null) return;
+
             var data = (ValueTuple<RoleVisual, int>)obj;
             if(data.Item2 == 0) SelectedRoles.Remove(data.Item1);
             else SelectedRoles[data.Item1] = data.Item2;

@@ -10,7 +10,7 @@ namespace Net.Clients
 
         private HubConnection connection;
 
-        public Guid SessionId => throw new NotImplementedException();
+        public ulong SessionId => throw new NotImplementedException();
 
         public IProvider SessionProvider => throw new NotImplementedException();
 

@@ -28,14 +28,14 @@ public class EndGameContext : Context
 [Serializable]
 public class EndGamePlayerState
 {
-    public Guid Id { get; }
+    public ulong Id { get; }
     public string Nickname { get; }
     public RGB NColor { get; }
     public RoleSignature Role { get; }
     public bool IsAlive { get; }
 
     [JsonConstructor]
-    public EndGamePlayerState(Guid id,
+    public EndGamePlayerState(ulong id,
         string nickname,
         RGB nColor,
         RoleSignature role,

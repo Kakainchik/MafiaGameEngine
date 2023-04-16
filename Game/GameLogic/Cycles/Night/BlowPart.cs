@@ -1,8 +1,6 @@
 ﻿using GameLogic.Actions;
 using GameLogic.Model;
 using GameLogic.Roles;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace GameLogic.Cycles
 {

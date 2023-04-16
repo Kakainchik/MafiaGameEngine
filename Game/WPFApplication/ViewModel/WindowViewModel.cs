@@ -56,7 +56,7 @@ namespace WPFApplication.ViewModel
             InfoVM = new InfoViewModel();
             HomeVMRepresentation = new HomeViewModel() { Successor = this };
 
-            CurrentView = HomeVMRepresentation;
+            currentView = HomeVMRepresentation;
 
             //CreateCommands
             MinimizeCommand = new RelayCommand(OnMinimizeWindow);
@@ -74,12 +74,15 @@ namespace WPFApplication.ViewModel
             IsMenuEnabled = false;
         }
 
-        private void OnHomeView(object o)
+        private void OnHomeView(object? o)
         {
-            if(CurrentView is INetUser net)
+            if(CurrentView is INetHolder inh)
             {
-                //Abort connections
-                net.NetHolder?.AbortConnections();
+                inh.AbortConnections();
+            }
+            else if(CurrentView is INetUser inu)
+            {
+                inu.NetHolder?.AbortConnections();
             }
 
             //Show main page
@@ -87,27 +90,27 @@ namespace WPFApplication.ViewModel
             IsMenuEnabled = true;
         }
 
-        private void OnSettingsView(object o)
+        private void OnSettingsView(object? o)
         {
             CurrentView = SettingsVM;
         }
 
-        private void OnInfoView(object o)
+        private void OnInfoView(object? o)
         {
             CurrentView = InfoVM;
         }
 
-        protected virtual void OnMinimizeWindow(object parameter)
+        protected virtual void OnMinimizeWindow(object? parameter)
         {
             mWindow.WindowState = WindowState.Minimized;
         }
 
-        protected virtual void OnMaximizeWindow(object parameter)
+        protected virtual void OnMaximizeWindow(object? parameter)
         {
             mWindow.WindowState ^= WindowState.Maximized;
         }
 
-        protected virtual void OnCloseWindow(object parameter)
+        protected virtual void OnCloseWindow(object? parameter)
         {
             mWindow.Close();
             //TODO: If a game is running - warning

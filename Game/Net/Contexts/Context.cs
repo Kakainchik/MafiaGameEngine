@@ -17,9 +17,9 @@
     [Serializable]
     public struct ContextPresenter
     {
-        public bool IsPrivate { get; internal set; }
-        public bool IsForServer { get; internal set; }
-        public Guid Receiver { get; internal set; }
-        public Guid Sender { get; internal set; }
+        public bool IsPrivate { get; set; }
+        public bool IsForServer { get; set; }
+        public ulong Receiver { get; set; }
+        public ulong Sender { get; set; }
     }
 }

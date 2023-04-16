@@ -2,6 +2,8 @@
 using System.Windows.Controls;
 using System.Windows.Input;
 
+#pragma warning disable CS8618
+
 namespace WPFApplication.Controls
 {
     public class InputTextBox : TextBox

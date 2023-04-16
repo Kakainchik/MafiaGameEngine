@@ -10,9 +10,9 @@ namespace WPFApplication.Controls
     /// </summary>
     public partial class HostPlayerListItemControl : UserControl
     {
-        public Guid PlayerId
+        public ulong PlayerId
         {
-            get => (Guid)GetValue(PlayerIdProperty);
+            get => (ulong)GetValue(PlayerIdProperty);
             set => SetValue(PlayerIdProperty, value);
         }
 
@@ -36,7 +36,7 @@ namespace WPFApplication.Controls
 
         public static readonly DependencyProperty PlayerIdProperty =
             DependencyProperty.Register(nameof(PlayerId),
-                typeof(Guid),
+                typeof(ulong),
                 typeof(HostPlayerListItemControl));
 
         public static readonly DependencyProperty PlayerProperty =

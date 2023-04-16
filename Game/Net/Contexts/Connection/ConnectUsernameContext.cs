@@ -3,12 +3,12 @@
 namespace Net.Contexts.Connection
 {
     [Serializable]
-    public class UsernameContext : SessionContext
+    public class ConnectUsernameContext : SessionContext
     {
         public string Username { get; }
 
         [JsonConstructor]
-        public UsernameContext(string username)
+        public ConnectUsernameContext(string username)
         {
             Username = username;
         }

@@ -61,7 +61,7 @@ namespace WPFApplication.ViewModel
         protected override void HandleDisconnectPlayer(DisconnectPlayerContext con)
         {
             var disconnected = HostSetup.Players.Single(
-                p => p.PlayerId.Equals(con.SessionId));
+                p => p.PlayerId.Equals(con.ClientId));
             HostSetup.Players.Remove(disconnected);
 
             //Show message in the chat
@@ -84,7 +84,6 @@ namespace WPFApplication.ViewModel
         {
             var nextPage = new IntroGameClientViewModel(client)
             {
-                NetHolder = base.NetHolder,
                 Successor = base.Successor
             };
             //Next to intro page
@@ -103,22 +102,22 @@ namespace WPFApplication.ViewModel
                 element => element.Value);
         }
 
-        private async void OnReady(object o)
+        private async void OnReady(object? o)
         {
             var msg = new LobbyReadyContext(isReady);
             await client.SessionProvider.InformServerAsync(msg);
 
             HostSetup.Players.Single(
-                p => p.PlayerId.Equals(client.SessionId)).IsReady = isReady;
+                p => p.PlayerId.Equals(client.ClientId)).IsReady = isReady;
         }
 
-        private async void Client_Disconnected(object sender, bool e)
+        private async void Client_Disconnected(object? sender, bool e)
         {
-            if(e) NetHolder?.AbortConnections();
+            if(e) AbortConnections();
             else await client.RetryConnectAsync();
         }
 
-        private void Client_MessageIncomed(object sender, Context e)
+        private void Client_MessageIncomed(object? sender, Context e)
         {
             switch(e)
             {

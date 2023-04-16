@@ -3,8 +3,13 @@ using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Interop;
 
+#pragma warning disable CS8625
+#pragma warning disable CS8605
+#pragma warning disable CS0472
+
 namespace WPFApplication.Core
 {
+
     /// <summary>
     /// Helper class that sets initial size of main window of the entire application
     /// with no inluding Windows taskbar.
@@ -65,8 +70,8 @@ namespace WPFApplication.Core
                 mmi.ptMaxSize.y = Math.Abs(rcWorkArea.bottom - rcWorkArea.top);
                 mmi.ptMaxTrackSize.x = mmi.ptMaxSize.x;                               //maximum drag X size for the window
                 mmi.ptMaxTrackSize.y = mmi.ptMaxSize.y;                               //maximum drag Y size for the window
-                mmi.ptMinTrackSize.x = 800;                                           //minimum drag X size for the window
-                mmi.ptMinTrackSize.y = 600;                                           //minimum drag Y size for the window
+                mmi.ptMinTrackSize.x = 1200;                                          //minimum drag X size for the window
+                mmi.ptMinTrackSize.y = 800;                                           //minimum drag Y size for the window
                 mmi = AdjustWorkingAreaForAutoHide(monitorContainingApplication, mmi);//need to adjust sizing if taskbar is set to autohide
             }
             Marshal.StructureToPtr(mmi, lParam, true);

@@ -15,20 +15,19 @@ namespace Net.Servers.Units
         protected IChatCommunicator communicator;
         protected NetworkStream? stream;
 
-        protected internal Guid ClientId { get; protected set; }
+        protected internal ulong ClientId { get; protected set; }
 
         internal ChatUnit(TcpClient client, IChatCommunicator communicator)
         {
             this.client = client;
             this.communicator = communicator;
+            this.stream = client.GetStream();
         }
 
         internal void Process()
         {
             try
             {
-                stream = client.GetStream();
-
                 if(!WaitValidation())
                 {
                     Dispose(true);
@@ -42,7 +41,7 @@ namespace Net.Servers.Units
 
                     lock(_lock)
                     {
-                        message = ContextJsonSerializer.Deserialize(stream) as ChatContext;
+                        message = ContextJsonSerializer.Deserialize(stream!) as ChatContext;
                         if(message == null) continue;
                     }
 
@@ -90,9 +89,9 @@ namespace Net.Servers.Units
             Task waiter = Task.Run(() =>
             {
                 var authorization = ContextJsonSerializer.Deserialize(stream!) as AuthorizationContext;
-                if(authorization is SessionIdContext ses)
+                if(authorization is ConnectClientIdContext cci)
                 {
-                    ClientId = ses.Id;
+                    ClientId = cci.ClientId;
                     communicator.AttachChat(this);
                 }
             });

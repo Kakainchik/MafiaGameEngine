@@ -27,8 +27,8 @@ namespace Net.Manager.Day
         }
 
         public abstract void StartDay();
-        public abstract void SendVoteFromTo(Guid voterId, Guid targetId);
-        public abstract void SendVoteForNonLynch(Guid voterId);
-        public abstract void Unvote(Guid voterId);
+        public abstract void SendVoteFromTo(ulong voterId, ulong targetId);
+        public abstract void SendVoteForNonLynch(ulong voterId);
+        public abstract void Unvote(ulong voterId);
     }
 }

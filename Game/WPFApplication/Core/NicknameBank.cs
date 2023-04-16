@@ -1,5 +1,4 @@
 ﻿using System;
-using static GenFu.Utilities.StaticRandom;
 
 namespace WPFApplication.Core
 {
@@ -32,16 +31,15 @@ namespace WPFApplication.Core
 
         internal static string GetRandomName(NameTemplate template)
         {
-            lock(_lock)
-                switch(template)
-                {
-                    case NameTemplate.NATURAL:
-                        return NicknamesTemplate[Instance.Next(NicknamesTemplate.Length)];
-                    case NameTemplate.GAMING:
-                        return GamingNicknamesTemplate[Instance.Next(GamingNicknamesTemplate.Length)];
-                    default:
-                        throw new ArgumentException("Template is not valid", nameof(template));
-                }
+            switch(template)
+            {
+                case NameTemplate.NATURAL:
+                    return NicknamesTemplate[Random.Shared.Next(NicknamesTemplate.Length)];
+                case NameTemplate.GAMING:
+                    return GamingNicknamesTemplate[Random.Shared.Next(GamingNicknamesTemplate.Length)];
+                default:
+                    throw new ArgumentException("Template is not valid", nameof(template));
+            }
         }
     }
 

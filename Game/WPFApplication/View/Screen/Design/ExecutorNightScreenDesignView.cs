@@ -1,8 +1,9 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Media;
 using WPFApplication.Model;
 using WPFApplication.ViewModel;
+
+#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
 
 namespace WPFApplication.View.Design
 {
@@ -12,11 +13,11 @@ namespace WPFApplication.View.Design
         {
             base.PlayersState = new ObservableCollection<NightPlayerState>()
             {
-                new NightPlayerState(Guid.NewGuid(), "Alice", true, Colors.Pink, false),
-                new NightPlayerState(Guid.NewGuid(), "Bob", true, Colors.Plum, false) { IsPicked = true },
-                new NightPlayerState(Guid.NewGuid(), "Clark", true, Colors.Green, false),
-                new NightPlayerState(Guid.NewGuid(), "Dad", false, Colors.Yellow, false),
-                new NightPlayerState(Guid.NewGuid(), "Enigma", true, Colors.Blue, false)
+                new NightPlayerState(1UL, "Alice", true, Colors.Pink, false),
+                new NightPlayerState(2UL, "Bob", true, Colors.Plum, false) { IsPicked = true },
+                new NightPlayerState(3UL, "Clark", true, Colors.Green, false),
+                new NightPlayerState(4UL, "Dad", false, Colors.Yellow, false),
+                new NightPlayerState(5UL, "Enigma", true, Colors.Blue, false)
             };
         }
     }

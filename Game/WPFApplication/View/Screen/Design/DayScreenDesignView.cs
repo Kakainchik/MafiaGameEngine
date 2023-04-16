@@ -1,8 +1,9 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Media;
 using WPFApplication.Model;
 using WPFApplication.ViewModel;
+
+#pragma warning disable CS8625
 
 namespace WPFApplication.View.Design
 {
@@ -12,11 +13,11 @@ namespace WPFApplication.View.Design
         {
             base.PlayersState = new ObservableCollection<DayPlayerState>()
             {
-                new DayPlayerState(Guid.NewGuid(), "Alice", true, Colors.Pink),
-                new DayPlayerState(Guid.NewGuid(), "Bob", true, Colors.Plum),
-                new DayPlayerState(Guid.NewGuid(), "Clark", true, Colors.Green),
-                new DayPlayerState(Guid.NewGuid(), "Dad", false, Colors.Yellow),
-                new DayPlayerState(Guid.NewGuid(), "Enigma", true, Colors.Blue)
+                new DayPlayerState(1UL, "Alice", true, Colors.Pink),
+                new DayPlayerState(2UL, "Bob", true, Colors.Plum),
+                new DayPlayerState(3UL, "Clark", true, Colors.Green),
+                new DayPlayerState(4UL, "Dad", false, Colors.Yellow),
+                new DayPlayerState(5UL, "Enigma", true, Colors.Blue)
             };
 
             PlayersState[0].Vote.OwnVotes = 2;

@@ -2,7 +2,6 @@
 using GameLogic.Cycles;
 using GameLogic.Roles;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using System.Collections.Generic;
 
 namespace RoleBindingTest
@@ -15,7 +14,7 @@ namespace RoleBindingTest
         {
             //Arrange
             List<Player> p = TestConfig.MinimumPlayersSetup();
-            p.Add(new Player(new ZombieRole(), Guid.NewGuid()));
+            p.Add(new Player(new ZombieRole(), 1UL));
             NightCycle night = new NightCycle(p);
 
             //Act
@@ -39,8 +38,8 @@ namespace RoleBindingTest
         {
             //Arrange
             List<Player> p = TestConfig.MinimumPlayersSetup();
-            p.Add(new Player(new ZombieRole(), Guid.NewGuid()));
-            p.Add(new Player(new PolicemanRole(), Guid.NewGuid()));
+            p.Add(new Player(new ZombieRole(), 6UL));
+            p.Add(new Player(new PolicemanRole(), 7UL));
             NightCycle night = new NightCycle(p);
 
             //Act
@@ -63,12 +62,12 @@ namespace RoleBindingTest
             //Arrange
             List<Player> p = new List<Player>
             {
-                new Player(new MafiaRole(), Guid.NewGuid()),
-                new Player(new VigilanteRole() { Bullets = 1 }, Guid.NewGuid()),
-                new Player(new DoctorRole(), Guid.NewGuid()),
-                new Player(new DoctorRole(), Guid.NewGuid()),
-                new Player(new CitizenRole(), Guid.NewGuid()),
-                new Player(new ZombieRole(), Guid.NewGuid())
+                new Player(new MafiaRole(), 1UL),
+                new Player(new VigilanteRole() { Bullets = 1 }, 2UL),
+                new Player(new DoctorRole(), 3UL),
+                new Player(new DoctorRole(), 4UL),
+                new Player(new CitizenRole(), 5UL),
+                new Player(new ZombieRole(), 6UL)
             };
             NightCycle night = new NightCycle(p);
 

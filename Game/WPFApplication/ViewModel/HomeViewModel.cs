@@ -1,8 +1,5 @@
 ﻿using Net.Clients;
-using Net.Contexts.Connection;
-using Net.Contexts.Lobby;
 using Net.Models;
-using Net.Servers;
 using Net.Servers.Mediators;
 using System;
 using System.Net;
@@ -13,11 +10,8 @@ using WPFApplication.Properties;
 
 namespace WPFApplication.ViewModel
 {
-    public class HomeViewModel : ChangeablePage, INetHolder
+    public class HomeViewModel : ChangeablePage
     {
-        private LANServer server;
-        private IClient client;
-
         public string Username
         {
             get
@@ -49,86 +43,47 @@ namespace WPFApplication.ViewModel
 
         public override void HandlePageChange(ChangeablePage page)
         {
-            if(client != null)
-            {
-                client.Disconnected -= Client_Disconnected;
-            }
-
             Successor?.AssertPage(page);
         }
 
-        public void AbortConnections()
-        {
-            //Dispose server\client
-            client?.Disconnect();
-            client?.Dispose();
-            server?.StopListen();
-            server?.Dispose();
-
-            //Assert homepage to window
-            Successor?.AssertPage(this);
-        }
-
-        private void OnEnterHall(object obj)
+        private void OnEnterHall(object? obj)
         {
             var nextPage = new HallViewModel()
             {
-                NetHolder = this,
                 Successor = base.Successor
             };
 
             HandlePageChange(nextPage);
         }
-
-        private async void OnCreateLANGame(object obj)
+        private async void OnCreateLANGame(object? obj)
         {
-            server = new LANServer();
-            server.StartListenParallel();
+            LANClient client = new LANClient(IPAddress.Loopback, SynchronizationContext.Current!);
+            LobbyMediator mediator = new LobbyMediator();
 
-            client = new LANClient(IPAddress.Loopback,
-                SynchronizationContext.Current!);
-            client.Disconnected += Client_Disconnected;
-
-            //Open all providers
-            var validation = await client.ConnectAsync();
-            if(validation == ConnectValidation.ACCEPTED)
+            var validationResult = await mediator.AttachHost(client, Username);
+            if(validationResult == ConnectValidation.ACCEPTED)
             {
-                LobbyMediator mediator = server.InitializeFirstMediator();
-
-                //Send own username
-                var msg = new UsernameContext(Username);
-                await client.SessionProvider.InformServerAsync(msg);
-
-                //Send ready flag as host
-                var rmsg = new LobbyReadyContext(true);
-                await client.SessionProvider.InformServerAsync(rmsg);
-
                 var nextPage = new LobbyHostViewModel(client, mediator)
                 {
-                    NetHolder = this,
                     Successor = base.Successor
                 };
                 HandlePageChange(nextPage);
             }
-            else AbortConnections();
+            else
+            {
+                client.Disconnect();
+                client.Dispose();
+            }
         }
 
-        private void OnJoinLANGame(object obj)
+        private void OnJoinLANGame(object? obj)
         {
             var nextPage = new LANLobbyConnectionViewModel()
             {
-                NetHolder = this,
                 Successor = base.Successor
             };
 
             HandlePageChange(nextPage);
-        }
-
-        private async void Client_Disconnected(object? sender, bool e)
-        {
-            if(e) AbortConnections();
-            else await client.RetryConnectAsync();
-            //TODO: Show some message if could not reconnect chatProvider
         }
     }
 }

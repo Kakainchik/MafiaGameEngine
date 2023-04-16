@@ -1,17 +1,16 @@
 ﻿using WPFApplication.Core;
 using System.Windows.Media;
-using System;
 
 namespace WPFApplication.Model
 {
     public class PlayerInfo : ObservableObject
     {
-        private Guid id;
-        private string nickname;
+        private ulong id;
+        private string? nickname;
         private bool isAlive;
         private Color nColor;
 
-        public Guid Id
+        public ulong Id
         {
             get => id; 
             set
@@ -21,7 +20,7 @@ namespace WPFApplication.Model
             }
         }
 
-        public string Nickname
+        public string? Nickname
         {
             get => nickname; 
             set

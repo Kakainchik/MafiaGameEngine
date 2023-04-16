@@ -14,12 +14,13 @@ namespace Net.Servers.Units
         protected ISessionCommunicator communicator;
         protected NetworkStream? stream;
 
-        protected internal Guid ClientId { get; }
+        protected internal ulong ClientId { get; }
 
-        internal SessionUnit(Guid id, TcpClient client, ISessionCommunicator communicator)
+        internal SessionUnit(ulong id, TcpClient client, ISessionCommunicator communicator)
         {
             ClientId = id;
             this.client = client;
+            this.stream = client.GetStream();
             this.communicator = communicator;
         }
 
@@ -27,11 +28,6 @@ namespace Net.Servers.Units
         {
             try
             {
-                stream = client.GetStream();
-
-                //Send guid
-                ContextJsonSerializer.Serialize(new SessionIdContext(ClientId), stream);
-
                 //Receiving messages from this client
                 while(true)
                 {
@@ -39,7 +35,7 @@ namespace Net.Servers.Units
 
                     lock(_lock)
                     {
-                        message = ContextJsonSerializer.Deserialize(stream) as SessionContext;
+                        message = ContextJsonSerializer.Deserialize(stream!) as SessionContext;
                         if(message == null) continue;
                     }
 

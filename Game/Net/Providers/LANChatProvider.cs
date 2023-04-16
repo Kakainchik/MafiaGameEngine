@@ -30,7 +30,7 @@ namespace Net.Providers
             try
             {
                 //Send existing session id
-                SessionIdContext message = new(client.SessionId);
+                ConnectClientIdContext message = new(client.ClientId);
 
                 await InformServerAsync(message);
             }

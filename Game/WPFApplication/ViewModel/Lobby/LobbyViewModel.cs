@@ -10,7 +10,7 @@ using WPFApplication.Properties;
 
 namespace WPFApplication.ViewModel
 {
-    public abstract class LobbyViewModel : ChangeablePage, INetUser
+    public abstract class LobbyViewModel : ChangeablePage, INetHolder
     {
         #region Variables
 
@@ -25,7 +25,6 @@ namespace WPFApplication.ViewModel
         public ObservableCollection<ChatMessage> ChatLog { get; set; }
 
         public ICommand PushMessageCommand { get; set; }
-        public INetHolder NetHolder { get; set; }
 
         #endregion
 
@@ -37,15 +36,21 @@ namespace WPFApplication.ViewModel
             PushMessageCommand = new RelayCommand(OnPushMessage);
         }
 
+        public virtual void AbortConnections()
+        {
+            client.Disconnect();
+            client.Dispose();
+        }
+
         protected abstract void HandleConnectPlayer(ConnectPlayerContext con);
         protected abstract void HandleDisconnectPlayer(DisconnectPlayerContext con);
         protected abstract void HandleLobbyReady(LobbyReadyContext con);
         protected abstract void HandleChatMessage(MessageContext con);
         protected abstract void HandleLobbyRunGame(LobbyRunIntroContext con);
 
-        protected virtual async void OnPushMessage(object o)
+        protected virtual async void OnPushMessage(object? o)
         {
-            if(string.IsNullOrWhiteSpace((string)o)) return;
+            if(string.IsNullOrWhiteSpace((string?)o)) return;
 
             var msg = new ChatMessage(Username, (string)o);
             var con = new MessageContext(Username, msg.Message);

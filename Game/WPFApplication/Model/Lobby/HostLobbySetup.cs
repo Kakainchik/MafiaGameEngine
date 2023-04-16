@@ -2,9 +2,9 @@
 {
     public class HostLobbySetup : LobbySetup
     {
-        private string cityName;
+        private string? cityName;
 
-        public string CityName
+        public string? CityName
         {
             get => cityName;
             set

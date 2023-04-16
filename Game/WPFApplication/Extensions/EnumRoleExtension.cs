@@ -20,7 +20,7 @@ namespace WPFApplication.Extensions
         internal static string GetLocalizedName(this RoleVisual role)
         {
             var standart = string.Empty;
-            FieldInfo fi = role.GetType().GetField(role.ToString());
+            FieldInfo? fi = role.GetType().GetField(role.ToString());
             if(fi != null)
             {
                 LocalizedDescriptionAttribute attr =
@@ -35,7 +35,7 @@ namespace WPFApplication.Extensions
         internal static string GetLocilizedDescription(this RoleVisual role)
         {
             var standart = string.Empty;
-            FieldInfo fi = role.GetType().GetField(role.ToString());
+            FieldInfo? fi = role.GetType().GetField(role.ToString());
             if(fi != null)
             {
                 LocalizedDescriptionAttribute attr =
@@ -50,7 +50,7 @@ namespace WPFApplication.Extensions
         internal static string GetLocilizedAbility(this RoleVisual role)
         {
             var standart = string.Empty;
-            FieldInfo fi = role.GetType().GetField(role.ToString());
+            FieldInfo? fi = role.GetType().GetField(role.ToString());
             if(fi != null)
             {
                 LocalizedDescriptionAttribute attr =

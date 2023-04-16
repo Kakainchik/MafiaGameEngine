@@ -34,7 +34,7 @@ namespace WPFApplication.View
             if(response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsAsync<LoginResponse>();
-                var rtoken = cookies.GetAllCookies()["RefreshToken"].Value;
+                var rtoken = cookies.GetAllCookies()["RefreshToken"]?.Value;
 
                 Settings.Default.ApiId = content.Id;
                 Settings.Default.ApiUsername = content.Username;

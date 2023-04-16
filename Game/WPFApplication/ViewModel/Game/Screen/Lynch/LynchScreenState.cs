@@ -1,8 +1,6 @@
 ﻿using Net.Clients;
 using Net.Contexts;
 using Net.Contexts.Lynch;
-using System;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Media;
@@ -14,12 +12,12 @@ namespace WPFApplication.ViewModel
 {
     public class LynchScreenState : ScreenState
     {
-        private NightPlayerState electedPlayer;
+        private NightPlayerState? electedPlayer;
         private bool isMessageBoxVisible;
-        private string lastMessageText;
+        private string? lastMessageText;
         private RoleVisual lynchedRole;
 
-        public NightPlayerState ElectedPlayer
+        public NightPlayerState? ElectedPlayer
         {
             get => electedPlayer;
             set
@@ -39,7 +37,7 @@ namespace WPFApplication.ViewModel
             }
         }
 
-        public string LastMessageText
+        public string? LastMessageText
         {
             get => lastMessageText;
             set
@@ -103,7 +101,7 @@ namespace WPFApplication.ViewModel
 
         private void HandleLynchPlayerState(LynchPlayerStateContext con)
         {
-            ElectedPlayer = new NightPlayerState(Guid.Empty,
+            ElectedPlayer = new NightPlayerState(0UL,
                 con.Nickname,
                 true,
                 con.NColor.ConvertToColor(),
@@ -117,7 +115,7 @@ namespace WPFApplication.ViewModel
         private void HandleQuestion()
         {
             StoryRun(new Run(LynchResources.AnyMessage));
-            if(electedPlayer.IsOwn)
+            if(electedPlayer!.IsOwn)
             {
                 IsMessageBoxVisible = true;
             }
@@ -126,16 +124,20 @@ namespace WPFApplication.ViewModel
         private void HandleLastMessage()
         {
             IsMessageBoxVisible = false;
-            var msg = new SendLastMessageContext(LastMessageText);
-            //Run and fire
-            _ = client.SessionProvider.InformServerAsync(msg);
+
+            if(!string.IsNullOrEmpty(LastMessageText))
+            {
+                var msg = new SendLastMessageContext(LastMessageText);
+                //Run and fire
+                _ = client.SessionProvider.InformServerAsync(msg);
+            }
         }
 
         private void HandleReceiveLastMessage(ReceiveLastMessageContext con)
         {
             //Clear panel
             StoryClear();
-            StoryRun(new Run(electedPlayer.Details.Nickname)
+            StoryRun(new Run(electedPlayer!.Details.Nickname)
             {
                 Foreground = new SolidColorBrush(electedPlayer.Details.NColor)
             });
@@ -155,7 +157,7 @@ namespace WPFApplication.ViewModel
         private void HandleExecute()
         {
             //Play sound
-            ElectedPlayer.Details.IsAlive = false;
+            ElectedPlayer!.Details.IsAlive = false;
         }
 
         private void HandleShowRole()

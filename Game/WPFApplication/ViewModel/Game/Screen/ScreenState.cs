@@ -29,7 +29,7 @@ namespace WPFApplication.ViewModel
             this.client = client;
         }
 
-        public event EventHandler<bool> FadeRequested;
+        public event EventHandler<bool>? FadeRequested;
 
         public abstract void HandleContext(Context c);
 
